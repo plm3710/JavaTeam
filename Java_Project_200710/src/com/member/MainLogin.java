@@ -64,6 +64,7 @@ public class MainLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public MainLogin() {
+		setUndecorated(true);//타이틀바 없애기
 		list = new ArrayList<MemberVO>();
 		mdao = new MemberDAO();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

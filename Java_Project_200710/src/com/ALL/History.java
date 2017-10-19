@@ -186,6 +186,8 @@ public class History extends JFrame {
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 		
+		//calendar.getDayChooser().getDayPanel().getmo
+		
 		JLabel lblNewLabel_2 = new JLabel("\uB0B4\uC5ED \uC870\uD68C");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("서울남산 장체BL", Font.PLAIN, 19));
