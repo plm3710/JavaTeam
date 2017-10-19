@@ -12,6 +12,7 @@ public class IncomeVO {
 	public IncomeVO() {
 		
 	}
+	
 	public IncomeVO(String id, int money, int year, int month, int day, String category, String memo) {
 		super();
 		this.id = id;

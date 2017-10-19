@@ -100,6 +100,41 @@ public class MoneyDAO {
 		
 		return moneyAll;
 	}
+
+//	public ArrayList<IncomeVO> incomeNextSelect(String id, String year, String month, String day) {
+//		
+//		getConn();
+//		int moneyAll = 0;
+//		try {
+//			String sql = "select * from income where id=? and year=? and  month=? and day=?";
+//			psmt = con.prepareStatement(sql);
+//			psmt.setString(1,id);
+//			psmt.setInt(2, Integer.parseInt(year));
+//			psmt.setInt(3, Integer.parseInt(month));
+//			psmt.setInt(4, Integer.parseInt(day));
+//			rs = psmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				//수입의 모든 금액 출력
+//				
+//			}
+//		
+//		} catch (SQLException e) {
+//			System.out.println("MemberDAO 회원보기 오류");
+//			e.printStackTrace();
+//		}finally {
+//			try {
+//				if(rs!=null) rs.close();
+//				if (psmt != null) psmt.close();
+//				if (con != null) con.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		return moneyAll;
+		
+//	}
 	
 	
 	

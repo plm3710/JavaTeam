@@ -29,6 +29,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JYearChooser;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class History extends JFrame {
 
@@ -163,6 +165,7 @@ public class History extends JFrame {
 		panel_2.setLayout(new CardLayout(0, 0));
 		
 		JCalendar calendar = new JCalendar();
+		
 		calendar.getDayChooser().getDayPanel().setBackground(Color.WHITE);
 		calendar.setBackground(new Color(255,255,255));
 		calendar.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
@@ -283,6 +286,24 @@ public class History extends JFrame {
 		sl_panel_3.putConstraint(SpringLayout.EAST, btnNewButton_3, 0, SpringLayout.EAST, panel_3);
 		panel_3.add(btnNewButton_3);
 		
+		JButton btnNewButton_4 = new JButton("\uC77C\uBCC4 \uB0B4\uC5ED");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//일별내역
+				Date d = calendar.getDate();
+				SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+			    String dateTemp = format.format(d);
+				HistoryNext hn = new HistoryNext(id,dateTemp);
+			    hn.main(id,dateTemp);
+			}
+		});
+		sl_panel_3.putConstraint(SpringLayout.NORTH, btnNewButton_4, 0, SpringLayout.NORTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.WEST, btnNewButton_4, -132, SpringLayout.WEST, btnNewButton_3);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, btnNewButton_4, 0, SpringLayout.SOUTH, panel_6);
+		sl_panel_3.putConstraint(SpringLayout.EAST, btnNewButton_4, -6, SpringLayout.WEST, btnNewButton_3);
+		btnNewButton_4.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		panel_3.add(btnNewButton_4);
+		
 		
 		//회원에 맞는 지출 출력
 		//월에 맞는 내용들만 가지고온다.
@@ -306,5 +327,4 @@ public class History extends JFrame {
 		///////////////////////////////////////
 		
 	}
-	
 }

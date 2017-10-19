@@ -39,6 +39,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.border.MatteBorder;
 
 public class MainLogin extends JFrame {
 	private JPanel contentPane;
@@ -134,6 +135,7 @@ public class MainLogin extends JFrame {
 		panel_3.setLayout(new GridLayout(3, 0, 0, 0));
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setOpaque(false);
 		panel_5.setBackground(new Color(255, 0, 0, 0));
 		panel_3.add(panel_5);
 		SpringLayout sl_panel_5 = new SpringLayout();
@@ -151,7 +153,10 @@ public class MainLogin extends JFrame {
 		
 		
 		textField = new JTextField();
-		textField.setBorder(BorderFactory.createEmptyBorder());
+		textField.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.YELLOW));
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		
 		sl_panel_5.putConstraint(SpringLayout.NORTH, textField, 5, SpringLayout.NORTH, lblNewLabel_1);
 		sl_panel_5.putConstraint(SpringLayout.WEST, textField, 6, SpringLayout.EAST, lblNewLabel_1);
 		sl_panel_5.putConstraint(SpringLayout.SOUTH, textField, 41, SpringLayout.NORTH, panel_5);
