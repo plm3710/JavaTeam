@@ -119,37 +119,37 @@ public class HistoryNext extends JFrame {
 		
 		
 		
-//		Vector data = new Vector<>();
-//
-//		MoneyDAO dao = new MoneyDAO();
-//		ArrayList<IncomeVO> ilist = dao.incomeNextSelect(id,dateYMS[0],dateYMS[1],dateYMS[2]);//수입의 정보를 가지고온다.
-//		ArrayList<OutcomeVO> olist = dao.outcomeNextSelect(id,dateYMS[0],dateYMS[1],dateYMS[2]);//지출의 정보를 가지고온다.
-//		
-//		
-//		for (int i = 0; i < ilist.size(); i++) {//수입 행 넣기
-//
-//			IncomeVO m = ilist.get(i);
-//			
-//			Vector row1 = new Vector<>();
-//			row1.add(m.getCategory());
-//			row1.add(m.getMoney());
-//			row1.add(0);
-//			row1.add(m.getMemo());
-//			data.add(row1);
-//		}
-//		for (int i = 0; i < olist.size(); i++) {//지출 행 넣기
-//
-//			OutcomeVO m = olist.get(i);
-//			
-//			Vector row1 = new Vector<>();
-//			row1.add(m.getCategory());
-//			row1.add(0);
-//			row1.add(m.getMoney());
-//			row1.add(m.getMemo());
-//			data.add(row1);
-//		}
-//
-//		table = new JTable();
-//		scrollPane.setViewportView(table);
+		Vector data = new Vector<>();
+
+		MoneyDAO dao = new MoneyDAO();
+		ArrayList<IncomeVO> ilist = dao.incomeNextSelect(id,dateYMS[0],dateYMS[1],dateYMS[2]);//수입의 정보를 가지고온다.
+		ArrayList<OutcomeVO> olist = dao.outcomeNextSelect(id,dateYMS[0],dateYMS[1],dateYMS[2]);//지출의 정보를 가지고온다.
+		
+		
+		for (int i = 0; i < ilist.size(); i++) {//수입 행 넣기
+
+			IncomeVO m = ilist.get(i);
+			
+			Vector row1 = new Vector<>();
+			row1.add(m.getCategory());
+			row1.add(m.getMoney());
+			row1.add(0);
+			row1.add(m.getMemo());
+			data.add(row1);
+		}
+		for (int i = 0; i < olist.size(); i++) {//지출 행 넣기
+
+			OutcomeVO m = olist.get(i);
+			
+			Vector row1 = new Vector<>();
+			row1.add(m.getCategory());
+			row1.add(0);
+			row1.add(m.getMoney());
+			row1.add(m.getMemo());
+			data.add(row1);
+		}
+
+	    table = new JTable(data,columnNames);
+	    scrollPane.setViewportView(table);
 	}
 }
