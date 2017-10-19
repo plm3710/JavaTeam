@@ -80,7 +80,7 @@ public class SignUpComplete extends JFrame {
 		panel.setLayout(sl_panel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(120,120,120));
+		panel_1.setBackground(new Color(120,120,120,0));
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 139, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, 340, SpringLayout.NORTH, panel);

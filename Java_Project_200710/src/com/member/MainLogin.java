@@ -123,7 +123,7 @@ public class MainLogin extends JFrame {
 		panel_6.setLayout(new CardLayout(0, 0));
 		
 		textField = new JTextField();
-		textField.setFont(new Font("Masque", Font.PLAIN, 20));
+		textField.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		panel_6.add(textField, "name_32076350647672");
 		textField.setColumns(10);
 		
