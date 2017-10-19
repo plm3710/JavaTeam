@@ -121,5 +121,6 @@ public class SignUpComplete extends JFrame {
 			}
 		});
 		panel_2.add(lblNewLabel_2, "name_35919784710385");
+		setResizable(false);
 	}
 }

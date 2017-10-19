@@ -320,5 +320,6 @@ public class MenuSelect extends JFrame {
     sl_panel.putConstraint(SpringLayout.EAST, calendar, 0, SpringLayout.EAST, panel);
     panel.add(calendar);
     calendar.setLayout(new CardLayout(0, 0));
+    setResizable(false);
  }
 }

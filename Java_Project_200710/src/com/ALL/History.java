@@ -325,6 +325,6 @@ public class History extends JFrame {
 		int balance = inMoney-outMoney;
 		lblBalanceMoney.setText(balance+"¿ø");
 		///////////////////////////////////////
-		
+		setResizable(false);
 	}
 }

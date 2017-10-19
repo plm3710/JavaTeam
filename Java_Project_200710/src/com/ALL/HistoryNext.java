@@ -160,5 +160,6 @@ public class HistoryNext extends JFrame {
 	    table = new JTable(data,columnNames);
 	    table.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 	    scrollPane.setViewportView(table);
+	    setResizable(false);
 	}
 }

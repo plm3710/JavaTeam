@@ -100,7 +100,7 @@ public class SignUp extends JFrame {
 		panel.setLayout(sl_panel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(64,64,64,220));
+		panel_1.setBackground(new Color(255,192,0));
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 0, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 249, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, 651, SpringLayout.NORTH, panel);
@@ -125,7 +125,7 @@ public class SignUp extends JFrame {
 		panel_2.setLayout(new CardLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("배달의민족 주아", Font.PLAIN, 50));
 		panel_2.add(lblNewLabel, "name_9376056257557");
@@ -140,7 +140,7 @@ public class SignUp extends JFrame {
 		panel_5.setLayout(sl_panel_5);
 		
 		JLabel lblNewLabel_1 = new JLabel("ID");
-		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Masque", Font.PLAIN, 25));
 		sl_panel_5.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 10, SpringLayout.NORTH, panel_5);
@@ -153,12 +153,12 @@ public class SignUp extends JFrame {
 		txtId.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(txtId.getText().equals("example@gmail.com")) {
+				if(txtId.getText().equals("email")) {
 					txtId.setText("");
 				}
 			}
 		});
-		txtId.setFont(new Font("Masque", Font.PLAIN, 20));
+		txtId.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		txtId.setText("email");
 		sl_panel_5.putConstraint(SpringLayout.NORTH, txtId, 10, SpringLayout.NORTH, panel_5);
 		sl_panel_5.putConstraint(SpringLayout.WEST, txtId, 6, SpringLayout.EAST, lblNewLabel_1);
@@ -167,9 +167,12 @@ public class SignUp extends JFrame {
 		panel_5.add(txtId);
 		txtId.setColumns(10);
 		
-		JButton btnNewButton = new JButton("\uC911\uBCF5\uD655\uC778");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblNewLabel_2 = new JLabel("\uC911\uBCF5\uD655\uC778");
+		lblNewLabel_2.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				//아이디 중복확인
 				list = dao.select();
 				boolean boo = true;
@@ -183,16 +186,13 @@ public class SignUp extends JFrame {
 				if(boo) {
 					JOptionPane.showMessageDialog(null, "사용 가능한 아이디 입니다.");
 				}
-				
-				
 			}
 		});
-		btnNewButton.setFont(new Font("서울남산 장체BL", Font.PLAIN, 23));
-		sl_panel_5.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, lblNewLabel_1);
-		sl_panel_5.putConstraint(SpringLayout.WEST, btnNewButton, 6, SpringLayout.EAST, txtId);
-		sl_panel_5.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, lblNewLabel_1);
-		sl_panel_5.putConstraint(SpringLayout.EAST, btnNewButton, 115, SpringLayout.EAST, txtId);
-		panel_5.add(btnNewButton);
+		sl_panel_5.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 0, SpringLayout.NORTH, lblNewLabel_1);
+		sl_panel_5.putConstraint(SpringLayout.WEST, lblNewLabel_2, 6, SpringLayout.EAST, txtId);
+		sl_panel_5.putConstraint(SpringLayout.SOUTH, lblNewLabel_2, 0, SpringLayout.SOUTH, lblNewLabel_1);
+		sl_panel_5.putConstraint(SpringLayout.EAST, lblNewLabel_2, 103, SpringLayout.EAST, txtId);
+		panel_5.add(lblNewLabel_2);
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setBackground(new Color(255,0,0,0));
@@ -201,7 +201,7 @@ public class SignUp extends JFrame {
 		panel_6.setLayout(sl_panel_6);
 		
 		JLabel lblPw = new JLabel("PW");
-		lblPw.setForeground(Color.WHITE);
+		lblPw.setForeground(Color.BLACK);
 		lblPw.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPw.setFont(new Font("Masque", Font.PLAIN, 25));
 		sl_panel_6.putConstraint(SpringLayout.NORTH, lblPw, 10, SpringLayout.NORTH, panel_6);
@@ -236,7 +236,7 @@ public class SignUp extends JFrame {
 		sl_panel_7.putConstraint(SpringLayout.SOUTH, lblPw2, 0, SpringLayout.SOUTH, passwordField_1);
 		sl_panel_7.putConstraint(SpringLayout.EAST, lblPw2, -6, SpringLayout.WEST, passwordField_1);
 		lblPw2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPw2.setForeground(Color.WHITE);
+		lblPw2.setForeground(Color.BLACK);
 		lblPw2.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		panel_7.add(lblPw2);
 		
@@ -247,7 +247,7 @@ public class SignUp extends JFrame {
 		panel_8.setLayout(sl_panel_8);
 		
 		JLabel label_1 = new JLabel("\uB2C9\uB124\uC784");
-		label_1.setForeground(Color.WHITE);
+		label_1.setForeground(Color.BLACK);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		sl_panel_8.putConstraint(SpringLayout.NORTH, label_1, 10, SpringLayout.NORTH, panel_8);
@@ -271,26 +271,30 @@ public class SignUp extends JFrame {
 		SpringLayout sl_panel_4 = new SpringLayout();
 		panel_4.setLayout(sl_panel_4);
 		
-		JButton btnNewButton_1 = new JButton("\uCDE8\uC18C");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JLabel lblNewLabel_3 = new JLabel("\uCDE8\uC18C");
+		lblNewLabel_3.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				//취소누르면 메인문 호출과 동시에 끄기
 				MainLogin mm = new MainLogin();
 				mm.main(null);
 				dispose();
-				
 			}
 		});
-		btnNewButton_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 23));
-		sl_panel_4.putConstraint(SpringLayout.NORTH, btnNewButton_1, 10, SpringLayout.NORTH, panel_4);
-		sl_panel_4.putConstraint(SpringLayout.WEST, btnNewButton_1, 100, SpringLayout.WEST, panel_4);
-		sl_panel_4.putConstraint(SpringLayout.SOUTH, btnNewButton_1, 61, SpringLayout.NORTH, panel_4);
-		sl_panel_4.putConstraint(SpringLayout.EAST, btnNewButton_1, -269, SpringLayout.EAST, panel_4);
-		panel_4.add(btnNewButton_1);
+		sl_panel_4.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 10, SpringLayout.NORTH, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblNewLabel_3, 100, SpringLayout.WEST, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.SOUTH, lblNewLabel_3, -10, SpringLayout.SOUTH, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.EAST, lblNewLabel_3, -269, SpringLayout.EAST, panel_4);
+		panel_4.add(lblNewLabel_3);
 		
-		JButton button = new JButton("\uD655\uC778");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblNewLabel_4 = new JLabel("\uD655\uC778");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				//passwordField
 				//passwordField_1
 				//비밀번호확인 후에 회원가입 작업
@@ -313,14 +317,14 @@ public class SignUp extends JFrame {
 				}else {
 					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "비밀번호 불일치", JOptionPane.WARNING_MESSAGE);
 				}
-				
 			}
 		});
-		button.setFont(new Font("서울남산 장체BL", Font.PLAIN, 23));
-		sl_panel_4.putConstraint(SpringLayout.NORTH, button, 0, SpringLayout.NORTH, btnNewButton_1);
-		sl_panel_4.putConstraint(SpringLayout.WEST, button, 6, SpringLayout.EAST, btnNewButton_1);
-		sl_panel_4.putConstraint(SpringLayout.SOUTH, button, 0, SpringLayout.SOUTH, btnNewButton_1);
-		sl_panel_4.putConstraint(SpringLayout.EAST, button, 143, SpringLayout.EAST, btnNewButton_1);
-		panel_4.add(button);
+		sl_panel_4.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 0, SpringLayout.NORTH, lblNewLabel_3);
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblNewLabel_4, 6, SpringLayout.EAST, lblNewLabel_3);
+		sl_panel_4.putConstraint(SpringLayout.SOUTH, lblNewLabel_4, 0, SpringLayout.SOUTH, lblNewLabel_3);
+		sl_panel_4.putConstraint(SpringLayout.EAST, lblNewLabel_4, 136, SpringLayout.EAST, lblNewLabel_3);
+		panel_4.add(lblNewLabel_4);
+		
+		setResizable(false);
 	}
 }

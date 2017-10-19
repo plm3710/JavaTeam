@@ -206,5 +206,7 @@ public class MainLogin extends JFrame {
 		lblNewLabel_3.setFont(new Font("Masque", Font.PLAIN, 20));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_9.add(lblNewLabel_3, "name_33078453118316");
+		
+		setResizable(false);
 	}
 }
