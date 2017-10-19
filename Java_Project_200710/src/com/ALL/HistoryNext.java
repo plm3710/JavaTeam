@@ -39,7 +39,7 @@ public class HistoryNext extends JFrame {
 	 * @param month
 	 * @param year
 	 */
-	public static void main(String id,String dateTemp) {
+	public static void main(String id, String dateTemp) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -100,7 +100,7 @@ public class HistoryNext extends JFrame {
 		sl_panel.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, panel_1);
 		sl_panel.putConstraint(SpringLayout.SOUTH, scrollPane, 282, SpringLayout.SOUTH, panel_1);
 		sl_panel.putConstraint(SpringLayout.EAST, scrollPane, 0, SpringLayout.EAST, panel_1);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("X");
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_3, 0, SpringLayout.SOUTH, lblNewLabel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_3, -431, SpringLayout.WEST, lblNewLabel_1);
@@ -119,70 +119,128 @@ public class HistoryNext extends JFrame {
 		lblNewLabel_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		panel_1.add(lblNewLabel_1);
 		panel.add(scrollPane);
-		
+
 		JPanel panel_2 = new JPanel();
 		scrollPane.setViewportView(panel_2);
 		SpringLayout sl_panel_2 = new SpringLayout();
 		panel_2.setLayout(sl_panel_2);
-		
+
 		JPanel panel_4 = new JPanel();
 		sl_panel_2.putConstraint(SpringLayout.NORTH, panel_4, 10, SpringLayout.NORTH, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_4, 45, SpringLayout.NORTH, panel_2);
-		sl_panel_2.putConstraint(SpringLayout.EAST, panel_4, 742, SpringLayout.WEST, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, panel_4, 586, SpringLayout.WEST, panel_2);
 		panel_2.add(panel_4);
-		panel_4.setLayout(new GridLayout(4, 0, 0, 0));
+		panel_4.setLayout(new GridLayout(0, 4, 0, 0));
 
-		Vector columnNames = new Vector<>();
-		columnNames.add("카테고리");
-		columnNames.add("수입");
-		columnNames.add("지출");
-		columnNames.add("내용");
+		JLabel lblNewLabel = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		panel_4.add(lblNewLabel);
+
+		JLabel lblNewLabel_2 = new JLabel("\uC218 \uC785");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		panel_4.add(lblNewLabel_2);
+
+		JLabel lblNewLabel_3 = new JLabel("\uC9C0 \uCD9C");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		panel_4.add(lblNewLabel_3);
+
+		JLabel lblNewLabel_4 = new JLabel("\uBA54 \uBAA8");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		panel_4.add(lblNewLabel_4);
 
 		String[] dateYMS = dateTemp.split("-");
-		
-		Vector data = new Vector<>();
 
 		MoneyDAO dao = new MoneyDAO();
-		ArrayList<IncomeVO> ilist = dao.incomeNextSelect(id,dateYMS[0],dateYMS[1],dateYMS[2]);//수입의 정보를 가지고온다.
-		ArrayList<OutcomeVO> olist = dao.outcomeNextSelect(id,dateYMS[0],dateYMS[1],dateYMS[2]);//지출의 정보를 가지고온다.
-		lblDate.setText(dateTemp);
-		
-		for (int i = 0; i < ilist.size(); i++) {//수입 행 넣기
+		ArrayList<IncomeVO> ilist = dao.incomeNextSelect(id, dateYMS[0], dateYMS[1], dateYMS[2]);// 수입의 정보를 가지고온다.
+		ArrayList<OutcomeVO> olist = dao.outcomeNextSelect(id, dateYMS[0], dateYMS[1], dateYMS[2]);// 지출의 정보를 가지고온다.
+		lblDate.setText(dateTemp);//상단 날짜 표시
+
+		int temp = 0;
+		for (int i = 0; i < ilist.size(); i++) {// 수입 행 넣기
 
 			IncomeVO m = ilist.get(i);
+			String ca = m.getCategory();
+			String in = "+"+m.getMoney()+"";
+			String out = "-0";
+			String me = m.getMemo();
 			
-			Vector row1 = new Vector<>();
-			row1.add(m.getCategory());
-			row1.add(m.getMoney());
-			row1.add(0);
-			row1.add(m.getMemo());
-			data.add(row1);
+			JPanel panel_5 = new JPanel();
+			sl_panel_2.putConstraint(SpringLayout.NORTH, panel_5, 6+(41*temp), SpringLayout.SOUTH, panel_4);
+			sl_panel_2.putConstraint(SpringLayout.WEST, panel_5, 10, SpringLayout.WEST, panel_2);
+			sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_5, 41+(41*temp), SpringLayout.SOUTH, panel_4);
+			sl_panel_2.putConstraint(SpringLayout.EAST, panel_5, 586, SpringLayout.WEST, panel_2);
+			panel_2.add(panel_5);
+			temp++;
+			panel_5.setLayout(new GridLayout(0, 4, 0, 0));
+
+			JLabel lbl1 = new JLabel(ca);
+			lbl1.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl1.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl1);
+
+			JLabel lbl2 = new JLabel(in);
+			lbl2.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl2.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl2);
+
+			JLabel lbl3 = new JLabel(out);
+			lbl3.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl3.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl3);
+
+			JLabel lbl4 = new JLabel(me);
+			lbl4.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl4.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl4);
+			
 		}
-		for (int i = 0; i < olist.size(); i++) {//지출 행 넣기
+		for (int i = 0; i < olist.size(); i++) {// 지출 행 넣기
 
 			OutcomeVO m = olist.get(i);
+
+			String ca = m.getCategory();
+			String in = "+0";
+			String out = "-"+m.getMoney()+"";
+			String me = m.getMemo();
 			
-			Vector row1 = new Vector<>();
-			row1.add(m.getCategory());
-			row1.add(0);
-			row1.add(m.getMoney());
-			row1.add(m.getMemo());
-			data.add(row1);
+			JPanel panel_5 = new JPanel();
+			sl_panel_2.putConstraint(SpringLayout.NORTH, panel_5, 6+(41*temp), SpringLayout.SOUTH, panel_4);
+			sl_panel_2.putConstraint(SpringLayout.WEST, panel_5, 10, SpringLayout.WEST, panel_2);
+			sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_5, 41+(41*temp), SpringLayout.SOUTH, panel_4);
+			sl_panel_2.putConstraint(SpringLayout.EAST, panel_5, 586, SpringLayout.WEST, panel_2);
+			panel_2.add(panel_5);
+			temp++;
+			panel_5.setLayout(new GridLayout(0, 4, 0, 0));
+
+			JLabel lbl1 = new JLabel(ca);
+			lbl1.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl1.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl1);
+
+			JLabel lbl2 = new JLabel(in);
+			lbl2.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl2.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl2);
+
+			JLabel lbl3 = new JLabel(out);
+			lbl3.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl3.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl3);
+
+			JLabel lbl4 = new JLabel(me);
+			lbl4.setHorizontalAlignment(SwingConstants.CENTER);
+			lbl4.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+			panel_5.add(lbl4);
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//	    table = new JTable(data,columnNames);
-//	    table.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
-//	    scrollPane.setViewportView(table);
-	    setResizable(false);//창 못움직이게
+		// table = new JTable(data,columnNames);
+		// table.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+		// scrollPane.setViewportView(table);
+		setResizable(false);// 창 못움직이게
 	}
 }

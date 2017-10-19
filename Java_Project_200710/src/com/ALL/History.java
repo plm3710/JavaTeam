@@ -66,14 +66,14 @@ public class History extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050,700);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(new Color(192,192,192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		SpringLayout sl_contentPane = new SpringLayout();
 		contentPane.setLayout(sl_contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(192,192,192));
 		sl_contentPane.putConstraint(SpringLayout.NORTH, panel, 5, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel, 44, SpringLayout.NORTH, contentPane);
@@ -104,7 +104,7 @@ public class History extends JFrame {
 		panel_4.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(200,200,200));
+		panel_5.setBackground(new Color(150,150,150));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_5, 0, SpringLayout.NORTH, panel_4);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_5, 6, SpringLayout.EAST, panel_4);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_5, 0, SpringLayout.SOUTH, panel_4);
@@ -113,44 +113,44 @@ public class History extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("\uC6D4");
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 25));
+		lblNewLabel_1.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºBL", Font.PLAIN, 25));
 		panel_4.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel = new JLabel("\uC18C\uBE44\uD328\uD134");
+		JLabel lblNewLabel = new JLabel("\uCD1D\uACC4");
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 25));
+		lblNewLabel.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºBL", Font.PLAIN, 25));
 		panel_4.add(lblNewLabel);
 		panel_1.add(panel_5);
 		panel_5.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JLabel lblIncome = new JLabel("\uC218 \uC785");
-		lblIncome.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
+		lblIncome.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºBL", Font.PLAIN, 20));
 		lblIncome.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_5.add(lblIncome);
 		
 		JLabel lblOutcome = new JLabel("\uC9C0 \uCD9C");
-		lblOutcome.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
+		lblOutcome.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºBL", Font.PLAIN, 20));
 		lblOutcome.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_5.add(lblOutcome);
 		
 		JLabel lblBalance = new JLabel("\uC794 \uC561");
-		lblBalance.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
+		lblBalance.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºBL", Font.PLAIN, 20));
 		lblBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_5.add(lblBalance);
 		
 		JLabel lblIncomeMoney = new JLabel("-");
-		lblIncomeMoney.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
+		lblIncomeMoney.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºB", Font.PLAIN, 20));
 		lblIncomeMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_5.add(lblIncomeMoney);
 		
 		JLabel lblOutcomeMoney = new JLabel("-");
-		lblOutcomeMoney.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
+		lblOutcomeMoney.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºB", Font.PLAIN, 20));
 		lblOutcomeMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_5.add(lblOutcomeMoney);
 		
 		JLabel lblBalanceMoney = new JLabel("-");
-		lblBalanceMoney.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
+		lblBalanceMoney.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºB", Font.PLAIN, 20));
 		lblBalanceMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_5.add(lblBalanceMoney);
 		sl_contentPane.putConstraint(SpringLayout.WEST, panel_2, 0, SpringLayout.WEST, contentPane);
@@ -158,26 +158,26 @@ public class History extends JFrame {
 		contentPane.add(panel_2);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.WHITE);
+		panel_3.setBackground(new Color(192,192,192));
 		sl_contentPane.putConstraint(SpringLayout.NORTH, panel_3, 607, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel_2, -6, SpringLayout.NORTH, panel_3);
 		panel_2.setLayout(new CardLayout(0, 0));
 		
 		JCalendar calendar = new JCalendar();
 		
-		calendar.getDayChooser().getDayPanel().setBackground(Color.WHITE);
-		calendar.setBackground(new Color(255,255,255));
+		calendar.getDayChooser().getDayPanel().setBackground(new Color(192,192,192));
+		calendar.setBackground(new Color(192,192,192));
 		calendar.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
 		calendar.getDayChooser().setWeekOfYearVisible(false);
-		calendar.getDayChooser().setDecorationBackgroundColor(Color.WHITE);
+		calendar.getDayChooser().setDecorationBackgroundColor(new Color(192,192,192));
 		calendar.getDayChooser().setDecorationBackgroundVisible(false);
 		calendar.getDayChooser().setDayBordersVisible(true);
-		calendar.getYearChooser().setBackground(Color.WHITE);
-		calendar.getMonthChooser().getSpinner().setBackground(Color.WHITE);
-		calendar.getYearChooser().getSpinner().setBackground(Color.WHITE);
+		calendar.getYearChooser().setBackground(new Color(192,192,192));
+		calendar.getMonthChooser().getSpinner().setBackground(new Color(192,192,192));
+		calendar.getYearChooser().getSpinner().setBackground(new Color(192,192,192));
 		calendar.setForeground(Color.BLACK);
-		calendar.setBackground(Color.WHITE);
-		calendar.setDecorationBackgroundColor(Color.WHITE);
+		calendar.setBackground(new Color(192,192,192));
+		calendar.setDecorationBackgroundColor(new Color(192,192,192));
 		calendar.setDecorationBordersVisible(true);
 		panel_2.add(calendar, "name_13122622979416");
 		sl_contentPane.putConstraint(SpringLayout.WEST, panel_3, 0, SpringLayout.WEST, contentPane);
@@ -186,12 +186,14 @@ public class History extends JFrame {
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 		
-		JButton btnNewButton = new JButton("\uB0B4\uC5ED \uC870\uD68C");
-		btnNewButton.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.PLAIN, 20));
-		sl_panel.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, btnNewButton, 10, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, btnNewButton, 39, SpringLayout.NORTH, panel);
-		panel.add(btnNewButton);
+		JLabel lblNewLabel_2 = new JLabel("\uB0B4\uC5ED \uC870\uD68C");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("º≠øÔ≥≤ªÍ ¿Â√ºBL", Font.PLAIN, 19));
+		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 0, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_2, 0, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, lblNewLabel_2, 39, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, lblNewLabel_2, 127, SpringLayout.WEST, panel);
+		panel.add(lblNewLabel_2);
 		contentPane.add(panel_3);
 		SpringLayout sl_panel_3 = new SpringLayout();
 		panel_3.setLayout(sl_panel_3);

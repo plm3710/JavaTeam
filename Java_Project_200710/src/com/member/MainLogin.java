@@ -194,6 +194,7 @@ public class MainLogin extends JFrame {
 						//History h = new History(textField.getText());
 						//h.main(textField.getText());
 						boo = false;
+						dispose();
 					}
 				}
 				
