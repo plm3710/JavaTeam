@@ -81,7 +81,7 @@ public class History extends JFrame {
 		contentPane.add(panel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 0, 0,100));
+		panel_1.setBackground(new Color(150,150,150));
 		sl_contentPane.putConstraint(SpringLayout.NORTH, panel_1, 6, SpringLayout.SOUTH, panel);
 		sl_contentPane.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, panel_1, -495, SpringLayout.SOUTH, contentPane);
@@ -95,8 +95,7 @@ public class History extends JFrame {
 		panel_1.setLayout(sl_panel_1);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(0, 0, 0,200));
-		panel_4.setBackground(new Color(255,0,0,0));
+		panel_4.setBackground(new Color(150,150,150));
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_4, 10, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_4, 96, SpringLayout.NORTH, panel_1);
@@ -224,7 +223,7 @@ public class History extends JFrame {
 			     for (int i = 0; i < ymd.length; i++) {
 					System.out.print(ymd[i]+"-");//0,년    1,월    2,일
 				}
-			     
+			    lblNewLabel_1.setText((d.getMonth()+1)+"월"); 
 			    int inMoney=0;
 				inMoney = mdao.incomeSelect(id,ymd[0],ymd[1]);//아이디와 월을 넘겨서 그달의 수익을 리스트에 담는다.
 				lblIncomeMoney.setText(inMoney+"원");
@@ -258,7 +257,7 @@ public class History extends JFrame {
 				     for (int i = 0; i < ymd.length; i++) {
 						System.out.print(ymd[i]+"-");//0,년    1,월    2,일
 					}
-				     
+				     lblNewLabel_1.setText((d.getMonth()+1)+"월"); 
 				    int inMoney=0;
 					inMoney = mdao.incomeSelect(id,ymd[0],ymd[1]);//아이디와 월을 넘겨서 그달의 수익을 리스트에 담는다.
 					lblIncomeMoney.setText(inMoney+"원");
@@ -316,6 +315,7 @@ public class History extends JFrame {
 			System.out.print(ymd[i]+"-");//0,년    1,월    2,일
 		}
 	     
+	     lblNewLabel_1.setText((d.getMonth()+1)+"월"); 
 	    int inMoney=0;
 		inMoney = mdao.incomeSelect(id,ymd[0],ymd[1]);//아이디와 월을 넘겨서 그달의 수익을 리스트에 담는다.
 		lblIncomeMoney.setText(inMoney+"원");
