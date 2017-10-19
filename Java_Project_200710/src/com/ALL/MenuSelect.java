@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 import com.img.a;
 
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+
 import java.awt.CardLayout;
 import java.awt.Dimension;
 
@@ -118,6 +120,12 @@ public class MenuSelect extends JFrame {
           ((CardLayout) typing.getLayout()).next(typing);
 
        }
+    	@Override
+    	public void mouseClicked(MouseEvent e) {
+    		
+    		JOptionPane.showMessageDialog(null, "미구현", "미구현", JOptionPane.WARNING_MESSAGE);
+    		
+    	}
     });
     sl_panel.putConstraint(SpringLayout.SOUTH, typing, 350, SpringLayout.NORTH, panel);
     sl_panel.putConstraint(SpringLayout.EAST, typing, -684, SpringLayout.EAST, panel);
@@ -174,6 +182,12 @@ public class MenuSelect extends JFrame {
           lbl_budget.setText("");
           ((CardLayout) budget.getLayout()).next(budget);
        }
+    	@Override
+    	public void mouseClicked(MouseEvent e) {
+    		
+    		JOptionPane.showMessageDialog(null, "미구현", "미구현", JOptionPane.WARNING_MESSAGE);
+    		
+    	}
     });
     sl_panel.putConstraint(SpringLayout.NORTH, budget, 2, SpringLayout.SOUTH, typing);
     sl_panel.putConstraint(SpringLayout.SOUTH, budget, 0, SpringLayout.SOUTH, panel);
@@ -304,6 +318,12 @@ public class MenuSelect extends JFrame {
           ((CardLayout) analysis.getLayout()).next(analysis);
 
        }
+    	@Override
+    	public void mouseClicked(MouseEvent e) {
+    		
+    		JOptionPane.showMessageDialog(null, "미구현", "미구현", JOptionPane.WARNING_MESSAGE);
+    		
+    	}
     });
 
     sl_panel.putConstraint(SpringLayout.EAST, budget, -2, SpringLayout.WEST, analysis);

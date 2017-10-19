@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.GridLayout;
 
 public class HistoryNext extends JFrame {
 
@@ -115,9 +116,22 @@ public class HistoryNext extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblNewLabel_1, -51, SpringLayout.EAST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, lblNewLabel_1, -10, SpringLayout.EAST, panel_1);
 		lblNewLabel_1.setForeground(Color.RED);
-		lblNewLabel_1.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+		lblNewLabel_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		panel_1.add(lblNewLabel_1);
 		panel.add(scrollPane);
+		
+		JPanel panel_2 = new JPanel();
+		scrollPane.setViewportView(panel_2);
+		SpringLayout sl_panel_2 = new SpringLayout();
+		panel_2.setLayout(sl_panel_2);
+		
+		JPanel panel_4 = new JPanel();
+		sl_panel_2.putConstraint(SpringLayout.NORTH, panel_4, 10, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_4, 45, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, panel_4, 742, SpringLayout.WEST, panel_2);
+		panel_2.add(panel_4);
+		panel_4.setLayout(new GridLayout(4, 0, 0, 0));
 
 		Vector columnNames = new Vector<>();
 		columnNames.add("카테고리");
@@ -157,9 +171,18 @@ public class HistoryNext extends JFrame {
 			data.add(row1);
 		}
 
-	    table = new JTable(data,columnNames);
-	    table.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
-	    scrollPane.setViewportView(table);
-	    setResizable(false);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//	    table = new JTable(data,columnNames);
+//	    table.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+//	    scrollPane.setViewportView(table);
+	    setResizable(false);//창 못움직이게
 	}
 }

@@ -36,6 +36,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 
 public class SignUp extends JFrame {
 
@@ -272,6 +273,7 @@ public class SignUp extends JFrame {
 		panel_4.setLayout(sl_panel_4);
 		
 		JLabel lblNewLabel_3 = new JLabel("\uCDE8\uC18C");
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblNewLabel_3, 92, SpringLayout.WEST, panel_4);
 		lblNewLabel_3.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
@@ -284,12 +286,15 @@ public class SignUp extends JFrame {
 			}
 		});
 		sl_panel_4.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 10, SpringLayout.NORTH, panel_4);
-		sl_panel_4.putConstraint(SpringLayout.WEST, lblNewLabel_3, 100, SpringLayout.WEST, panel_4);
 		sl_panel_4.putConstraint(SpringLayout.SOUTH, lblNewLabel_3, -10, SpringLayout.SOUTH, panel_4);
-		sl_panel_4.putConstraint(SpringLayout.EAST, lblNewLabel_3, -269, SpringLayout.EAST, panel_4);
 		panel_4.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("\uD655\uC778");
+		sl_panel_4.putConstraint(SpringLayout.WEST, lblNewLabel_4, 243, SpringLayout.WEST, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.EAST, lblNewLabel_4, -133, SpringLayout.EAST, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.EAST, lblNewLabel_3, -6, SpringLayout.WEST, lblNewLabel_4);
+		sl_panel_4.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 10, SpringLayout.NORTH, panel_4);
+		sl_panel_4.putConstraint(SpringLayout.SOUTH, lblNewLabel_4, -10, SpringLayout.SOUTH, panel_4);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
@@ -319,10 +324,6 @@ public class SignUp extends JFrame {
 				}
 			}
 		});
-		sl_panel_4.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 0, SpringLayout.NORTH, lblNewLabel_3);
-		sl_panel_4.putConstraint(SpringLayout.WEST, lblNewLabel_4, 6, SpringLayout.EAST, lblNewLabel_3);
-		sl_panel_4.putConstraint(SpringLayout.SOUTH, lblNewLabel_4, 0, SpringLayout.SOUTH, lblNewLabel_3);
-		sl_panel_4.putConstraint(SpringLayout.EAST, lblNewLabel_4, 136, SpringLayout.EAST, lblNewLabel_3);
 		panel_4.add(lblNewLabel_4);
 		
 		setResizable(false);
