@@ -64,7 +64,7 @@ public class SignUpComplete extends JFrame {
 			public void paintComponent(Graphics g) {
 				try {
 					String path = a.class.getResource("").getPath();//a클래스 위치 가지고오기
-					File fileInSamePackage = new File(path + "SignUpBackground.png");
+					File fileInSamePackage = new File(path + "SignUpCompletBackground.jpg");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -103,22 +103,23 @@ public class SignUpComplete extends JFrame {
 		panel_1.add(lblNewLabel);
 		
 		JPanel panel_2 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, -161, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 417, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -31, SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_2, 570, SpringLayout.WEST, panel);
+		panel_2.setBackground(new Color(0,0,0,0));
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 89, SpringLayout.SOUTH, panel_1);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 370, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -60, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_2, 655, SpringLayout.WEST, panel);
 		panel.add(panel_2);
 		panel_2.setLayout(new CardLayout(0, 0));
 		
-		JLabel lblNewLabel_2 = new JLabel("\uBB58 \uB123\uC744\uAE4C");
+		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent e) {
 				MainLogin ml = new MainLogin();
 				ml.main(null);
+				dispose();
 			}
 		});
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblNewLabel_2, "name_34449509954378");
+		panel_2.add(lblNewLabel_2, "name_35919784710385");
 	}
 }

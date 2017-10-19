@@ -21,18 +21,28 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
+import com.ALL.MenuSelect;
+import com.DAO.MemberDAO;
+import com.VO.MemberVO;
 import com.img.a;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JPasswordField;
 
 public class MainLogin extends JFrame {
 	BufferedImage icon;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
+	private ArrayList<MemberVO> list = null;
+	private MemberDAO mdao = null;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -54,6 +64,8 @@ public class MainLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public MainLogin() {
+		list = new ArrayList<MemberVO>();
+		mdao = new MemberDAO();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 700);
 		contentPane = new JPanel();
@@ -111,6 +123,7 @@ public class MainLogin extends JFrame {
 		panel_6.setLayout(new CardLayout(0, 0));
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Masque", Font.PLAIN, 20));
 		panel_6.add(textField, "name_32076350647672");
 		textField.setColumns(10);
 		
@@ -118,9 +131,8 @@ public class MainLogin extends JFrame {
 		panel_3.add(panel_7);
 		panel_7.setLayout(new CardLayout(0, 0));
 		
-		textField_1 = new JTextField();
-		panel_7.add(textField_1, "name_32078486510904");
-		textField_1.setColumns(10);
+		passwordField = new JPasswordField();
+		panel_7.add(passwordField, "name_35360905343487");
 		panel_1.add(panel_2);
 		panel_2.setLayout(new GridLayout(2, 0, 0, 0));
 		
@@ -144,7 +156,15 @@ public class MainLogin extends JFrame {
 		panel_8.setLayout(new CardLayout(0, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		lblNewLabel_2.setFont(new Font("서울남산체 EB", Font.PLAIN, 30));
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SignUp su = new SignUp();
+				su.main(null);
+				dispose();
+			}
+		});
+		lblNewLabel_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 30));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_8.add(lblNewLabel_2, "name_32143514351492");
 		
@@ -158,6 +178,31 @@ public class MainLogin extends JFrame {
 		panel_9.setLayout(new CardLayout(0, 0));
 		
 		JLabel lblNewLabel_3 = new JLabel("LOGIN");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				//로그인
+				//textField
+				list = mdao.select();//모든 회원정보를 담아온다.
+				boolean boo = true;
+				String pw = new String(passwordField.getPassword());
+				for (int i = 0; i < list.size() ; i++) {
+					if(list.get(i).getId().equals(textField.getText()) && list.get(i).getPw().equals(pw)) {
+						MenuSelect ms = new MenuSelect(textField.getText());
+						ms.main(textField.getText());
+						//History h = new History(textField.getText());
+						//h.main(textField.getText());
+						boo = false;
+					}
+				}
+				
+				if(boo) {
+					JOptionPane.showMessageDialog(null, "아이디나 비밀번호가 일치하지 않습니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
+				}
+				
+			}
+		});
 		lblNewLabel_3.setFont(new Font("Masque", Font.PLAIN, 20));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_9.add(lblNewLabel_3, "name_33078453118316");

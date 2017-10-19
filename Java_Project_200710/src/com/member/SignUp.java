@@ -142,7 +142,7 @@ public class SignUp extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("ID");
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("배달의민족 주아", Font.PLAIN, 27));
+		lblNewLabel_1.setFont(new Font("Masque", Font.PLAIN, 25));
 		sl_panel_5.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 10, SpringLayout.NORTH, panel_5);
 		sl_panel_5.putConstraint(SpringLayout.WEST, lblNewLabel_1, 10, SpringLayout.WEST, panel_5);
 		sl_panel_5.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, 61, SpringLayout.NORTH, panel_5);
@@ -158,8 +158,8 @@ public class SignUp extends JFrame {
 				}
 			}
 		});
-		txtId.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
-		txtId.setText("example@gmail.com");
+		txtId.setFont(new Font("Masque", Font.PLAIN, 20));
+		txtId.setText("email");
 		sl_panel_5.putConstraint(SpringLayout.NORTH, txtId, 10, SpringLayout.NORTH, panel_5);
 		sl_panel_5.putConstraint(SpringLayout.WEST, txtId, 6, SpringLayout.EAST, lblNewLabel_1);
 		sl_panel_5.putConstraint(SpringLayout.SOUTH, txtId, 0, SpringLayout.SOUTH, lblNewLabel_1);
@@ -187,7 +187,7 @@ public class SignUp extends JFrame {
 				
 			}
 		});
-		btnNewButton.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("서울남산 장체BL", Font.PLAIN, 23));
 		sl_panel_5.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, lblNewLabel_1);
 		sl_panel_5.putConstraint(SpringLayout.WEST, btnNewButton, 6, SpringLayout.EAST, txtId);
 		sl_panel_5.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, lblNewLabel_1);
@@ -203,7 +203,7 @@ public class SignUp extends JFrame {
 		JLabel lblPw = new JLabel("PW");
 		lblPw.setForeground(Color.WHITE);
 		lblPw.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPw.setFont(new Font("배달의민족 주아", Font.PLAIN, 27));
+		lblPw.setFont(new Font("Masque", Font.PLAIN, 25));
 		sl_panel_6.putConstraint(SpringLayout.NORTH, lblPw, 10, SpringLayout.NORTH, panel_6);
 		sl_panel_6.putConstraint(SpringLayout.WEST, lblPw, 10, SpringLayout.WEST, panel_6);
 		sl_panel_6.putConstraint(SpringLayout.SOUTH, lblPw, -10, SpringLayout.SOUTH, panel_6);
@@ -237,7 +237,7 @@ public class SignUp extends JFrame {
 		sl_panel_7.putConstraint(SpringLayout.EAST, lblPw2, -6, SpringLayout.WEST, passwordField_1);
 		lblPw2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPw2.setForeground(Color.WHITE);
-		lblPw2.setFont(new Font("배달의민족 주아", Font.PLAIN, 27));
+		lblPw2.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		panel_7.add(lblPw2);
 		
 		JPanel panel_8 = new JPanel();
@@ -249,7 +249,7 @@ public class SignUp extends JFrame {
 		JLabel label_1 = new JLabel("\uB2C9\uB124\uC784");
 		label_1.setForeground(Color.WHITE);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("배달의민족 주아", Font.PLAIN, 27));
+		label_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		sl_panel_8.putConstraint(SpringLayout.NORTH, label_1, 10, SpringLayout.NORTH, panel_8);
 		sl_panel_8.putConstraint(SpringLayout.WEST, label_1, 10, SpringLayout.WEST, panel_8);
 		sl_panel_8.putConstraint(SpringLayout.SOUTH, label_1, -10, SpringLayout.SOUTH, panel_8);
@@ -257,7 +257,7 @@ public class SignUp extends JFrame {
 		panel_8.add(label_1);
 		
 		txtNickname = new JTextField();
-		txtNickname.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
+		txtNickname.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		sl_panel_8.putConstraint(SpringLayout.NORTH, txtNickname, 0, SpringLayout.NORTH, label_1);
 		sl_panel_8.putConstraint(SpringLayout.WEST, txtNickname, 6, SpringLayout.EAST, label_1);
 		sl_panel_8.putConstraint(SpringLayout.SOUTH, txtNickname, 0, SpringLayout.SOUTH, label_1);
@@ -281,7 +281,7 @@ public class SignUp extends JFrame {
 				
 			}
 		});
-		btnNewButton_1.setFont(new Font("배달의민족 주아", Font.PLAIN, 30));
+		btnNewButton_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 23));
 		sl_panel_4.putConstraint(SpringLayout.NORTH, btnNewButton_1, 10, SpringLayout.NORTH, panel_4);
 		sl_panel_4.putConstraint(SpringLayout.WEST, btnNewButton_1, 100, SpringLayout.WEST, panel_4);
 		sl_panel_4.putConstraint(SpringLayout.SOUTH, btnNewButton_1, 61, SpringLayout.NORTH, panel_4);
@@ -316,7 +316,7 @@ public class SignUp extends JFrame {
 				
 			}
 		});
-		button.setFont(new Font("배달의민족 주아", Font.PLAIN, 30));
+		button.setFont(new Font("서울남산 장체BL", Font.PLAIN, 23));
 		sl_panel_4.putConstraint(SpringLayout.NORTH, button, 0, SpringLayout.NORTH, btnNewButton_1);
 		sl_panel_4.putConstraint(SpringLayout.WEST, button, 6, SpringLayout.EAST, btnNewButton_1);
 		sl_panel_4.putConstraint(SpringLayout.SOUTH, button, 0, SpringLayout.SOUTH, btnNewButton_1);
