@@ -10,7 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.DAO.WriteDAO;
 import com.VO.IncomeVO;
+import com.VO.OutcomeVO;
 import com.img.a;
 
 import java.awt.CardLayout;
@@ -63,16 +65,17 @@ public class Write extends JFrame {
 	BufferedImage icon;
 	private JPanel contentPane;
 	private JTextField tf_outcome_year;
-	private JTextField textField_5;
+	private JTextField tf_income_year;
 	private JTextField tf_outcome_month;
-	private JTextField textField_1_1;
+	private JTextField tf_income_month;
 	private JTextField tf_outcome_day;
-	private JTextField textField_2_1;
-	private JTextField textField_3;
+	private JTextField tf_income_day;
+	private JTextField tf_income_money;
 	private JTextField tf_outcome_money;
 	private JTextField tf_outcome_memo;
-	private JTextField textField_4_1;
-	private IncomeVO ivo=null;
+	private JTextField tf_income_memo;
+	private IncomeVO ivo = null;
+	private OutcomeVO ovo = null;
 
 	/**
 	 * Launch the application.
@@ -94,14 +97,13 @@ public class Write extends JFrame {
 	 * Create the frame.
 	 */
 	public Write(String id) {
-		setUndecorated(true);//타이틀바 없애기
+		setUndecorated(true);// 타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-
 
 		JPanel panel = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -129,7 +131,7 @@ public class Write extends JFrame {
 				SpringLayout.WEST, panel);
 
 		panel_1.setBackground(new Color(191, 192, 192));
-		
+
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, -482,
 				SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 10,
@@ -140,35 +142,35 @@ public class Write extends JFrame {
 		panel_1.setLayout(new CardLayout(0, 0));
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setForeground(new Color(0,0,0));
-		UIManager.put("TabbedPane.highlight", Color.GRAY);  //테두리
+		tabbedPane.setForeground(new Color(0, 0, 0));
+		UIManager.put("TabbedPane.highlight", Color.GRAY); // 테두리
 		UIManager.put("TabbedPane.focus", Color.GRAY);
 		UIManager.put("TabbedPane.selectHighlight", Color.GRAY);
 		UIManager.put("TabbedPane.foreground", Color.GRAY);
-		tabbedPane.setFont( new Font( "서울남산 장체B", Font.BOLD, 24 ) );
-		
-		tabbedPane.setBackground(new Color(191,192,192));
-		UIManager.put("TabbedPane.selected", new Color(255,192,0));  //탭 색깔 (눌렀을때)
-		
-		
-		tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
-					// 안됨
+		tabbedPane.setFont(new Font("서울남산 장체B", Font.BOLD, 24));
 
-					@Override
-					protected int calculateTabHeight(int tabPlacement,
-							int tabIndex, int fontHeight) {
-						// TODO Auto-generated method stub
-						return 40;
-					}
+		tabbedPane.setBackground(new Color(191, 192, 192));
+		UIManager.put("TabbedPane.selected", new Color(255, 192, 0)); // 탭 색깔
+																		// (눌렀을때)
 
-					@Override
-					protected int calculateTabWidth(int tabPlacement,
-							int tabIndex, FontMetrics metrics) {
-						// TODO Auto-generated method stub
-						return 231;
-					}
-
-				});
+		 tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
+		 // 안됨
+		
+		 @Override
+		 protected int calculateTabHeight(int tabPlacement,
+		 int tabIndex, int fontHeight) {
+		 // TODO Auto-generated method stub
+		 return 40;
+		 }
+		
+		 @Override
+		 protected int calculateTabWidth(int tabPlacement,
+		 int tabIndex, FontMetrics metrics) {
+		 // TODO Auto-generated method stub
+		 return 231;
+		 }
+		
+		 });
 		panel_1.add(tabbedPane, "name_39837979284068");
 
 		JPanel panel_16 = new JPanel();
@@ -223,12 +225,12 @@ public class Write extends JFrame {
 		panel_9.setLayout(null);
 
 		tf_outcome_year = new JTextField();
+		tf_outcome_year.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
 
-		
-		
-		tf_outcome_year.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_year.setBorder(new MatteBorder(0, 0, 1, 0,
+				(Color) new Color(0, 0, 0)));
 		tf_outcome_year.setOpaque(false);
-		//textField.setBorder(null);
+		// textField.setBorder(null);
 		tf_outcome_year.setBounds(12, 23, 60, 21);
 		panel_9.add(tf_outcome_year);
 		tf_outcome_year.setColumns(10);
@@ -239,7 +241,9 @@ public class Write extends JFrame {
 		panel_9.add(label);
 
 		tf_outcome_month = new JTextField();
-		tf_outcome_month.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_month.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_outcome_month.setBorder(new MatteBorder(0, 0, 1, 0,
+				(Color) new Color(0, 0, 0)));
 		tf_outcome_month.setOpaque(false);
 		tf_outcome_month.setBounds(101, 23, 18, 21);
 		panel_9.add(tf_outcome_month);
@@ -251,7 +255,9 @@ public class Write extends JFrame {
 		panel_9.add(label_1);
 
 		tf_outcome_day = new JTextField();
-		tf_outcome_day.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_day.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_outcome_day.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(
+				0, 0, 0)));
 		tf_outcome_day.setOpaque(false);
 		tf_outcome_day.setBounds(148, 23, 18, 21);
 		tf_outcome_day.setColumns(10);
@@ -286,7 +292,9 @@ public class Write extends JFrame {
 		panel_11.setLayout(null);
 
 		tf_outcome_money = new JTextField();
-		tf_outcome_money.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_money.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_outcome_money.setBorder(new MatteBorder(0, 0, 1, 0,
+				(Color) new Color(0, 0, 0)));
 		tf_outcome_money.setOpaque(false);
 		tf_outcome_money.setBounds(12, 21, 154, 25);
 		panel_11.add(tf_outcome_money);
@@ -309,17 +317,17 @@ public class Write extends JFrame {
 		panel_13.setLayout(sl_panel_13);
 
 		JRadioButton radioButton_Cash = new JRadioButton("\uD604\uAE08");
-		radioButton_Cash.setBackground(new Color(255,192,0));
+		radioButton_Cash.setBackground(new Color(255, 192, 0));
 		radioButton_Cash.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
-		sl_panel_13.putConstraint(SpringLayout.NORTH, radioButton_Cash,
-				10, SpringLayout.NORTH, panel_13);
+		sl_panel_13.putConstraint(SpringLayout.NORTH, radioButton_Cash, 10,
+				SpringLayout.NORTH, panel_13);
 		sl_panel_13.putConstraint(SpringLayout.WEST, radioButton_Cash, 27,
 				SpringLayout.WEST, panel_13);
 		panel_13.add(radioButton_Cash);
 
 		JRadioButton radioButton_Card = new JRadioButton("\uCE74\uB4DC");
 		radioButton_Card.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
-		radioButton_Card.setBackground(new Color(255,192,0));
+		radioButton_Card.setBackground(new Color(255, 192, 0));
 		sl_panel_13.putConstraint(SpringLayout.NORTH, radioButton_Card, 0,
 				SpringLayout.NORTH, radioButton_Cash);
 		sl_panel_13.putConstraint(SpringLayout.EAST, radioButton_Card, -41,
@@ -338,7 +346,9 @@ public class Write extends JFrame {
 		panel_7.setLayout(sl_panel_7);
 
 		tf_outcome_memo = new JTextField();
-		tf_outcome_memo.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		tf_outcome_memo.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_outcome_memo.setBorder(new MatteBorder(1, 1, 1, 1,
+				(Color) new Color(0, 0, 0)));
 		tf_outcome_memo.setOpaque(false);
 		sl_panel_7.putConstraint(SpringLayout.NORTH, tf_outcome_memo, 10,
 				SpringLayout.NORTH, panel_7);
@@ -353,18 +363,17 @@ public class Write extends JFrame {
 		panel_10.setBackground(new Color(255, 192, 0));
 		panel_11.setBackground(new Color(255, 192, 0));
 		panel_13.setBackground(new Color(255, 192, 0));
-		
+
 		JPanel panel_14 = new JPanel();
 		panel_14.setBounds(0, 0, 10, 10);
 		panel_16.add(panel_14);
-		
-		JPanel panel_button_ok = new JPanel(){
+
+		JPanel panel_button_ok = new JPanel() {
 			public void paintComponent(Graphics g) {
 				try {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
-					File fileInSamePackage = new File(path
-							+ "buttonVoid.png");
+					File fileInSamePackage = new File(path + "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -375,38 +384,22 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_button_ok.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-//				String id = 
-				int year = Integer.parseInt(tf_outcome_year.getText());
-				int month = Integer.parseInt(tf_outcome_month.getText());
-				int day = Integer.parseInt(tf_outcome_day.getText());
-				int money = Integer.parseInt(tf_outcome_money.getText());
-				String category = comboBox_outcome.getName();
-				String memo = tf_outcome_memo.getText();
-				
-//				ivo = new IncomeVO(id, money,year,month,day,category,memo);
-				
-				
-			}
-		});
+
 		panel_button_ok.setBounds(160, 377, 70, 37);
 		panel_16.add(panel_button_ok);
 		panel_button_ok.setLayout(new CardLayout(0, 0));
-		
+
 		JLabel label_4 = new JLabel("\uC800\uC7A5");
 		label_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_button_ok.add(label_4, "name_21353759973774");
-		
-		JPanel panel_button_cancel = new JPanel(){
+
+		JPanel panel_button_cancel = new JPanel() {
 			public void paintComponent(Graphics g) {
 				try {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
-					File fileInSamePackage = new File(path
-							+ "buttonVoid.png");
+					File fileInSamePackage = new File(path + "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -420,7 +413,7 @@ public class Write extends JFrame {
 		panel_button_cancel.setBounds(242, 377, 70, 37);
 		panel_16.add(panel_button_cancel);
 		panel_button_cancel.setLayout(new CardLayout(0, 0));
-		
+
 		JLabel lblNewLabel_5 = new JLabel("\uCDE8\uC18C");
 		lblNewLabel_5.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -429,9 +422,7 @@ public class Write extends JFrame {
 		tabbedPane.addTab("수입", null, panel_163);
 		panel_163.setBackground(new Color(255, 192, 0));
 		panel_163.setLayout(null);
-		
-		
-		
+
 		JPanel panel_44 = new JPanel();
 		panel_44.setBounds(10, 10, 149, 188);
 		panel_44.setBackground(new Color(255, 192, 0));
@@ -439,7 +430,7 @@ public class Write extends JFrame {
 
 		JPanel panel_55 = new JPanel();
 		panel_55.setBounds(165, 10, 274, 188);
-		panel_55.setBackground(new Color(255,192,0));
+		panel_55.setBackground(new Color(255, 192, 0));
 		panel_55.setBackground(new Color(255, 192, 0));
 		panel_163.add(panel_55);
 
@@ -475,36 +466,42 @@ public class Write extends JFrame {
 		panel_55.add(panel_99);
 		panel_99.setLayout(null);
 
-		textField_5 = new JTextField();
-		textField_5.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		textField_5.setOpaque(false);
-		textField_5.setBounds(12, 24, 60, 21);
-		panel_99.add(textField_5);
-		textField_5.setColumns(10);
+		tf_income_year = new JTextField();
+		tf_income_year.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_year.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(
+				0, 0, 0)));
+		tf_income_year.setOpaque(false);
+		tf_income_year.setBounds(12, 24, 60, 21);
+		panel_99.add(tf_income_year);
+		tf_income_year.setColumns(10);
 
 		JLabel label111 = new JLabel("\uB144");
 		label111.setBounds(78, 27, 17, 20);
 		label111.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label111);
 
-		textField_1_1 = new JTextField();
-		textField_1_1.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		textField_1_1.setOpaque(false);
-		textField_1_1.setBounds(101, 24, 18, 21);
-		panel_99.add(textField_1_1);
-		textField_1_1.setColumns(10);
+		tf_income_month = new JTextField();
+		tf_income_month.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_month.setBorder(new MatteBorder(0, 0, 1, 0,
+				(Color) new Color(0, 0, 0)));
+		tf_income_month.setOpaque(false);
+		tf_income_month.setBounds(101, 24, 18, 21);
+		panel_99.add(tf_income_month);
+		tf_income_month.setColumns(10);
 
 		JLabel label_134 = new JLabel("\uC6D4");
 		label_134.setBounds(125, 27, 17, 20);
 		label_134.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label_134);
 
-		textField_2_1 = new JTextField();
-		textField_2_1.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		textField_2_1.setOpaque(false);
-		textField_2_1.setBounds(148, 24, 18, 21);
-		textField_2_1.setColumns(10);
-		panel_99.add(textField_2_1);
+		tf_income_day = new JTextField();
+		tf_income_day.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_day.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(
+				0, 0, 0)));
+		tf_income_day.setOpaque(false);
+		tf_income_day.setBounds(148, 24, 18, 21);
+		tf_income_day.setColumns(10);
+		panel_99.add(tf_income_day);
 
 		JLabel label_221 = new JLabel("\uC77C");
 		label_221.setBounds(172, 27, 17, 20);
@@ -512,7 +509,7 @@ public class Write extends JFrame {
 		panel_99.add(label_221);
 
 		JPanel panel_101 = new JPanel();
-		panel_101.setBackground(new Color(255,192,0));
+		panel_101.setBackground(new Color(255, 192, 0));
 		panel_55.add(panel_101);
 		panel_101.setLayout(null);
 
@@ -521,27 +518,29 @@ public class Write extends JFrame {
 		panel_101.add(panel_120);
 		panel_120.setLayout(new CardLayout(0, 0));
 
-		JComboBox comboBox3 = new JComboBox();
-		comboBox3.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
-		comboBox3.addItem("식비");
-		comboBox3.addItem("주거/통신");
-		comboBox3.addItem("생활용품");
-		comboBox3.addItem("의복/미용");
-		comboBox3.addItem("교통/차량");
-		comboBox3.addItem("기타");
-		panel_120.add(comboBox3, "name_40869687610195");
+		JComboBox comboBox_income = new JComboBox();
+		comboBox_income.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+		comboBox_income.addItem("식비");
+		comboBox_income.addItem("주거/통신");
+		comboBox_income.addItem("생활용품");
+		comboBox_income.addItem("의복/미용");
+		comboBox_income.addItem("교통/차량");
+		comboBox_income.addItem("기타");
+		panel_120.add(comboBox_income, "name_40869687610195");
 
 		JPanel panel_181 = new JPanel();
-		panel_181.setBackground(new Color(255,192,0));
+		panel_181.setBackground(new Color(255, 192, 0));
 		panel_55.add(panel_181);
 		panel_181.setLayout(null);
 
-		textField_3 = new JTextField();
-		textField_3.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		textField_3.setOpaque(false);
-		textField_3.setBounds(12, 21, 154, 25);
-		panel_181.add(textField_3);
-		textField_3.setColumns(10);
+		tf_income_money = new JTextField();
+		tf_income_money.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_money.setBorder(new MatteBorder(0, 0, 1, 0,
+				(Color) new Color(0, 0, 0)));
+		tf_income_money.setOpaque(false);
+		tf_income_money.setBounds(12, 21, 154, 25);
+		panel_181.add(tf_income_money);
+		tf_income_money.setColumns(10);
 
 		JLabel label_315 = new JLabel("\uC6D0");
 		label_315.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
@@ -558,13 +557,16 @@ public class Write extends JFrame {
 		panel_163.add(panel_77);
 		panel_77.setLayout(null);
 
-		textField_4_1 = new JTextField();
-		textField_4_1.setBounds(10, 10, 207, 85);
-		
-		textField_4_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		textField_4_1.setOpaque(false);
-		panel_77.add(textField_4_1);
-		textField_4_1.setColumns(10);
+		tf_income_memo = new JTextField();
+		tf_income_memo.setHorizontalAlignment(SwingConstants.LEFT);
+		tf_income_memo.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_memo.setBounds(10, 10, 207, 85);
+
+		tf_income_memo.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(
+				0, 0, 0)));
+		tf_income_memo.setOpaque(false);
+		panel_77.add(tf_income_memo);
+		tf_income_memo.setColumns(10);
 
 		JPanel panel_150 = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -584,14 +586,13 @@ public class Write extends JFrame {
 		};
 		panel_150.setBounds(228, 396, -84, 27);
 		panel_163.add(panel_150);
-		
+
 		JPanel panel_3 = new JPanel() {
 			public void paintComponent(Graphics g) {
 				try {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
-					File fileInSamePackage = new File(path
-							+ "buttonVoid.png");
+					File fileInSamePackage = new File(path + "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -605,19 +606,19 @@ public class Write extends JFrame {
 		panel_3.setBounds(160, 377, 70, 37);
 		panel_163.add(panel_3);
 		panel_3.setLayout(new CardLayout(0, 0));
-		
+
 		JLabel label_5 = new JLabel("\uC800\uC7A5");
+
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		label_5.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
 		panel_3.add(label_5, "name_21516161530420");
-		
+
 		JPanel panel_15 = new JPanel() {
 			public void paintComponent(Graphics g) {
 				try {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
-					File fileInSamePackage = new File(path
-							+ "buttonVoid.png");
+					File fileInSamePackage = new File(path + "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -631,43 +632,72 @@ public class Write extends JFrame {
 		panel_15.setBounds(242, 377, 70, 37);
 		panel_163.add(panel_15);
 		panel_15.setLayout(new CardLayout(0, 0));
-		
+
 		JLabel label_6 = new JLabel("\uCDE8\uC18C");
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
 		label_6.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
 		panel_15.add(label_6, "name_21523545996197");
-		
+
 		JPanel panel_2 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 51, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 222, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -34, SpringLayout.NORTH, panel_1);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -26, SpringLayout.EAST, panel);
-		panel_2.setBackground(new Color(0,0,0,0));
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 51,
+				SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 222,
+				SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -34,
+				SpringLayout.NORTH, panel_1);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -26,
+				SpringLayout.EAST, panel);
+		panel_2.setBackground(new Color(0, 0, 0, 0));
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(3, 0, 0, 0));
-		
+
 		JLabel lbl_talking1 = new JLabel("\uB300\uD654\uC785\uB825 1");
 		panel_2.add(lbl_talking1);
-		
+
 		JLabel lbl_talking2 = new JLabel("\uB300\uD654\uC785\uB825 2");
 		panel_2.add(lbl_talking2);
-		
+
 		JLabel lbl_talking3 = new JLabel("\uB300\uD654\uC785\uB825 3");
 		panel_2.add(lbl_talking3);
-		
-		
-		
-		
+
 		ivo = new IncomeVO();
-		
-		//dao.incomeInsert(id, );
-		
-		
-		
-		
-		
-		
-		
-		
+
+		panel_button_ok.addMouseListener(new MouseAdapter() { // 지출 저장
+					@Override
+					public void mouseClicked(MouseEvent e) {
+
+						int year = Integer.parseInt(tf_outcome_year.getText());
+						int month = Integer.parseInt(tf_outcome_month.getText());
+						int day = Integer.parseInt(tf_outcome_day.getText());
+						int money = Integer.parseInt(tf_outcome_money.getText());
+						String category = comboBox_outcome.getName();
+						String memo = tf_outcome_memo.getText();
+						ovo = new OutcomeVO(id, money, year, month, day,
+								category, memo);
+						WriteDAO wdao = new WriteDAO();
+
+						wdao.outcomeInsert(ovo);
+						dispose();
+
+					}
+				});
+
+		label_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int year = Integer.parseInt(tf_income_year.getText());
+				int month = Integer.parseInt(tf_income_month.getText());
+				int day = Integer.parseInt(tf_income_day.getText());
+				int money = Integer.parseInt(tf_income_money.getText());
+				String category = comboBox_income.getName();
+				String memo = tf_income_memo.getText();
+				ivo = new IncomeVO(id, money, year, month, day, category, memo);
+				WriteDAO wdao = new WriteDAO();
+
+				wdao.incomeInsert(ivo);
+				dispose();
+			}
+		});
+
 	}
 }

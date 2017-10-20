@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.VO.IncomeVO;
+import com.VO.OutcomeVO;
 
 public class WriteDAO {
 	Connection con = null;
@@ -47,12 +48,38 @@ public class WriteDAO {
 
 			rs = psmt.executeQuery();
 
-			// while(rs.next()) {
-			// //수입의 모든 금액 출력
-			// int money = rs.getInt(2);
-			// System.out.println("inmoney : "+money);
-			// moneyAll += money;
-			// }
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (psmt != null)
+					psmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return moneyAll;
+	}public int outcomeInsert(OutcomeVO ovo) {
+		getConn();
+		int moneyAll = 0;
+		try {
+			String sql = "INSERT INTO outcome VALUES (?,?,?,?,?,?,?)";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, ovo.getId());
+			psmt.setInt(2, ovo.getMoney());
+			psmt.setInt(3, ovo.getYear());
+			psmt.setInt(4, ovo.getMonth());
+			psmt.setInt(5, ovo.getDay());
+			psmt.setString(6, ovo.getCategory());
+			psmt.setString(7, ovo.getMemo());
+
+			rs = psmt.executeQuery();
 
 		} catch (SQLException e) {
 			System.out.println("MoneyDAO 오류");
