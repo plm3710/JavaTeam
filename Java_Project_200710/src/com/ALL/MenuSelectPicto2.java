@@ -230,6 +230,11 @@ public class MenuSelectPicto2 extends JFrame {
 
 			}
 
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				History ht = new History(id);
+				ht.main(id);
+			}
 		});
 
 		panel_3.add(calendar2);

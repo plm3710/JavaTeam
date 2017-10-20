@@ -54,6 +54,7 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
@@ -675,7 +676,8 @@ public class Write extends JFrame {
 						ovo = new OutcomeVO(id, money, year, month, day,
 								category, memo);
 						WriteDAO wdao = new WriteDAO();
-
+						
+						JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 						wdao.outcomeInsert(ovo);
 						dispose();
 
@@ -694,6 +696,7 @@ public class Write extends JFrame {
 				ivo = new IncomeVO(id, money, year, month, day, category, memo);
 				WriteDAO wdao = new WriteDAO();
 
+				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				wdao.incomeInsert(ivo);
 				dispose();
 			}

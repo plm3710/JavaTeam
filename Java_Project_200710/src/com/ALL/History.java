@@ -185,7 +185,7 @@ public class History extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, contentPane);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
-		
+
 		//calendar.getDayChooser().getDayPanel().getmo
 		//calendar.getDayChooser().getDayPanel().
 		

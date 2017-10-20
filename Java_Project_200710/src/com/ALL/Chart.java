@@ -9,6 +9,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+
 import com.img.a;
 
 import java.awt.CardLayout;
@@ -18,6 +24,8 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
@@ -138,7 +146,9 @@ public class Chart extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_12, -52, SpringLayout.SOUTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_12, 510, SpringLayout.WEST, panel_1);
 		panel_1.add(panel_12);
-		
+		panel_12.setLayout(new CardLayout(0, 0));
+		chartExample_bar cbar = new chartExample_bar();
+		panel_12.add(cbar.chartPanel, "chart");
 		
 		
 		
@@ -220,87 +230,57 @@ public class Chart extends JFrame {
 		sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_13, -51, SpringLayout.SOUTH, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.EAST, panel_13, 510, SpringLayout.WEST, panel_2);
 		panel_2.add(panel_13);
+		JFreeChart jFreeChart = getPieChart();
+		ChartPanel chartPanel = new ChartPanel(jFreeChart);
+		panel_13.add(chartPanel);
+		
+		//chartExample_pie bcb = new chartExample_pie();
+		
+		
 
 		
-		///==========================================================================================
-		
-//        // 데이터 생성
-//        DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();                // bar chart 1
-//        DefaultCategoryDataset dataset12 = new DefaultCategoryDataset();         // bar chart 2
-//        DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();                // line chart 1
-// 
-//        // 데이터 입력 ( 값, 범례, 카테고리 )
-//        // 그래프 1       
-//        dataset1.addValue(1.0, "S1", "1월");
-//        dataset1.addValue(4.0, "S1", "2월");
-//        dataset1.addValue(3.0, "S1", "3월");
-//        dataset1.addValue(5.0, "S1", "4월");
-//        dataset1.addValue(5.0, "S1", "5월");
-//        dataset1.addValue(7.0, "S1", "6월");
-//        dataset1.addValue(7.0, "S1", "7월");
-//        dataset1.addValue(8.0, "S1", "8월");
-//        dataset1.addValue(0, "S1", "9월");
-//        dataset1.addValue(0, "S1", "10월");
-//        dataset1.addValue(0, "S1", "11월");
-//        dataset1.addValue(0, "S1", "12월");
-// 
-//        // 그래프 2       
-//        dataset12.addValue(0, "S2", "1월");
-//        dataset12.addValue(0, "S2", "2월");
-//        dataset12.addValue(0, "S2", "3월");
-//        dataset12.addValue(0, "S2", "4월");
-//        dataset12.addValue(0, "S2", "5월");
-//        dataset12.addValue(0, "S2", "6월");
-//        dataset12.addValue(0, "S2", "7월");
-//        dataset12.addValue(0, "S2", "8월");
-//        dataset12.addValue(6.0, "S2", "9월");
-//        dataset12.addValue(0, "S2", "10월");
-//        dataset12.addValue(0, "S2", "11월");
-//        dataset12.addValue(0, "S2", "12월");
-// 
-//        // 그래프 3       
-//        dataset2.addValue(9.0, "T1", "1월");
-//        dataset2.addValue(7.0, "T1", "2월");
-//        dataset2.addValue(2.0, "T1", "3월");
-//        dataset2.addValue(6.0, "T1", "4월");
-//        dataset2.addValue(6.0, "T1", "5월");
-//        dataset2.addValue(9.0, "T1", "6월");
-//        dataset2.addValue(5.0, "T1", "7월");
-//        dataset2.addValue(4.0, "T1", "8월");
-//        dataset2.addValue(8.0, "T1", "9월");
-//        dataset2.addValue(8.0, "T1", "10월");
-//        dataset2.addValue(8.0, "T1", "11월");
-//        dataset2.addValue(8.0, "T1", "12월");
-// 
-//        // 렌더링 생성 및 세팅
-//        // 렌더링 생성
-//        final BarRenderer renderer = new BarRenderer();
-//        final BarRenderer renderer12 = new BarRenderer();
-//        final LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
-//       
-//        // 공통 옵션 정의
-//        final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
-//        final ItemLabelPosition p_center = new ItemLabelPosition(
-//                ItemLabelAnchor.CENTER, TextAnchor.CENTER
-//            );
-//        final ItemLabelPosition p_below = new ItemLabelPosition(
-//                     ItemLabelAnchor.OUTSIDE6, TextAnchor.TOP_LEFT
-//                     );
-//        Font f = new Font("Gulim", Font.BOLD, 14);
-//        Font axisF = new Font("Gulim", Font.PLAIN, 14);
-//       
-//        // 렌더링 세팅
-//        // 그래프 1
-//        renderer.setBaseItemLabelGenerator(generator);
-//        renderer.setBaseItemLabelsVisible(true);
-//        renderer.setBasePositiveItemLabelPosition(p_center);
-//        renderer.setBaseItemLabelFont(f);
-////        renderer.setGradientPaintTransformer(new StandardGradientPaintTransformer(
-////                GradientPaintTransformType.VERTICAL));
-////        renderer.setSeriesPaint(0, new GradientPaint(1.0f, 1.0f, Color.white, 0.0f, 0.0f, Color.blue));
-//        renderer.setSeriesPaint(0, new Color(0,162,255));
+//		JFreeChart chart =null;
+//		DefaultPieDataset dataset = new DefaultPieDataset();
+//		
+//	    for(int i =0; i<10; i++){
+//	        int n = (int) (Math.random() * 10) + 1;
+//	        dataset.setValue("value"+(i+1), n);
+//	    }
+//			
+//		chart = ChartFactory.createPieChart3D("파이차트", dataset, true,true, false);
+//		chart.setBackgroundPaint(Color.white);
+//		ChartFrame frame1=new ChartFrame("Pie Chart",chart);
+//		frame1.setSize(800,450);  
+//		//frame1.setVisible(true);
+//		panel_12.add(frame1, "chart");
+//		
 
 		
+	}
+	
+	public void CalendarOutPut() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR); //년도
+        int mon = cal.get(Calendar.MONTH); // 월 
+        int day = cal.get(Calendar.DAY_OF_MONTH); // 일 
+        int hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
+        int min = cal.get(Calendar.MINUTE); // 분
+        int sec = cal.get(Calendar.SECOND); // 초
+        
+        
+	}
+	
+	public JFreeChart getPieChart() {
+	    DefaultPieDataset dataset = new DefaultPieDataset();
+	
+        for(int i =0; i<10; i++){
+            int n = (int) (Math.random() * 10) + 1;
+            dataset.setValue("value"+(i+1), n);
+        }
+		JFreeChart chart = ChartFactory.createPieChart3D("파이차트", dataset, true,true, false);
+		chart.setBackgroundPaint(Color.white);
+		
+		return chart;
 	}
 
 }

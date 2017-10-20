@@ -24,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.GridLayout;
@@ -60,6 +61,7 @@ public class HistoryNext extends JFrame {
 	 */
 	public HistoryNext(String id, String dateTemp) {
 		setUndecorated(true);//타이틀바 없애기
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 400);
 		contentPane = new JPanel();
@@ -68,7 +70,8 @@ public class HistoryNext extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
-		this.setLocation(240,265);
+		this.setLocation(240,265);//처음 띄울때 위치
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, "name_27612527429372");
@@ -178,7 +181,11 @@ public class HistoryNext extends JFrame {
 
 		int temp = 0;
 		for (int i = 0; i < ilist.size(); i++) {// 수입 행 넣기
-
+			
+			Dimension size = new Dimension();
+			size.setSize(700, 200+(temp*42));
+			panel_2.setPreferredSize(size);
+			
 			IncomeVO m = ilist.get(i);
 			String ca = m.getCategory();//카테고리
 			String in = "+"+m.getMoney()+"";//수입 돈
@@ -242,7 +249,10 @@ public class HistoryNext extends JFrame {
 			
 		}
 		for (int i = 0; i < olist.size(); i++) {// 지출 행 넣기
-
+			Dimension size = new Dimension();
+			size.setSize(700, 100+(temp*42));
+			panel_2.setPreferredSize(size);
+			
 			OutcomeVO m = olist.get(i);
 
 			String ca = m.getCategory();
@@ -296,7 +306,6 @@ public class HistoryNext extends JFrame {
 				public void mouseClicked(MouseEvent arg0) {
 					//삭제
 					//아이디, 수입, 년, 월, 일, 카테고리, 메모
-					
 					int cnt = dao.outdelete(id, m.getMoney(), dateYMS[0], dateYMS[1], dateYMS[2],ca,me);
 					if(cnt>0) {
 						JOptionPane.showMessageDialog(null, "삭제되었습니다.");
