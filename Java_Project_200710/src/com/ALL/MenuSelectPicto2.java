@@ -171,7 +171,10 @@ public class MenuSelectPicto2 extends JFrame {
 
 		
 
-		JPanel budget = new JPanel() { // panel_6& 이미지 넣기
+		JPanel calendar2 = new JPanel(); // calendar 생성
+		calendar2.setLayout(new CardLayout(0, 0));
+
+		JPanel panel_11 = new JPanel() { // panel_11& 이미지 넣기
 			public void paintComponent(Graphics g) {
 
 				try {
@@ -188,10 +191,51 @@ public class MenuSelectPicto2 extends JFrame {
 				}
 			}
 		};
-		panel_3.add(budget);
-		budget.setLayout(new CardLayout(0, 0));
 
-		JPanel analysis = new JPanel() { // panel_7& 이미지 넣기
+		panel_11.setBackground(new Color(0, 0, 0));
+		calendar2.add(panel_11, "name_13458552785714");
+		panel_11.setLayout(new CardLayout(0, 0));
+		
+		
+		JPanel panel_12 = new JPanel(); // panel_12
+	    panel_12.setBackground(new Color(0, 0, 0, 0.6f));
+		calendar2.add(panel_12, "name_13472309223731");
+		panel_12.setLayout(new CardLayout(0, 0));
+
+		JLabel lbl_calendar2 = new JLabel(" "); // lbl_budget
+		lbl_calendar2.setForeground(Color.WHITE);
+		panel_12.add(lbl_calendar2, "name_13493404554887");
+		lbl_calendar2.setFont(new Font("서울남산 장체BL", Font.PLAIN, 40));
+		lbl_calendar2.setHorizontalAlignment(SwingConstants.CENTER);
+
+		calendar2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lbl_calendar2.setText("내역조회" + "\n");
+				((CardLayout) calendar2.getLayout()).previous(calendar2);
+
+			}
+			
+			 @Override
+		       public void mouseExited(MouseEvent e) { // 커서 나갔을 때
+		          lbl_calendar2.setText("");
+		          ((CardLayout) calendar2.getLayout()).next(calendar2);
+
+		       }
+			
+			
+		});
+
+		panel_3.add(calendar2);
+		calendar2.setLayout(new CardLayout(0, 0));
+		
+		
+		
+		
+		JPanel plan = new JPanel(); // plan 생성
+		plan.setLayout(new CardLayout(0, 0));
+
+		JPanel panel_13 = new JPanel() { // panel_13& 이미지 넣기
 			public void paintComponent(Graphics g) {
 
 				try {
@@ -208,10 +252,49 @@ public class MenuSelectPicto2 extends JFrame {
 				}
 			}
 		};
-		panel_3.add(analysis);
+
+		panel_13.setBackground(new Color(0, 0, 0));
+		plan.add(panel_13, "name_13458552785714");
+		panel_13.setLayout(new CardLayout(0, 0));
+		
+		
+		JPanel panel_14 = new JPanel(); // panel_14
+	    panel_14.setBackground(new Color(0, 0, 0, 0.6f));
+		plan.add(panel_14, "name_13472309223731");
+		panel_14.setLayout(new CardLayout(0, 0));
+
+		JLabel lbl_plan = new JLabel(" "); // lbl_plan
+		lbl_plan.setForeground(Color.WHITE);
+		panel_14.add(lbl_plan, "name_13493404554887");
+		lbl_plan.setFont(new Font("서울남산 장체BL", Font.PLAIN, 40));
+		lbl_plan.setHorizontalAlignment(SwingConstants.CENTER);
+
+		plan.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lbl_plan.setText("예산관리" + "\n");
+				((CardLayout) plan.getLayout()).previous(plan);
+
+			}
+			
+			 @Override
+		       public void mouseExited(MouseEvent e) { // 커서 나갔을 때
+		          lbl_plan.setText("");
+		          ((CardLayout) plan.getLayout()).next(plan);
+
+		       }
+			
+			
+		});
+
+		panel_3.add(plan);
+		plan.setLayout(new CardLayout(0, 0));
+	
+		
+		JPanel analysis = new JPanel(); // analysis 생성
 		analysis.setLayout(new CardLayout(0, 0));
 
-		JPanel calendar = new JPanel() { // panel_8& 이미지 넣기
+		JPanel panel_15 = new JPanel() { // panel_13& 이미지 넣기
 			public void paintComponent(Graphics g) {
 
 				try {
@@ -228,8 +311,45 @@ public class MenuSelectPicto2 extends JFrame {
 				}
 			}
 		};
-		panel_3.add(calendar);
-		calendar.setLayout(new CardLayout(0, 0));
+
+		panel_15.setBackground(new Color(0, 0, 0));
+	    analysis.add(panel_15, "name_13458552785714");
+		panel_15.setLayout(new CardLayout(0, 0));
+		
+		
+		JPanel panel_16 = new JPanel(); // panel_16
+	    panel_16.setBackground(new Color(0, 0, 0, 0.6f));
+		analysis.add(panel_16, "name_13472309223731");
+		panel_16.setLayout(new CardLayout(0, 0));
+
+		JLabel lbl_analysis = new JLabel(" "); // lbl_analysis
+		lbl_analysis.setForeground(Color.WHITE);
+		panel_16.add(lbl_analysis, "name_13493404554887");
+		lbl_analysis.setFont(new Font("서울남산 장체BL", Font.PLAIN, 40));
+		lbl_analysis.setHorizontalAlignment(SwingConstants.CENTER);
+
+		analysis.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lbl_analysis.setText("통계" + "\n");
+				((CardLayout) analysis.getLayout()).previous(analysis);
+
+			}
+			
+			 @Override
+		       public void mouseExited(MouseEvent e) { // 커서 나갔을 때
+		          lbl_analysis.setText("");
+		          ((CardLayout) analysis.getLayout()).next(analysis);
+
+		       }
+			
+			
+		});
+
+		panel_3.add(analysis);
+		analysis.setLayout(new CardLayout(0, 0));
+		
+		
 
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4, 0, SpringLayout.EAST, panel_2);
 		panel_2.setLayout(new CardLayout(0, 0));
