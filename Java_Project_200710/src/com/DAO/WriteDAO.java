@@ -78,7 +78,6 @@ public class WriteDAO {
 			psmt.setInt(5, ovo.getDay());
 			psmt.setString(6, ovo.getCategory());
 			psmt.setString(7, ovo.getMemo());
-
 			rs = psmt.executeQuery();
 
 		} catch (SQLException e) {

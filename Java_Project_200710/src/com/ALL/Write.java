@@ -280,7 +280,7 @@ public class Write extends JFrame {
 
 		JComboBox comboBox_outcome = new JComboBox();
 		comboBox_outcome.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
-		comboBox_outcome.addItem("식비");
+		comboBox_outcome.addItem("식비!");
 		comboBox_outcome.addItem("주거/통신");
 		comboBox_outcome.addItem("생활용품");
 		comboBox_outcome.addItem("의복/미용");
@@ -391,6 +391,48 @@ public class Write extends JFrame {
 		panel_button_ok.setLayout(new CardLayout(0, 0));
 
 		JLabel label_4 = new JLabel("\uC800\uC7A5");
+		label_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//sssssssssssssssssssssssssssssssss
+				String category = null;
+				int categoryIndex = comboBox_outcome.getSelectedIndex();
+				switch (categoryIndex) {
+				case 0:
+					category = "식비";
+					break;
+				case 1:
+					category = "주거/통신";
+					break;
+				case 2:
+					category = "생활용품";
+					break;
+				case 3:
+					category = "의복/미용";
+					break;
+				case 4:
+					category = "교통/차량";
+					break;
+				case 5:
+					category = "기타";
+					break;
+				default:
+					break;
+				}
+				int year = Integer.parseInt(tf_outcome_year.getText());
+				int month = Integer.parseInt(tf_outcome_month.getText());
+				int day = Integer.parseInt(tf_outcome_day.getText());
+				int money = Integer.parseInt(tf_outcome_money.getText());
+
+				String memo = tf_outcome_memo.getText();
+				ovo = new OutcomeVO(id, money, year, month, day, category, memo);
+				WriteDAO wdao = new WriteDAO();
+				wdao.outcomeInsert(ovo);
+				dispose();
+				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
+				
+			}
+		});
 		label_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_button_ok.add(label_4, "name_21353759973774");
@@ -527,6 +569,49 @@ public class Write extends JFrame {
 
 		JComboBox comboBox_income = new JComboBox();
 		comboBox_income.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+		panel_button_ok.addMouseListener(new MouseAdapter() { // 지출 저장
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String category = null;
+				int categoryIndex = comboBox_outcome.getSelectedIndex();
+	
+				switch (categoryIndex) {
+				case 0:
+					category = "식비";
+					break;
+				case 1:
+					category = "주거/통신";
+					break;
+				case 2:
+					category = "생활용품";
+					break;
+				case 3:
+					category = "의복/미용";
+					break;
+				case 4:
+					category = "교통/차량";
+					break;
+				case 5:
+					category = "기타";
+					break;
+				default:
+					break;
+				}
+				int year = Integer.parseInt(tf_outcome_year.getText());
+				int month = Integer.parseInt(tf_outcome_month.getText());
+				int day = Integer.parseInt(tf_outcome_day.getText());
+				int money = Integer.parseInt(tf_outcome_money.getText());
+
+				String memo = tf_outcome_memo.getText();
+				ovo = new OutcomeVO(id, money, year, month, day, category, memo);
+				WriteDAO wdao = new WriteDAO();
+				
+				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
+				wdao.outcomeInsert(ovo);
+				dispose();
+
+			}
+		});
 		comboBox_income.addItem("월급");
 		comboBox_income.addItem("보너스");
 		comboBox_income.addItem("수당");
@@ -675,55 +760,14 @@ public class Write extends JFrame {
 
 		ivo = new IncomeVO();
 
-		panel_button_ok.addMouseListener(new MouseAdapter() { // 지출 저장
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						int categoryIndex = comboBox_income.getSelectedIndex();
-						String category = null;
-						switch (categoryIndex) {
-						case 0:
-							category = "식비";
-							break;
-						case 1:
-							category = "주거/통신";
-							break;
-						case 2:
-							category = "생활용품";
-							break;
-						case 3:
-							category = "의복/미용";
-							break;
-						case 4:
-							category = "교통/차량";
-							break;
-						case 5:
-							category = "기타";
-							break;
-						default:
-							break;
-						}
-						int year = Integer.parseInt(tf_outcome_year.getText());
-						int month = Integer.parseInt(tf_outcome_month.getText());
-						int day = Integer.parseInt(tf_outcome_day.getText());
-						int money = Integer.parseInt(tf_outcome_money.getText());
+		
 
-						String memo = tf_outcome_memo.getText();
-						ovo = new OutcomeVO(id, money, year, month, day,
-								category, memo);
-						WriteDAO wdao = new WriteDAO();
-						
-						JOptionPane.showMessageDialog(null, "저장 되었습니다.");
-						wdao.outcomeInsert(ovo);
-						dispose();
-
-					}
-				});
-
-		label_5.addMouseListener(new MouseAdapter() {
+		label_5.addMouseListener(new MouseAdapter() {//수입 저장
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String category = null;
 				int categoryIndex = comboBox_income.getSelectedIndex();
+
 				switch (categoryIndex) {
 				case 0:
 					category = "월급";
@@ -760,6 +804,11 @@ public class Write extends JFrame {
 				dispose();
 			}
 		});
-
+//		panel_button_ok.addMouseListener(new MouseAdapter() { // 지출 저장
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				
+//			}
+//		});
 	}
 }
