@@ -347,6 +347,11 @@ public class MenuSelectPicto2 extends JFrame {
 
 			}
 
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Chart chart = new Chart(id);
+				chart.main(id);
+			}
 		});
 
 		panel_3.add(analysis);

@@ -264,6 +264,39 @@ public class MoneyDAO {
 		return cnt;
 		
 	}
+
+	public int outMoneySelect(String id, int year, int mon, String category) {//아이디, 년, 월, 카테고리
+		getConn();
+		int moneySum = 0;
+		try {
+			String sql = "select * from outcome where id=? and year=? and  month=? and category =?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1,id);
+			psmt.setInt(2, year);
+			psmt.setInt(3, mon);
+			psmt.setString(4,category);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				//모든 수입 컬럼 list에
+				moneySum += rs.getInt(2);
+				
+			}
+			System.out.println("지출 차트 -- 카테고리 : "+category+" 지출 총합 : "+moneySum);
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return moneySum;
+	}
 	
 	
 	

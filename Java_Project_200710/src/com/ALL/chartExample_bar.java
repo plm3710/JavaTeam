@@ -49,21 +49,28 @@ public class chartExample_bar{
     private CategoryDataset createDataset() {
         
         // row keys
-        final String series1 = "First"; 
+        final String series1 = "Expenditure"; 
         final String series2 = "Second";
         final String series3 = "Third";
 
         // 카테고리 입력
-        final String category1 = "Category 1";
-        final String category2 = "Category 2";
-        final String category3 = "Category 3";
-        final String category4 = "Category 4";
-        final String category5 = "Category 5";
+        final String category1 = "1";
+        final String category2 = "2";
+        final String category3 = "3";
+        final String category4 = "4";
+        final String category5 = "5";
+        final String category6 = "6";
+        final String category7 = "7";
+        final String category8 = "8";
+        final String category9 = "9";
+        final String category10 = "10";
+        final String category11 = "11";
+        final String category12 = "12";
 
         // 값 입력
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        dataset.addValue(8.0, series1, category1);
+        dataset.addValue(4.0, series1, category1);
         dataset.addValue(4.0, series1, category2);
         dataset.addValue(3.0, series1, category3);
         dataset.addValue(5.0, series1, category4);
