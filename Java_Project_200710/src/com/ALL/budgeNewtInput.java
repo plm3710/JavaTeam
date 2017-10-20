@@ -77,6 +77,7 @@ public class budgeNewtInput extends JFrame {
 		
 		this.setLocation(240,265); // 띄울 위치 정하기
 		JPanel panel = new JPanel();
+		panel.setOpaque(false);
 		contentPane.add(panel, "name_26506827263520");
 		panel.setLayout(new CardLayout(0, 0));
 		
@@ -97,12 +98,14 @@ public class budgeNewtInput extends JFrame {
 				}
 			}
 		};
+		panel_bg.setOpaque(false);
 		panel.add(panel_bg, "name_26643882768915");
 		SpringLayout sl_panel_bg = new SpringLayout();
 		panel_bg.setLayout(sl_panel_bg);
 		
 		JPanel panel_forehead = new JPanel();
 		panel_forehead.setBackground(new Color(0,0,0,0));
+		panel_forehead.setOpaque(false);
 		sl_panel_bg.putConstraint(SpringLayout.NORTH, panel_forehead, 0, SpringLayout.NORTH, panel_bg);
 		sl_panel_bg.putConstraint(SpringLayout.WEST, panel_forehead, 0, SpringLayout.WEST, panel_bg);
 		sl_panel_bg.putConstraint(SpringLayout.SOUTH, panel_forehead, 50, SpringLayout.NORTH, panel_bg);
@@ -110,6 +113,7 @@ public class budgeNewtInput extends JFrame {
 		panel_bg.add(panel_forehead);
 		
 		JPanel panel_body = new JPanel();
+		panel_body.setOpaque(false);
 		sl_panel_bg.putConstraint(SpringLayout.NORTH, panel_body, 6, SpringLayout.SOUTH, panel_forehead);
 		sl_panel_bg.putConstraint(SpringLayout.SOUTH, panel_body, -61, SpringLayout.SOUTH, panel_bg);
 		panel_body.setBackground(new Color(0,0,0,0));
@@ -124,12 +128,14 @@ public class budgeNewtInput extends JFrame {
 		panel_foot.setBackground(new Color(0,0,0,0));
 		
 		JPanel panel_month = new JPanel();
+		panel_month.setOpaque(false);
 		panel_month.setBackground(new Color (0,0,0,0));
 		panel_body.add(panel_month);
 		SpringLayout sl_panel_month = new SpringLayout();
 		panel_month.setLayout(sl_panel_month);
 		
 		JPanel panel_8 = new JPanel();
+		panel_8.setOpaque(false);
 		panel_8.setBackground(new Color (0,0,0,0));
 		sl_panel_month.putConstraint(SpringLayout.NORTH, panel_8, 0, SpringLayout.NORTH, panel_month);
 		sl_panel_month.putConstraint(SpringLayout.WEST, panel_8, 0, SpringLayout.WEST, panel_month);
@@ -138,6 +144,7 @@ public class budgeNewtInput extends JFrame {
 		panel_month.add(panel_8);
 		
 		JPanel panel_9 = new JPanel();
+		panel_9.setOpaque(false);
 		panel_9.setBackground(new Color (0,0,0,0));
 		sl_panel_month.putConstraint(SpringLayout.NORTH, panel_9, 0, SpringLayout.NORTH, panel_month);
 		sl_panel_month.putConstraint(SpringLayout.WEST, panel_9, 6, SpringLayout.EAST, panel_8);
@@ -174,12 +181,14 @@ public class budgeNewtInput extends JFrame {
 		panel_9.add(lblNewLabel);
 		
 		JPanel panel_name = new JPanel();
+		panel_name.setOpaque(false);
 		panel_name.setBackground(new Color (0,0,0,0));
 		panel_body.add(panel_name);
 		SpringLayout sl_panel_name = new SpringLayout();
 		panel_name.setLayout(sl_panel_name);
 		
 		JPanel panel_10 = new JPanel();
+		panel_10.setOpaque(false);
 		panel_10.setBackground(new Color (0,0,0,0));
 		sl_panel_name.putConstraint(SpringLayout.NORTH, panel_10, 0, SpringLayout.NORTH, panel_name);
 		sl_panel_name.putConstraint(SpringLayout.WEST, panel_10, 0, SpringLayout.WEST, panel_name);
@@ -188,6 +197,7 @@ public class budgeNewtInput extends JFrame {
 		panel_name.add(panel_10);
 		
 		JPanel panel_11 = new JPanel();
+		panel_11.setOpaque(false);
 		panel_11.setBackground(new Color (0,0,0,0));
 		sl_panel_name.putConstraint(SpringLayout.NORTH, panel_11, 0, SpringLayout.NORTH, panel_name);
 		sl_panel_name.putConstraint(SpringLayout.WEST, panel_11, 5, SpringLayout.EAST, panel_10);
@@ -219,12 +229,14 @@ public class budgeNewtInput extends JFrame {
 
 		
 		JPanel panel_category = new JPanel();
+		panel_category.setOpaque(false);
 		panel_category.setBackground(new Color (0,0,0,0));
 		panel_body.add(panel_category);
 		SpringLayout sl_panel_category = new SpringLayout();
 		panel_category.setLayout(sl_panel_category);
 		
 		JPanel panel_12 = new JPanel();
+		panel_12.setOpaque(false);
 		panel_12.setBackground(new Color (0,0,0,0));
 		sl_panel_category.putConstraint(SpringLayout.NORTH, panel_12, 0, SpringLayout.NORTH, panel_category);
 		sl_panel_category.putConstraint(SpringLayout.WEST, panel_12, 0, SpringLayout.WEST, panel_category);
@@ -233,6 +245,7 @@ public class budgeNewtInput extends JFrame {
 		panel_category.add(panel_12);
 		
 		JPanel panel_13 = new JPanel();
+		panel_13.setOpaque(false);
 		panel_13.setBackground(new Color (0,0,0,0));
 		sl_panel_category.putConstraint(SpringLayout.NORTH, panel_13, 0, SpringLayout.NORTH, panel_category);
 		sl_panel_category.putConstraint(SpringLayout.WEST, panel_13, 6, SpringLayout.EAST, panel_12);
@@ -250,6 +263,7 @@ public class budgeNewtInput extends JFrame {
 		panel_13.setLayout(sl_panel_13);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setOpaque(false);
 		panel_2.setBackground(new Color (0,0,0,0));
 		sl_panel_13.putConstraint(SpringLayout.NORTH, panel_2, 10, SpringLayout.NORTH, panel_13);
 		sl_panel_13.putConstraint(SpringLayout.WEST, panel_2, 10, SpringLayout.WEST, panel_13);
@@ -270,15 +284,18 @@ public class budgeNewtInput extends JFrame {
 		comboBox_category.addItem("의복/미용");
 		comboBox_category.addItem("교통/차량");
 		comboBox_category.addItem("기타");
+		comboBox_category.setOpaque(false);
 		panel_2.add(comboBox_category);
 		
 		JPanel panel_money = new JPanel();
+		panel_money.setOpaque(false);
 		panel_money.setBackground(new Color (0,0,0,0));
 		panel_body.add(panel_money);
 		SpringLayout sl_panel_money = new SpringLayout();
 		panel_money.setLayout(sl_panel_money);
 		
 		JPanel panel_14 = new JPanel();
+		panel_14.setOpaque(false);
 		panel_14.setBackground(new Color (0,0,0,0));
 		sl_panel_money.putConstraint(SpringLayout.NORTH, panel_14, 0, SpringLayout.NORTH, panel_money);
 		sl_panel_money.putConstraint(SpringLayout.WEST, panel_14, 0, SpringLayout.WEST, panel_money);
@@ -287,6 +304,7 @@ public class budgeNewtInput extends JFrame {
 		panel_money.add(panel_14);
 		
 		JPanel panel_15 = new JPanel();
+		panel_15.setOpaque(false);
 		panel_15.setBackground(new Color (0,0,0,0));
 		sl_panel_money.putConstraint(SpringLayout.NORTH, panel_15, 0, SpringLayout.NORTH, panel_money);
 		sl_panel_money.putConstraint(SpringLayout.WEST, panel_15, 6, SpringLayout.EAST, panel_14);
@@ -315,6 +333,7 @@ public class budgeNewtInput extends JFrame {
 		panel_15.add(textField_money);
 		
 		JLabel lbl_won = new JLabel("\uC6D0");
+		lbl_won.setOpaque(false);
 		sl_panel_15.putConstraint(SpringLayout.WEST, lbl_won, 15, SpringLayout.EAST, textField_money);
 		sl_panel_15.putConstraint(SpringLayout.SOUTH, lbl_won, 0, SpringLayout.SOUTH, textField_money);
 		lbl_won.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
@@ -332,6 +351,7 @@ public class budgeNewtInput extends JFrame {
 		panel_foot.setLayout(sl_panel_foot);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setOpaque(false);
 		panel_1.setBackground(new Color(0,0,0,0));
 		sl_panel_foot.putConstraint(SpringLayout.NORTH, panel_1, 10, SpringLayout.NORTH, panel_foot);
 		sl_panel_foot.putConstraint(SpringLayout.WEST, panel_1, 120, SpringLayout.WEST, panel_foot);
