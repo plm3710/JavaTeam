@@ -54,6 +54,7 @@ public class chartExample_bar{
         final String series3 = "Third";
 
         // 카테고리 입력
+        
         final String category1 = "1";
         final String category2 = "2";
         final String category3 = "3";

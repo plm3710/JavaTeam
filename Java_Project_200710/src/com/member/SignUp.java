@@ -70,7 +70,7 @@ public class SignUp extends JFrame {
 	 * Create the frame.
 	 */
 	public SignUp() {
-		setUndecorated(true);//타이틀바 없애기
+		//setUndecorated(true);//타이틀바 없애기
 		dao = new MemberDAO();
 		mvo = new MemberVO();
 		list = new ArrayList<MemberVO>();
