@@ -140,24 +140,24 @@ public class Write extends JFrame {
 		UIManager.put("TabbedPane.selected", new Color(255,192,0));  //ÅÇ »ö±ò (´­·¶À»¶§)
 		
 		
-		tabbedPane.setUI(new BasicTabbedPaneUI() { // ÅÇ »çÀÌÁî º¯°æ / ÁÖ¼® Ç®¸é µðÀÚÀÎ È­¸é
-					// ¾ÈµÊ
-
-					@Override
-					protected int calculateTabHeight(int tabPlacement,
-							int tabIndex, int fontHeight) {
-						// TODO Auto-generated method stub
-						return 40;
-					}
-
-					@Override
-					protected int calculateTabWidth(int tabPlacement,
-							int tabIndex, FontMetrics metrics) {
-						// TODO Auto-generated method stub
-						return 223;
-					}
-
-				});
+//		tabbedPane.setUI(new BasicTabbedPaneUI() { // ÅÇ »çÀÌÁî º¯°æ / ÁÖ¼® Ç®¸é µðÀÚÀÎ È­¸é
+//					// ¾ÈµÊ
+//
+//					@Override
+//					protected int calculateTabHeight(int tabPlacement,
+//							int tabIndex, int fontHeight) {
+//						// TODO Auto-generated method stub
+//						return 40;
+//					}
+//
+//					@Override
+//					protected int calculateTabWidth(int tabPlacement,
+//							int tabIndex, FontMetrics metrics) {
+//						// TODO Auto-generated method stub
+//						return 223;
+//					}
+//
+//				});
 		panel_1.add(tabbedPane, "name_39837979284068");
 
 		JPanel panel_16 = new JPanel();

@@ -210,6 +210,7 @@ public class MainLogin extends JFrame {
 		panel_9.add(lblNewLabel_3, "name_33078453118316");
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(0,0,0,0));
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 0, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_4, 996, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, 35, SpringLayout.NORTH, panel);
@@ -217,7 +218,7 @@ public class MainLogin extends JFrame {
 		panel.add(panel_4);
 		panel_4.setLayout(new CardLayout(0, 0));
 		
-		JLabel lblNewLabel_4 = new JLabel("X");
+		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
