@@ -4,13 +4,13 @@ public class BudgetVO {
 	private String category;
 	private int money;
 	private String id;
-	private String month;
+	private int month;
 
 	private BudgetVO() {
 
 	}
 
-	public BudgetVO(String category, int money, String id, String month) {
+	public BudgetVO(String category, int money, String id, int month) {
 		super();
 		this.category = category;
 		this.money = money;
@@ -30,7 +30,7 @@ public class BudgetVO {
 		return id;
 	}
 
-	public String getMonth() {
+	public int getMonth() {
 		return month;
 	}
 

@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import com.DAO.BudgetDAO_2;
+import com.DAO.WriteDAO;
+import com.VO.BudgetVO;
+import com.VO.OutcomeVO;
 import com.img.a;
 
 import java.awt.CardLayout;
@@ -334,6 +338,7 @@ public class budgeNewtInput extends JFrame {
 		sl_panel_foot.putConstraint(SpringLayout.SOUTH, panel_1, 0, SpringLayout.SOUTH, panel_foot);
 		sl_panel_foot.putConstraint(SpringLayout.EAST, panel_1, -109, SpringLayout.EAST, panel_foot);
 		panel_foot.add(panel_1);
+		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
 		
 		JLabel label_1 = new JLabel("");
 		panel_1.add(label_1);
@@ -390,18 +395,41 @@ public class budgeNewtInput extends JFrame {
 		btn_save.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
-				JOptionPane.showMessageDialog(null, "저장되었습니다.");
+
+				String category = null;
+				int categoryIndex = comboBox_category.getSelectedIndex();
+				switch (categoryIndex) {
+				case 0:
+					category = "식비";
+					break;
+				case 1:
+					category = "주거/통신";
+					break;
+				case 2:
+					category = "생활용품";
+					break;
+				case 3:
+					category = "의복/미용";
+					break;
+				case 4:
+					category = "교통/차량";
+					break;
+				case 5:
+					category = "기타";
+					break;
+				default:
+					break;
+				}
+			
+				int month = Integer.parseInt(textField_monthInput.getText());
+				int money = Integer.parseInt(textField_money.getText());
+
+				String id = textField_name.getText();
+				BudgetVO bvo = new BudgetVO(category, money, id, month);
+				BudgetDAO_2 bdao = new BudgetDAO_2();
+				bdao.budgetInsert(bvo);
 				dispose();
-				
-//				//저장
-//				//월, 예산이름, 카테고리, 예산금액
-//				int cnt = dao.indelete(id, in, dateYMS[0], dateYMS[1], dateYMS[2],ca,me);
-//				if(cnt>0) {
-//					JOptionPane.showMessageDialog(null, "삭제되었습니다.");
-//					dispose();
-//					main(id, dateTemp);
+				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 			}
 		});
 		

@@ -291,6 +291,14 @@ public class MenuSelectPicto2 extends JFrame {
 
 			}
 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				budgetRestart br = new budgetRestart();
+				br.main(null);
+				
+				
+			}
 		});
 
 		panel_3.add(plan);
