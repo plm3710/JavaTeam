@@ -58,7 +58,7 @@ public class History extends JFrame {
 	 * Create the frame.
 	 */
 	public History(String id) {
-		
+		setUndecorated(true);//타이틀바 없애기
 		mdao = new MoneyDAO();
 		ilist = new ArrayList<IncomeVO>();
 		olist = new ArrayList<OutcomeVO>();

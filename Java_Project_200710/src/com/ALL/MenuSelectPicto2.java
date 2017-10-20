@@ -38,11 +38,11 @@ public class MenuSelectPicto2 extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuSelectPicto2 frame = new MenuSelectPicto2();
+					MenuSelectPicto2 frame = new MenuSelectPicto2(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,8 @@ public class MenuSelectPicto2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuSelectPicto2() {
+	public MenuSelectPicto2(String id) {
+		setUndecorated(true);//타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 700);
 		contentPane = new JPanel();
@@ -164,6 +165,13 @@ public class MenuSelectPicto2 extends JFrame {
 		       }
 			
 			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				Write w = new Write(id);
+				w.main(id);
+				
+			}
 		});
 
 		panel_3.add(typing);

@@ -29,6 +29,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 import com.ALL.MenuSelect;
+import com.ALL.MenuSelectPicto2;
 import com.DAO.MemberDAO;
 import com.VO.MemberVO;
 import com.img.a;
@@ -190,7 +191,7 @@ public class MainLogin extends JFrame {
 				String pw = new String(passwordField.getPassword());
 				for (int i = 0; i < list.size() ; i++) {
 					if(list.get(i).getId().equals(textField.getText()) && list.get(i).getPw().equals(pw)) {
-						MenuSelect ms = new MenuSelect(textField.getText());
+						MenuSelectPicto2 ms = new MenuSelectPicto2(textField.getText());
 						ms.main(textField.getText());
 						//History h = new History(textField.getText());
 						//h.main(textField.getText());
