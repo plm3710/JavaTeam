@@ -184,7 +184,6 @@ public budgetRestart() {
 				String path = a.class.getResource("").getPath();
 				File fileInSamePackage = new File(path + "buttonCancel.png");
 				BufferedImage icon = ImageIO.read(fileInSamePackage);
-
 				Dimension d = getSize();// 전체화면
 				g.drawImage(icon, 0, 0, d.width, d.height, null);
 				setOpaque(false);
@@ -196,45 +195,50 @@ public budgetRestart() {
 	};
 	cancel.setBounds(378, 410, 64, 36);
 	panel_1.add(cancel);
-	cancel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+	cancel.setLayout(new GridLayout(0, 1, 0, 0));
 
 	JLabel lblNewLabel_1 = new JLabel("");
 	cancel.add(lblNewLabel_1);
 	lblNewLabel_1.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			System.exit(0);
+		
+		}
+	});
+
+	JPanel plus = new JPanel() {
+		public void paintComponent(Graphics g) {
+		}
+	};
+	plus.setBounds(10, 410, 70, 37);
+	panel_1.add(plus);
+	plus.setLayout(new GridLayout(0, 1, 0, 0));
+
+	JLabel lblNewLabel_2 = new JLabel(""){ // panel_1 생성& 이미지넣기
+		public void paintComponent(Graphics g) {
+
+			try {
+				String path = a.class.getResource("").getPath();
+				File fileInSamePackage = new File(path + "buttonCancel.png");
+				BufferedImage icon = ImageIO.read(fileInSamePackage);
+				Dimension d = getSize();// 전체화면
+				g.drawImage(icon, 0, 0, d.width, d.height, null);
+				setOpaque(false);
+				super.paintComponent(g);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	};
+	plus.add(lblNewLabel_2);
+	lblNewLabel_2.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
 			budgeNewtInput bn = new budgeNewtInput();
 			bn.main(null);
 		}
 	});
-
-	JPanel panel_28 = new JPanel() {
-		public void paintComponent(Graphics g) {
-		}
-	};
-	panel_28.setBounds(10, 410, 70, 37);
-	panel_1.add(panel_28);
-	panel_28.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-	JLabel lblNewLabel_2 = new JLabel("");
-	panel_28.add(lblNewLabel_2);
-	lblNewLabel_2.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			System.exit(0);
-		}
-	});
-
-	JPanel panel_29 = new JPanel() {
-		public void paintComponent(Graphics g) {
-		}
-	};
-	panel_29.setBounds(192, 419, 70, 28);
-	panel_1.add(panel_29);
-	panel_29.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-	JLabel lblNewLabel = new JLabel("");
-	panel_29.add(lblNewLabel);
 
 	
 
@@ -284,6 +288,7 @@ public budgetRestart() {
 	panel_5.setLayout(new GridLayout(5, 0, 0, 0));
 	
 	JPanel panel_7 = new JPanel();
+	
 	panel_5.add(panel_7);
 	
 	JPanel panel_19 = new JPanel();
