@@ -209,6 +209,26 @@ public class MainLogin extends JFrame {
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_9.add(lblNewLabel_3, "name_33078453118316");
 		
+		JPanel panel_4 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.NORTH, panel_4, 0, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_4, 996, SpringLayout.WEST, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_4, 35, SpringLayout.NORTH, panel);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_4, 0, SpringLayout.EAST, panel);
+		panel.add(panel_4);
+		panel_4.setLayout(new CardLayout(0, 0));
+		
+		JLabel lblNewLabel_4 = new JLabel("X");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.exit(0);
+			}
+		});
+		lblNewLabel_4.setForeground(Color.RED);
+		lblNewLabel_4.setFont(new Font("Masque", Font.BOLD, 30));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_4.add(lblNewLabel_4, "name_1289342470694");
+		
 		setResizable(false);
 	}
 }

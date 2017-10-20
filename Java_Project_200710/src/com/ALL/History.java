@@ -187,6 +187,8 @@ public class History extends JFrame {
 		panel.setLayout(sl_panel);
 		
 		//calendar.getDayChooser().getDayPanel().getmo
+		//calendar.getDayChooser().getDayPanel().
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("\uB0B4\uC5ED \uC870\uD68C");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);

@@ -152,6 +152,20 @@ public class HistoryNext extends JFrame {
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		panel_4.add(lblNewLabel_4);
+		
+		JPanel p_remove = new JPanel();
+		sl_panel_2.putConstraint(SpringLayout.NORTH, p_remove, 10, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.WEST, p_remove, 6, SpringLayout.EAST, panel_4);
+		sl_panel_2.putConstraint(SpringLayout.SOUTH, p_remove, 45, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, p_remove, 156, SpringLayout.EAST, panel_4);
+		panel_2.add(p_remove);
+		p_remove.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		p_remove.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		p_remove.add(lblNewLabel_6);
 
 		String[] dateYMS = dateTemp.split("-");
 
