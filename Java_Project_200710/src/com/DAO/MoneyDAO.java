@@ -265,6 +265,47 @@ public class MoneyDAO {
 		return cnt;
 		
 	}
+	
+	public int buddelete(String id, String money, String month, String category,String memo) {
+		getConn();
+		int cnt=-1;
+		String sql = "";
+		try {
+			if(memo==null) {
+				sql = "delete from budget where id=? and money=? and year=? and month=? and day=? and category=? and memo is null";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1,id);
+				psmt.setInt(2, Integer.parseInt(money));
+				psmt.setInt(3, Integer.parseInt(month));
+				psmt.setString(4, category);
+				cnt = psmt.executeUpdate();
+			}else {
+				sql = "delete from outcome where id=? and money=? and year=? and month=? and day=? and category=? and memo=?";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1,id);
+				psmt.setInt(2, Integer.parseInt(money));
+				psmt.setInt(3, Integer.parseInt(month));
+				psmt.setString(4, category);
+				psmt.setString(5, memo);
+				cnt = psmt.executeUpdate();
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
+		
+	}
 
 	public int outMoneySelect(String id, int year, int mon, String category) {//아이디, 년, 월, 카테고리
 		getConn();
