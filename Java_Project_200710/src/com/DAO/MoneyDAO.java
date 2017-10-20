@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.VO.BudgetVO;
 import com.VO.IncomeVO;
 import com.VO.MemberVO;
 import com.VO.OutcomeVO;
@@ -297,7 +298,41 @@ public class MoneyDAO {
 		}
 		return moneySum;
 	}
-	
+
+	public int budgetNextSelect(String id, String money, String month, String category) {
+		getConn();
+		int moneyAll = 0;
+		try {
+			String sql = "select * from budget where id=? and money=? and month=? and categorys";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1,id);
+			psmt.setInt(2, Integer.parseInt(money));
+			psmt.setInt(3, Integer.parseInt(month));
+			psmt.setString(4, category);
+			rs = psmt.executeQuery();
+			
+//			while(rs.next()) {
+//				//예산의 모든 내역 출력
+//				int money = rs.getInt(2);
+//				System.out.println("budget : "+money);
+//				moneyAll += money;
+//			}
+		
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return moneyAll;
+	}
 	
 	
 	

@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.DAO.MoneyDAO;
+import com.VO.BudgetVO;
+import com.VO.OutcomeVO;
 import com.img.a;
 
 import javax.swing.SpringLayout;
@@ -20,6 +23,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -31,8 +35,18 @@ import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
+import javax.swing.JScrollPane;
 
 public class budgetRestart extends JFrame {
+	String id = null;
+	String money =null;
+	String month = null;
+	String category = null;
+	
+	MoneyDAO dao = new MoneyDAO();
+	ArrayList<BudgetVO> blist = dao.budgetNextSelect(id, money, month, category);// 예산의 카테고리 정보를 가지고온다.
+}
 
 	private JPanel contentPane;
 	Calendar c = Calendar.getInstance();
@@ -94,22 +108,17 @@ public class budgetRestart extends JFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, panel_1, -10, SpringLayout.EAST, panel);
 		panel_1.setBackground(new Color(255, 192, 0));
 		panel.add(panel_1);
-		SpringLayout sl_panel_1 = new SpringLayout();
-		panel_1.setLayout(sl_panel_1);
+		panel_1.setLayout(null);
 
 		JPanel panel_2 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_2, 0, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_2, 0, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_2, 52, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_2, 454, SpringLayout.WEST, panel_1);
+		panel_2.setBounds(0, 0, 454, 52);
 		panel_1.add(panel_2);
 		SpringLayout sl_panel_2 = new SpringLayout();
 		panel_2.setLayout(sl_panel_2);
 
 		JLabel Time = new JLabel("New label");
+		Time.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 12));
 		Time.setHorizontalAlignment(SwingConstants.CENTER);
-		sl_panel_2.putConstraint(SpringLayout.NORTH, Time, 10, SpringLayout.NORTH, panel_2);
-		sl_panel_2.putConstraint(SpringLayout.SOUTH, Time, -10, SpringLayout.SOUTH, panel_2);
 		panel_2.add(Time);
 		//////////////////////////////////////////////////////////////////////
 		
@@ -119,6 +128,8 @@ public class budgetRestart extends JFrame {
 		//////////////////////////////////////////////////////////////////////
 
 		JButton btnNewButton_1 = new JButton("\u25B6");
+		sl_panel_2.putConstraint(SpringLayout.NORTH, Time, 0, SpringLayout.NORTH, btnNewButton_1);
+		sl_panel_2.putConstraint(SpringLayout.SOUTH, Time, 0, SpringLayout.SOUTH, btnNewButton_1);
 		btnNewButton_1.setBackground(new Color(255, 192, 0));
 
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -164,156 +175,99 @@ public class budgetRestart extends JFrame {
 		sl_panel_2.putConstraint(SpringLayout.EAST, button, 57, SpringLayout.WEST, panel_2);
 		sl_panel_2.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, panel_2);
 		panel_2.add(button);
+		
+		JPanel cancel = new JPanel() { // panel_1 생성& 이미지넣기
+			public void paintComponent(Graphics g) {
 
+				try {
+					String path = a.class.getResource("").getPath();
+					File fileInSamePackage = new File(path + "buttonCancel.png");
+					BufferedImage icon = ImageIO.read(fileInSamePackage);
+
+					Dimension d = getSize();// 전체화면
+					g.drawImage(icon, 0, 0, d.width, d.height, null);
+					setOpaque(false);
+					super.paintComponent(g);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		cancel.setBounds(378, 410, 64, 36);
+		panel_1.add(cancel);
+				cancel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+				JLabel lblNewLabel_1 = new JLabel("");
+				cancel.add(lblNewLabel_1);
+				lblNewLabel_1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						budgeNewtInput bn = new budgeNewtInput();
+						bn.main(null);
+					}
+				});
+		
+		JPanel panel_28 = new JPanel() {
+			public void paintComponent(Graphics g) {
+			}
+		};
+		panel_28.setBounds(10, 410, 70, 37);
+		panel_1.add(panel_28);
+				panel_28.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+				JLabel lblNewLabel_2 = new JLabel("");
+				panel_28.add(lblNewLabel_2);
+				lblNewLabel_2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						System.exit(0);
+					}
+				});
+		
+		JPanel panel_29 = new JPanel() {
+			public void paintComponent(Graphics g) {
+			}
+		};
+		panel_29.setBounds(192, 419, 70, 28);
+		panel_1.add(panel_29);
+		panel_29.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblNewLabel = new JLabel("");
+		panel_29.add(lblNewLabel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(5, 57, 445, 347);
+		panel_1.add(scrollPane);
+		
 		JPanel panel_3 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_3, 6, SpringLayout.SOUTH, panel_2);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_3, 0, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_3, 0, SpringLayout.EAST, panel_2);
-		panel_1.add(panel_3);
+		scrollPane.setViewportView(panel_3);
+		SpringLayout sl_panel_3 = new SpringLayout();
+		panel_3.setLayout(sl_panel_3);
+		
+		for (int i = 0; i < blist.size(); i++) {// 지출 행 넣기
+			Dimension size = new Dimension();
+			size.setSize(700, 100+(temp*42));
+			panel_2.setPreferredSize(size);
+			
+			OutcomeVO m = olist.get(i);
 
-		JPanel plus = new JPanel() { // panel_1 생성& 이미지넣기
-			public void paintComponent(Graphics g) {
-
-				try {
-					String path = a.class.getResource("").getPath();
-					File fileInSamePackage = new File(path + "plusButton.png");
-					BufferedImage icon = ImageIO.read(fileInSamePackage);
-
-					Dimension d = getSize();// 전체화면
-					g.drawImage(icon, 0, 0, d.width, d.height, null);
-					setOpaque(false);
-					super.paintComponent(g);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		sl_panel_1.putConstraint(SpringLayout.NORTH, plus, 406, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, plus, 0, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_3, -6, SpringLayout.NORTH, plus);
-		sl_panel_1.putConstraint(SpringLayout.WEST, plus, -90, SpringLayout.EAST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, plus, -10, SpringLayout.EAST, panel_1);
-		panel_1.add(plus);
-
-		JPanel end = new JPanel() { // panel_1 생성& 이미지넣기
-			public void paintComponent(Graphics g) {
-
-				try {
-					String path = a.class.getResource("").getPath();
-					File fileInSamePackage = new File(path + "endButton.png");
-					BufferedImage icon = ImageIO.read(fileInSamePackage);
-
-					Dimension d = getSize();// 전체화면
-					g.drawImage(icon, 0, 0, d.width, d.height, null);
-					setOpaque(false);
-					super.paintComponent(g);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		sl_panel_1.putConstraint(SpringLayout.NORTH, end, 6, SpringLayout.SOUTH, panel_3);
-		panel_3.setLayout(new GridLayout(2, 2, 0, 0));
-
+			String ca = m.getCategory();
+			String in = "+0";
+			String out = "-"+m.getMoney()+"";
+			String me = m.getMemo();
+		
 		JPanel panel_4 = new JPanel();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_4, 4, SpringLayout.NORTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.WEST, panel_4, 6, SpringLayout.WEST, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_4, 39, SpringLayout.NORTH, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.EAST, panel_4, -4, SpringLayout.EAST, panel_3);
 		panel_3.add(panel_4);
-		panel_4.setLayout(new GridLayout(5, 0, 0, 0));
-
-		JPanel panel_8 = new JPanel();
-		panel_4.add(panel_8);
-
-		JPanel panel_9 = new JPanel();
-		panel_4.add(panel_9);
-
-		JPanel panel_10 = new JPanel();
-		panel_4.add(panel_10);
-
-		JPanel panel_11 = new JPanel();
-		panel_4.add(panel_11);
-
-		JPanel panel_12 = new JPanel();
-		panel_4.add(panel_12);
-
+		
 		JPanel panel_5 = new JPanel();
+		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_5, 1, SpringLayout.SOUTH, panel_4);
+		sl_panel_3.putConstraint(SpringLayout.WEST, panel_5, 6, SpringLayout.WEST, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_5, 34, SpringLayout.SOUTH, panel_4);
+		sl_panel_3.putConstraint(SpringLayout.EAST, panel_5, -4, SpringLayout.EAST, panel_3);
 		panel_3.add(panel_5);
-		panel_5.setLayout(new GridLayout(5, 0, 0, 0));
-
-		JPanel panel_13 = new JPanel();
-		panel_5.add(panel_13);
-
-		JPanel panel_14 = new JPanel();
-		panel_5.add(panel_14);
-
-		JPanel panel_15 = new JPanel();
-		panel_5.add(panel_15);
-
-		JPanel panel_16 = new JPanel();
-		panel_5.add(panel_16);
-
-		JPanel panel_17 = new JPanel();
-		panel_5.add(panel_17);
-
-		JPanel panel_6 = new JPanel();
-		panel_3.add(panel_6);
-		panel_6.setLayout(new GridLayout(5, 0, 0, 0));
-
-		JPanel panel_18 = new JPanel();
-		panel_6.add(panel_18);
-
-		JPanel panel_19 = new JPanel();
-		panel_6.add(panel_19);
-
-		JPanel panel_20 = new JPanel();
-		panel_6.add(panel_20);
-
-		JPanel panel_21 = new JPanel();
-		panel_6.add(panel_21);
-
-		JPanel panel_22 = new JPanel();
-		panel_6.add(panel_22);
-
-		JPanel panel_7 = new JPanel();
-		panel_3.add(panel_7);
-		panel_7.setLayout(new GridLayout(5, 0, 0, 0));
-
-		JPanel panel_23 = new JPanel();
-		panel_7.add(panel_23);
-
-		JPanel panel_24 = new JPanel();
-		panel_7.add(panel_24);
-
-		JPanel panel_25 = new JPanel();
-		panel_7.add(panel_25);
-
-		JPanel panel_26 = new JPanel();
-		panel_7.add(panel_26);
-
-		JPanel panel_27 = new JPanel();
-		panel_7.add(panel_27);
-		sl_panel_1.putConstraint(SpringLayout.WEST, end, 10, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, end, 0, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, end, -274, SpringLayout.WEST, plus);
-		plus.setLayout(new CardLayout(0, 0));
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				budgeNewtInput bn = new budgeNewtInput();
-				bn.main(null);
-			}
-		});
-		plus.add(lblNewLabel_1, "name_13505501638477");
-		panel_1.add(end);
-		end.setLayout(new CardLayout(0, 0));
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-		end.add(lblNewLabel_2, "name_13563578223707");
 	}
 }
