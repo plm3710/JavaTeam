@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -15,6 +16,9 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
+import com.DAO.MoneyDAO;
+import com.VO.IncomeVO;
+import com.VO.OutcomeVO;
 import com.img.a;
 
 import java.awt.CardLayout;
@@ -24,6 +28,7 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.SpringLayout;
@@ -38,15 +43,23 @@ public class Chart extends JFrame {
 
 	private JPanel contentPane;
 	private BufferedImage icon;
+	private MoneyDAO mdao = null;
+	private ArrayList<OutcomeVO> olist = null;
+	private int year = 0; //년도
+	private int mon = 0; // 월 
+	private int day = 0; // 일 
+	private int hour = 0; // 시간
+	private int min = 0; // 분
+	private int sec = 0; // 초
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Chart frame = new Chart();
+					Chart frame = new Chart(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +71,12 @@ public class Chart extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Chart() {
+	public Chart(String id) {
+		mdao = new MoneyDAO();
+		olist = new ArrayList<OutcomeVO>();
+		
+		CalendarOutPut();//캘린더 메소드 실행
+		
 		setUndecorated(true);//타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 700);
@@ -136,14 +154,15 @@ public class Chart extends JFrame {
 		panel_8.setLayout(new CardLayout(0, 0));
 		
 		JLabel lblNewLabel_1 = new JLabel("\uB144");
+		lblNewLabel_1.setText(year+"년");
 		lblNewLabel_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_8.add(lblNewLabel_1, "name_14824930828554");
 		
 		JPanel panel_12 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_12, -526, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_12, 10, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_12, -52, SpringLayout.SOUTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_12, 57, SpringLayout.SOUTH, panel_4);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_12, 0, SpringLayout.WEST, panel_4);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_12, -96, SpringLayout.SOUTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_12, 510, SpringLayout.WEST, panel_1);
 		panel_1.add(panel_12);
 		panel_12.setLayout(new CardLayout(0, 0));
@@ -220,67 +239,76 @@ public class Chart extends JFrame {
 		panel_11.setLayout(new CardLayout(0, 0));
 		
 		JLabel lblNewLabel_5 = new JLabel("\uC6D4");
+		lblNewLabel_5.setText(mon+"월");
 		lblNewLabel_5.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_11.add(lblNewLabel_5, "name_14843400286818");
 		
 		JPanel panel_13 = new JPanel();
-		sl_panel_2.putConstraint(SpringLayout.NORTH, panel_13, -525, SpringLayout.SOUTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.NORTH, panel_13, 57, SpringLayout.SOUTH, panel_3);
 		sl_panel_2.putConstraint(SpringLayout.WEST, panel_13, 10, SpringLayout.WEST, panel_2);
-		sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_13, -51, SpringLayout.SOUTH, panel_2);
-		sl_panel_2.putConstraint(SpringLayout.EAST, panel_13, 510, SpringLayout.WEST, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_13, -95, SpringLayout.SOUTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, panel_13, 0, SpringLayout.EAST, panel_3);
 		panel_2.add(panel_13);
-		JFreeChart jFreeChart = getPieChart();
+		
+		
+		//카테고리별 차트 추가 예정
+		//디비에 아이디, 카테고리, 년, 월로 접근 
+		//지출 --> 식비, 주거/통신, 생활용품, 의복/미용, 교통/차량, 기타
+		String[] outCategory = {"식비","주거/통신","생활용품","의복/미용","교통/차량","기타"};
+		String[] outCategory2 = {"food","communication","Household Goods","cloth/beauty","traffic fee","etc"};
+		int[] outMoney = new int[outCategory.length];
+		
+		for (int i = 0; i < outCategory.length; i++) {//카테고리별 지출 합계 저장
+			outMoney[i] = mdao.outMoneySelect(id, year, mon, outCategory[i] );
+		}
+
+		for (int i = 0; i < outMoney.length; i++) {
+			System.out.println(outMoney[i]+"지출...");
+		}
+		
+		JFreeChart jFreeChart = getPieChart(outCategory2, outMoney);//차트추가
+		//JFreeChart jFreeChart = getPieChart();
 		ChartPanel chartPanel = new ChartPanel(jFreeChart);
 		panel_13.add(chartPanel);
 		
-		//chartExample_pie bcb = new chartExample_pie();
 		
-		
-
-		
-//		JFreeChart chart =null;
-//		DefaultPieDataset dataset = new DefaultPieDataset();
-//		
-//	    for(int i =0; i<10; i++){
-//	        int n = (int) (Math.random() * 10) + 1;
-//	        dataset.setValue("value"+(i+1), n);
-//	    }
-//			
-//		chart = ChartFactory.createPieChart3D("파이차트", dataset, true,true, false);
-//		chart.setBackgroundPaint(Color.white);
-//		ChartFrame frame1=new ChartFrame("Pie Chart",chart);
-//		frame1.setSize(800,450);  
-//		//frame1.setVisible(true);
-//		panel_12.add(frame1, "chart");
-//		
-
 		
 	}
 	
 	public void CalendarOutPut() {
         Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR); //년도
-        int mon = cal.get(Calendar.MONTH); // 월 
-        int day = cal.get(Calendar.DAY_OF_MONTH); // 일 
-        int hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
-        int min = cal.get(Calendar.MINUTE); // 분
-        int sec = cal.get(Calendar.SECOND); // 초
-        
-        
+        year = cal.get(Calendar.YEAR); //년도
+        mon = cal.get(Calendar.MONTH)+1; // 월 
+        day = cal.get(Calendar.DAY_OF_MONTH); // 일 
+        hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
+        min = cal.get(Calendar.MINUTE); // 분
+        sec = cal.get(Calendar.SECOND); // 초
 	}
 	
-	public JFreeChart getPieChart() {
+	public JFreeChart getPieChart(String[] outCategory, int[] outMoney) {
 	    DefaultPieDataset dataset = new DefaultPieDataset();
 	
-        for(int i =0; i<10; i++){
-            int n = (int) (Math.random() * 10) + 1;
-            dataset.setValue("value"+(i+1), n);
+        for(int i =0; i<outCategory.length; i++){
+            int n = outMoney[i];
+            System.out.println("차트..."+n);
+            dataset.setValue(outCategory[i], n);
         }
-		JFreeChart chart = ChartFactory.createPieChart3D("파이차트", dataset, true,true, false);
+		JFreeChart chart = ChartFactory.createPieChart3D("Expenditure", dataset, true,true, false);
 		chart.setBackgroundPaint(Color.white);
 		
 		return chart;
 	}
-
+	public JFreeChart getPieChart() {
+	    DefaultPieDataset dataset = new DefaultPieDataset();
+	
+        for(int i =0; i<10; i++){
+            int n = i*5;
+            dataset.setValue("Test"+(i+1), n);
+        }
+		JFreeChart chart = ChartFactory.createPieChart3D("Expenditure", dataset, true,true, false);
+		chart.setBackgroundPaint(Color.white);
+		
+		return chart;
+	}
 }
