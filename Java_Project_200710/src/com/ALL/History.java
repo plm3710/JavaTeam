@@ -167,7 +167,7 @@ public class History extends JFrame {
 		
 		calendar.getDayChooser().getDayPanel().setBackground(new Color(192,192,192));
 		calendar.setBackground(new Color(192,192,192));
-		calendar.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		calendar.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		calendar.getDayChooser().setWeekOfYearVisible(false);
 		calendar.getDayChooser().setDecorationBackgroundColor(new Color(192,192,192));
 		calendar.getDayChooser().setDecorationBackgroundVisible(false);
@@ -203,6 +203,7 @@ public class History extends JFrame {
 		panel_3.setLayout(sl_panel_3);
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(255,192,0));
 		sl_panel_3.putConstraint(SpringLayout.NORTH, panel_6, 0, SpringLayout.NORTH, panel_3);
 		sl_panel_3.putConstraint(SpringLayout.WEST, panel_6, 425, SpringLayout.WEST, panel_3);
 		sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_6, 39, SpringLayout.NORTH, panel_3);
@@ -210,43 +211,47 @@ public class History extends JFrame {
 		panel_3.add(panel_6);
 		panel_6.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("\u25C0");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		       Date d = calendar.getDate();
-		       SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
-		       System.out.println(format.format(d));
-		       int mon = d.getMonth();
-		       mon--;
-		       if(mon<0) {
-		    	   mon=11;
-		       }
-		       d.setMonth(mon);
-		       calendar.setDate(d);
-		       
-				///////////////////////////////////////
-			     String[] ymd = format.format(d).split("-");
-			     for (int i = 0; i < ymd.length; i++) {
-					System.out.print(ymd[i]+"-");//0,년    1,월    2,일
-				}
-			    lblNewLabel_1.setText((d.getMonth()+1)+"월"); 
-			    int inMoney=0;
-				inMoney = mdao.incomeSelect(id,ymd[0],ymd[1]);//아이디와 월을 넘겨서 그달의 수익을 리스트에 담는다.
-				lblIncomeMoney.setText(inMoney+"원");
-				int outMoney=0;
-				outMoney = mdao.outcomeSelect(id,ymd[0],ymd[1]);
-				lblOutcomeMoney.setText(outMoney+"원");
-				int balance = inMoney-outMoney;
-				lblBalanceMoney.setText(balance+"원");
-				///////////////////////////////////////
+		JLabel lblNewLabel_3 = new JLabel("\u25C0");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				 Date d = calendar.getDate();
+			       SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+			       System.out.println(format.format(d));
+			       int mon = d.getMonth();
+			       mon--;
+			       if(mon<0) {
+			    	   mon=11;
+			       }
+			       d.setMonth(mon);
+			       calendar.setDate(d);
+			       
+					///////////////////////////////////////
+				     String[] ymd = format.format(d).split("-");
+				     for (int i = 0; i < ymd.length; i++) {
+						System.out.print(ymd[i]+"-");//0,년    1,월    2,일
+					}
+				    lblNewLabel_1.setText((d.getMonth()+1)+"월"); 
+				    int inMoney=0;
+					inMoney = mdao.incomeSelect(id,ymd[0],ymd[1]);//아이디와 월을 넘겨서 그달의 수익을 리스트에 담는다.
+					lblIncomeMoney.setText(inMoney+"원");
+					int outMoney=0;
+					outMoney = mdao.outcomeSelect(id,ymd[0],ymd[1]);
+					lblOutcomeMoney.setText(outMoney+"원");
+					int balance = inMoney-outMoney;
+					lblBalanceMoney.setText(balance+"원");
+					///////////////////////////////////////
 			}
 		});
-		btnNewButton_1.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		panel_6.add(btnNewButton_1);
+		lblNewLabel_3.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_6.add(lblNewLabel_3);
 		
-		JButton btnNewButton_2 = new JButton("\u25B6");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {//월 올리기
+		JLabel lblNewLabel_4 = new JLabel("\u25B6");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				 Date d = calendar.getDate();
 			       SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 			       System.out.println(format.format(d));
@@ -275,25 +280,16 @@ public class History extends JFrame {
 					///////////////////////////////////////
 			}
 		});
-		btnNewButton_2.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		panel_6.add(btnNewButton_2);
+		lblNewLabel_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_6.add(lblNewLabel_4);
 		
-		JButton btnNewButton_3 = new JButton("\uB2EB\uAE30");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		btnNewButton_3.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		sl_panel_3.putConstraint(SpringLayout.NORTH, btnNewButton_3, 0, SpringLayout.NORTH, panel_6);
-		sl_panel_3.putConstraint(SpringLayout.WEST, btnNewButton_3, -104, SpringLayout.EAST, panel_3);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, btnNewButton_3, 0, SpringLayout.SOUTH, panel_6);
-		sl_panel_3.putConstraint(SpringLayout.EAST, btnNewButton_3, 0, SpringLayout.EAST, panel_3);
-		panel_3.add(btnNewButton_3);
-		
-		JButton btnNewButton_4 = new JButton("\uC77C\uBCC4 \uB0B4\uC5ED");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JLabel lblNewLabel_5 = new JLabel("\uC77C\uBCC4 \uB0B4\uC5ED");
+		sl_panel_3.putConstraint(SpringLayout.WEST, lblNewLabel_5, 209, SpringLayout.EAST, panel_6);
+		sl_panel_3.putConstraint(SpringLayout.EAST, lblNewLabel_5, -110, SpringLayout.EAST, panel_3);
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				//일별내역
 				Date d = calendar.getDate();
 				SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
@@ -302,12 +298,26 @@ public class History extends JFrame {
 			    hn.main(id,dateTemp);
 			}
 		});
-		sl_panel_3.putConstraint(SpringLayout.NORTH, btnNewButton_4, 0, SpringLayout.NORTH, panel_3);
-		sl_panel_3.putConstraint(SpringLayout.WEST, btnNewButton_4, -132, SpringLayout.WEST, btnNewButton_3);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, btnNewButton_4, 0, SpringLayout.SOUTH, panel_6);
-		sl_panel_3.putConstraint(SpringLayout.EAST, btnNewButton_4, -6, SpringLayout.WEST, btnNewButton_3);
-		btnNewButton_4.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		panel_3.add(btnNewButton_4);
+		lblNewLabel_5.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, lblNewLabel_5, 0, SpringLayout.NORTH, panel_6);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, lblNewLabel_5, 0, SpringLayout.SOUTH, panel_6);
+		panel_3.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("\uB2EB\uAE30");
+		lblNewLabel_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		lblNewLabel_6.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, lblNewLabel_6, 0, SpringLayout.NORTH, panel_6);
+		sl_panel_3.putConstraint(SpringLayout.WEST, lblNewLabel_6, 6, SpringLayout.EAST, lblNewLabel_5);
+		sl_panel_3.putConstraint(SpringLayout.SOUTH, lblNewLabel_6, 0, SpringLayout.SOUTH, panel_6);
+		sl_panel_3.putConstraint(SpringLayout.EAST, lblNewLabel_6, 89, SpringLayout.EAST, lblNewLabel_5);
+		panel_3.add(lblNewLabel_6);
 		
 		
 		//회원에 맞는 지출 출력

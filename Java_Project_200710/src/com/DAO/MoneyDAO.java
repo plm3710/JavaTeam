@@ -176,7 +176,94 @@ public class MoneyDAO {
 		
 		return olist;
 	}
-	
+
+	public int indelete(String id, String in, String year, String month, String day, String ca, String me) {
+		getConn();
+		int cnt=-1;
+		String sql="";
+		try {
+			if(me==null) {
+				sql = "delete from income where id=? and money=? and year=? and month=? and day=? and category=? and memo is null";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1,id);
+				psmt.setInt(2, Integer.parseInt(in));
+				psmt.setInt(3, Integer.parseInt(year));
+				psmt.setInt(4, Integer.parseInt(month));
+				psmt.setInt(5, Integer.parseInt(day));
+				psmt.setString(6, ca);
+				cnt = psmt.executeUpdate();
+			}else {
+				sql = "delete from income where id=? and money=? and year=? and month=? and day=? and category=? and memo=?";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1,id);
+				psmt.setInt(2, Integer.parseInt(in));
+				psmt.setInt(3, Integer.parseInt(year));
+				psmt.setInt(4, Integer.parseInt(month));
+				psmt.setInt(5, Integer.parseInt(day));
+				psmt.setString(6, ca);
+				psmt.setString(7, me);
+				cnt = psmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
+		
+	}
+	public int outdelete(String id, int in, String year, String month, String day, String ca, String me) {
+		getConn();
+		int cnt=-1;
+		String sql = "";
+		try {
+			if(me==null) {
+				sql = "delete from outcome where id=? and money=? and year=? and month=? and day=? and category=? and memo is null";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1,id);
+				psmt.setInt(2, in);
+				psmt.setInt(3, Integer.parseInt(year));
+				psmt.setInt(4, Integer.parseInt(month));
+				psmt.setInt(5, Integer.parseInt(day));
+				psmt.setString(6, ca);
+				cnt = psmt.executeUpdate();
+			}else {
+				sql = "delete from outcome where id=? and money=? and year=? and month=? and day=? and category=? and memo=?";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1,id);
+				psmt.setInt(2, in);
+				psmt.setInt(3, Integer.parseInt(year));
+				psmt.setInt(4, Integer.parseInt(month));
+				psmt.setInt(5, Integer.parseInt(day));
+				psmt.setString(6, ca);
+				psmt.setString(7, me);
+				cnt = psmt.executeUpdate();
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cnt;
+		
+	}
 	
 	
 	
