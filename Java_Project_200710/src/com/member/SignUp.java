@@ -137,7 +137,7 @@ public class SignUp extends JFrame {
 		panel_3.setLayout(new GridLayout(5, 0, 0, 0));
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(new Color(255,0,0,0));
+		panel_5.setBackground(new Color(255,192,0));
 		panel_3.add(panel_5);
 		SpringLayout sl_panel_5 = new SpringLayout();
 		panel_5.setLayout(sl_panel_5);

@@ -19,6 +19,7 @@ import java.awt.CardLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.swing.SpringLayout;
 import javax.swing.JTabbedPane;
@@ -77,6 +78,13 @@ public class Write extends JFrame {
 	private JTextField tf_income_memo;
 	private IncomeVO ivo = null;
 	private OutcomeVO ovo = null;
+	private int year = 0;
+	private int mon = 0;
+	private int day = 0;
+	private int hour = 0;
+	private int min = 0;
+	private int sec = 0;
+	
 
 	/**
 	 * Launch the application.
@@ -93,11 +101,20 @@ public class Write extends JFrame {
 			}
 		});
 	}
-
+	public void CalendarOutPut() {
+        Calendar cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR); //년도
+        mon = cal.get(Calendar.MONTH)+1; // 월 
+        day = cal.get(Calendar.DAY_OF_MONTH); // 일 
+        hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
+        min = cal.get(Calendar.MINUTE); // 분
+        sec = cal.get(Calendar.SECOND); // 초
+   }
 	/**
 	 * Create the frame.
 	 */
 	public Write(String id) {
+		CalendarOutPut();
 		setUndecorated(true);// 타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 700);
@@ -226,46 +243,46 @@ public class Write extends JFrame {
 		panel_9.setLayout(null);
 
 		tf_outcome_year = new JTextField();
-		tf_outcome_year.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_outcome_year.setFont(new Font("서울남산 장체B", Font.PLAIN, 16));
 
 		tf_outcome_year.setBorder(new MatteBorder(0, 0, 1, 0,
 				(Color) new Color(0, 0, 0)));
 		tf_outcome_year.setOpaque(false);
 		// textField.setBorder(null);
-		tf_outcome_year.setBounds(12, 23, 60, 21);
+		tf_outcome_year.setBounds(12, 20, 60, 21);
 		panel_9.add(tf_outcome_year);
 		tf_outcome_year.setColumns(10);
 
 		JLabel label = new JLabel("\uB144");
-		label.setBounds(78, 26, 17, 20);
+		label.setBounds(78, 20, 17, 20);
 		label.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_9.add(label);
 
 		tf_outcome_month = new JTextField();
-		tf_outcome_month.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_outcome_month.setFont(new Font("서울남산 장체B", Font.PLAIN, 16));
 		tf_outcome_month.setBorder(new MatteBorder(0, 0, 1, 0,
 				(Color) new Color(0, 0, 0)));
 		tf_outcome_month.setOpaque(false);
-		tf_outcome_month.setBounds(101, 23, 18, 21);
+		tf_outcome_month.setBounds(101, 20, 18, 21);
 		panel_9.add(tf_outcome_month);
 		tf_outcome_month.setColumns(10);
 
 		JLabel label_1 = new JLabel("\uC6D4");
-		label_1.setBounds(125, 26, 17, 20);
+		label_1.setBounds(125, 20, 17, 20);
 		label_1.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_9.add(label_1);
 
 		tf_outcome_day = new JTextField();
-		tf_outcome_day.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_outcome_day.setFont(new Font("서울남산 장체B", Font.PLAIN, 16));
 		tf_outcome_day.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(
 				0, 0, 0)));
 		tf_outcome_day.setOpaque(false);
-		tf_outcome_day.setBounds(148, 23, 18, 21);
+		tf_outcome_day.setBounds(148, 20, 18, 21);
 		tf_outcome_day.setColumns(10);
 		panel_9.add(tf_outcome_day);
 
 		JLabel label_2 = new JLabel("\uC77C");
-		label_2.setBounds(172, 26, 17, 20);
+		label_2.setBounds(172, 20, 17, 20);
 		label_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_9.add(label_2);
 
@@ -386,7 +403,7 @@ public class Write extends JFrame {
 			}
 		};
 
-		panel_button_ok.setBounds(160, 377, 70, 37);
+		panel_button_ok.setBounds(245, 373, 70, 37);
 		panel_16.add(panel_button_ok);
 		panel_button_ok.setLayout(new CardLayout(0, 0));
 
@@ -453,7 +470,7 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_button_cancel.setBounds(242, 377, 70, 37);
+		panel_button_cancel.setBounds(165, 373, 70, 37);
 		panel_16.add(panel_button_cancel);
 		panel_button_cancel.setLayout(new CardLayout(0, 0));
 
@@ -470,21 +487,31 @@ public class Write extends JFrame {
 		JPanel panel_163 = new JPanel();
 		tabbedPane.addTab("수입", null, panel_163);
 		panel_163.setBackground(new Color(255, 192, 0));
-		panel_163.setLayout(null);
+		SpringLayout sl_panel_163 = new SpringLayout();
+		panel_163.setLayout(sl_panel_163);
 
 		JPanel panel_44 = new JPanel();
-		panel_44.setBounds(10, 10, 149, 188);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_44, 10, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_44, 10, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_44, 198, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_44, 159, SpringLayout.WEST, panel_163);
 		panel_44.setBackground(new Color(255, 192, 0));
 		panel_163.add(panel_44);
 
 		JPanel panel_55 = new JPanel();
-		panel_55.setBounds(165, 10, 274, 188);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_55, 10, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_55, 165, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_55, 198, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_55, 439, SpringLayout.WEST, panel_163);
 		panel_55.setBackground(new Color(255, 192, 0));
 		panel_55.setBackground(new Color(255, 192, 0));
 		panel_163.add(panel_55);
 
 		JPanel panel_66 = new JPanel();
-		panel_66.setBounds(10, 217, 149, 82);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_66, 217, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_66, 10, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_66, 299, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_66, 159, SpringLayout.WEST, panel_163);
 		panel_66.setBackground(new Color(255, 192, 0));
 		panel_44.setLayout(new GridLayout(3, 0, 0, 0));
 
@@ -499,14 +526,17 @@ public class Write extends JFrame {
 		lblNewLabell.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_44.add(lblNewLabell);
 
-		JLabel lblNewLabel_222 = new JLabel("\uACB0\uC81C\uAE08\uC561");
+		JLabel lblNewLabel_222 = new JLabel("\uC218\uC785\uAE08\uC561");
 		lblNewLabel_222.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_222.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_44.add(lblNewLabel_222);
 		panel_163.add(panel_66);
 
 		JPanel panel_77 = new JPanel();
-		panel_77.setBounds(165, 204, 274, 105);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_77, 204, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_77, 165, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_77, 309, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_77, 439, SpringLayout.WEST, panel_163);
 		panel_77.setBackground(new Color(255, 192, 0));
 		panel_55.setLayout(new GridLayout(3, 0, 0, 0));
 
@@ -516,44 +546,46 @@ public class Write extends JFrame {
 		panel_99.setLayout(null);
 
 		tf_income_year = new JTextField();
-		tf_income_year.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_year.setBounds(12, 24, 60, 21);
+		tf_income_year.setText("year");
+		tf_income_year.setFont(new Font("서울남산 장체B", Font.PLAIN, 16));
 		tf_income_year.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(
 				0, 0, 0)));
 		tf_income_year.setOpaque(false);
-		tf_income_year.setBounds(12, 24, 60, 21);
 		panel_99.add(tf_income_year);
 		tf_income_year.setColumns(10);
 
 		JLabel label111 = new JLabel("\uB144");
-		label111.setBounds(78, 27, 17, 20);
+		label111.setBounds(72, 25, 17, 20);
 		label111.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label111);
 
 		tf_income_month = new JTextField();
-		tf_income_month.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_month.setBounds(101, 24, 18, 21);
+		tf_income_month.setText("month");
+		tf_income_month.setFont(new Font("서울남산 장체B", Font.PLAIN, 16));
 		tf_income_month.setBorder(new MatteBorder(0, 0, 1, 0,
 				(Color) new Color(0, 0, 0)));
 		tf_income_month.setOpaque(false);
-		tf_income_month.setBounds(101, 24, 18, 21);
 		panel_99.add(tf_income_month);
 		tf_income_month.setColumns(10);
 
 		JLabel label_134 = new JLabel("\uC6D4");
-		label_134.setBounds(125, 27, 17, 20);
+		label_134.setBounds(119, 25, 17, 20);
 		label_134.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label_134);
 
 		tf_income_day = new JTextField();
-		tf_income_day.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
+		tf_income_day.setBounds(148, 24, 18, 21);
+		tf_income_day.setFont(new Font("서울남산 장체B", Font.PLAIN, 16));
 		tf_income_day.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(
 				0, 0, 0)));
 		tf_income_day.setOpaque(false);
-		tf_income_day.setBounds(148, 24, 18, 21);
 		tf_income_day.setColumns(10);
 		panel_99.add(tf_income_day);
 
 		JLabel label_221 = new JLabel("\uC77C");
-		label_221.setBounds(172, 27, 17, 20);
+		label_221.setBounds(167, 25, 17, 20);
 		label_221.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label_221);
 
@@ -640,7 +672,7 @@ public class Write extends JFrame {
 		panel_181.add(label_315);
 		panel_66.setLayout(new CardLayout(0, 0));
 
-		JLabel lblNewLabel_41 = new JLabel("\uACB0\uC81C\uB0B4\uC6A9");
+		JLabel lblNewLabel_41 = new JLabel("\uC218\uC785\uB0B4\uC6A9");
 		lblNewLabel_41.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_41.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_41.setToolTipText("");
@@ -676,7 +708,10 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_150.setBounds(228, 396, -84, 27);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_150, 396, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_150, 228, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_150, 423, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_150, 144, SpringLayout.WEST, panel_163);
 		panel_163.add(panel_150);
 
 		JPanel panel_3 = new JPanel() {
@@ -695,7 +730,10 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_3.setBounds(160, 377, 70, 37);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_3, 377, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_3, 242, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_3, 414, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_3, 312, SpringLayout.WEST, panel_163);
 		panel_163.add(panel_3);
 		panel_3.setLayout(new CardLayout(0, 0));
 
@@ -721,7 +759,10 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_15.setBounds(242, 377, 70, 37);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_15, 377, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_15, 160, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_15, 414, SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_15, 230, SpringLayout.WEST, panel_163);
 		panel_163.add(panel_15);
 		panel_15.setLayout(new CardLayout(0, 0));
 
@@ -804,11 +845,12 @@ public class Write extends JFrame {
 				dispose();
 			}
 		});
-//		panel_button_ok.addMouseListener(new MouseAdapter() { // 지출 저장
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				
-//			}
-//		});
+/// 입력창에 오늘날짜 넣기
+		tf_outcome_year.setText(Integer.toString(year)); 
+		tf_outcome_month.setText(Integer.toString(mon)); 
+		tf_outcome_day.setText(Integer.toString(day)); 
+		tf_income_year.setText(Integer.toString(year)); 
+		tf_income_month.setText(Integer.toString(mon)); 
+		tf_income_day.setText(Integer.toString(day)); 
 	}
 }
