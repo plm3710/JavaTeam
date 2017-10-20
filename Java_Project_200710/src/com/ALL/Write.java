@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.VO.IncomeVO;
 import com.img.a;
 
 import java.awt.CardLayout;
@@ -52,18 +53,26 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Write extends JFrame {
 	BufferedImage icon;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField tf_outcome_year;
 	private JTextField textField_5;
-	private JTextField textField_1;
+	private JTextField tf_outcome_month;
 	private JTextField textField_1_1;
-	private JTextField textField_2;
+	private JTextField tf_outcome_day;
 	private JTextField textField_2_1;
 	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField tf_outcome_money;
+	private JTextField tf_outcome_memo;
+	private JTextField textField_4_1;
+	IncomeVO ivo;
 
 	/**
 	 * Launch the application.
@@ -91,6 +100,7 @@ public class Write extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
+
 
 		JPanel panel = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -140,65 +150,43 @@ public class Write extends JFrame {
 		UIManager.put("TabbedPane.selected", new Color(255,192,0));  //탭 색깔 (눌렀을때)
 		
 		
-		tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
-					// 안됨
-
-					@Override
-					protected int calculateTabHeight(int tabPlacement,
-							int tabIndex, int fontHeight) {
-						// TODO Auto-generated method stub
-						return 40;
-					}
-
-					@Override
-					protected int calculateTabWidth(int tabPlacement,
-							int tabIndex, FontMetrics metrics) {
-						// TODO Auto-generated method stub
-						return 223;
-					}
-
-				});
+//		tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
+//					// 안됨
+//
+//					@Override
+//					protected int calculateTabHeight(int tabPlacement,
+//							int tabIndex, int fontHeight) {
+//						// TODO Auto-generated method stub
+//						return 40;
+//					}
+//
+//					@Override
+//					protected int calculateTabWidth(int tabPlacement,
+//							int tabIndex, FontMetrics metrics) {
+//						// TODO Auto-generated method stub
+//						return 223;
+//					}
+//
+//				});
 		panel_1.add(tabbedPane, "name_39837979284068");
 
 		JPanel panel_16 = new JPanel();
 		tabbedPane.addTab("지출", null, panel_16);
-		SpringLayout sl_panel_16 = new SpringLayout();
-		panel_16.setLayout(sl_panel_16);
 		panel_16.setBackground(new Color(255, 192, 0));
+		panel_16.setLayout(null);
 		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(10, 10, 149, 249);
 		panel_4.setBackground(new Color(255, 192, 0));
-		sl_panel_16.putConstraint(SpringLayout.NORTH, panel_4, 10,
-				SpringLayout.NORTH, panel_16);
-		sl_panel_16.putConstraint(SpringLayout.WEST, panel_4, 10,
-				SpringLayout.WEST, panel_16);
-		sl_panel_16.putConstraint(SpringLayout.SOUTH, panel_4, 282,
-				SpringLayout.NORTH, panel_16);
-		sl_panel_16.putConstraint(SpringLayout.EAST, panel_4, 159,
-				SpringLayout.WEST, panel_16);
 		panel_16.add(panel_4);
 
 		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(165, 10, 274, 249);
 		panel_5.setBackground(new Color(255, 192, 0));
-		sl_panel_16.putConstraint(SpringLayout.NORTH, panel_5, 10,
-				SpringLayout.NORTH, panel_16);
-
-		sl_panel_16.putConstraint(SpringLayout.WEST, panel_5, 6,
-				SpringLayout.EAST, panel_4);
-		sl_panel_16.putConstraint(SpringLayout.SOUTH, panel_5, 282,
-				SpringLayout.NORTH, panel_16);
-		sl_panel_16.putConstraint(SpringLayout.EAST, panel_5, 280,
-				SpringLayout.EAST, panel_4);
 		panel_16.add(panel_5);
 
 		JPanel panel_6 = new JPanel();
-		sl_panel_16.putConstraint(SpringLayout.WEST, panel_6, 0,
-				SpringLayout.WEST, panel_4);
-		sl_panel_16.putConstraint(SpringLayout.SOUTH, panel_6, 98,
-				SpringLayout.SOUTH, panel_4);
+		panel_6.setBounds(10, 275, 149, 80);
 		panel_6.setBackground(new Color(255, 192, 0));
-
-		sl_panel_16.putConstraint(SpringLayout.NORTH, panel_6, 6,
-				SpringLayout.SOUTH, panel_4);
 		panel_4.setLayout(new GridLayout(4, 0, 0, 0));
 
 		JLabel lblNewLabel_1 = new JLabel("\uC9C0\uBD88\uC77C\uC2DC");
@@ -221,18 +209,11 @@ public class Write extends JFrame {
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_3.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
 		panel_4.add(lblNewLabel_3);
-		sl_panel_16.putConstraint(SpringLayout.EAST, panel_6, 159,
-				SpringLayout.WEST, panel_16);
 		panel_16.add(panel_6);
 
 		JPanel panel_7 = new JPanel();
-		sl_panel_16.putConstraint(SpringLayout.WEST, panel_7, 6, SpringLayout.EAST, panel_6);
-		sl_panel_16.putConstraint(SpringLayout.SOUTH, panel_7, 98,
-				SpringLayout.SOUTH, panel_5);
-		sl_panel_16.putConstraint(SpringLayout.EAST, panel_7, -10, SpringLayout.EAST, panel_16);
+		panel_7.setBounds(165, 265, 274, 92);
 		panel_7.setBackground(new Color(255, 192, 0));
-		sl_panel_16.putConstraint(SpringLayout.NORTH, panel_7, 6,
-				SpringLayout.SOUTH, panel_5);
 		panel_5.setLayout(new GridLayout(4, 0, 0, 0));
 
 		JPanel panel_9 = new JPanel();
@@ -240,30 +221,40 @@ public class Write extends JFrame {
 		panel_5.add(panel_9);
 		panel_9.setLayout(null);
 
-		textField = new JTextField();
-		textField.setBounds(12, 23, 60, 21);
-		panel_9.add(textField);
-		textField.setColumns(10);
+		tf_outcome_year = new JTextField();
+
+		
+		
+		tf_outcome_year.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_year.setOpaque(false);
+		//textField.setBorder(null);
+		tf_outcome_year.setBounds(12, 23, 60, 21);
+		panel_9.add(tf_outcome_year);
+		tf_outcome_year.setColumns(10);
 
 		JLabel label = new JLabel("\uB144");
 		label.setBounds(78, 26, 17, 20);
 		label.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
 		panel_9.add(label);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(101, 23, 18, 21);
-		panel_9.add(textField_1);
-		textField_1.setColumns(10);
+		tf_outcome_month = new JTextField();
+		tf_outcome_month.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_month.setOpaque(false);
+		tf_outcome_month.setBounds(101, 23, 18, 21);
+		panel_9.add(tf_outcome_month);
+		tf_outcome_month.setColumns(10);
 
 		JLabel label_1 = new JLabel("\uC6D4");
 		label_1.setBounds(125, 26, 17, 20);
 		label_1.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
 		panel_9.add(label_1);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(148, 23, 18, 21);
-		textField_2.setColumns(10);
-		panel_9.add(textField_2);
+		tf_outcome_day = new JTextField();
+		tf_outcome_day.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_day.setOpaque(false);
+		tf_outcome_day.setBounds(148, 23, 18, 21);
+		tf_outcome_day.setColumns(10);
+		panel_9.add(tf_outcome_day);
 
 		JLabel label_2 = new JLabel("\uC77C");
 		label_2.setBounds(172, 26, 17, 20);
@@ -279,24 +270,26 @@ public class Write extends JFrame {
 		panel_10.add(panel_12);
 		panel_12.setLayout(new CardLayout(0, 0));
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("서울남산체 EB", Font.PLAIN, 15));
-		comboBox.addItem("식비");
-		comboBox.addItem("주거/통신");
-		comboBox.addItem("생활용품");
-		comboBox.addItem("의복/미용");
-		comboBox.addItem("교통/차량");
-		comboBox.addItem("기타");
-		panel_12.add(comboBox, "name_40869687610195");
+		JComboBox comboBox_outcome = new JComboBox();
+		comboBox_outcome.setFont(new Font("서울남산체 EB", Font.PLAIN, 15));
+		comboBox_outcome.addItem("식비");
+		comboBox_outcome.addItem("주거/통신");
+		comboBox_outcome.addItem("생활용품");
+		comboBox_outcome.addItem("의복/미용");
+		comboBox_outcome.addItem("교통/차량");
+		comboBox_outcome.addItem("기타");
+		panel_12.add(comboBox_outcome, "name_40869687610195");
 
 		JPanel panel_11 = new JPanel();
 		panel_5.add(panel_11);
 		panel_11.setLayout(null);
 
-		textField_3 = new JTextField();
-		textField_3.setBounds(12, 21, 154, 25);
-		panel_11.add(textField_3);
-		textField_3.setColumns(10);
+		tf_outcome_money = new JTextField();
+		tf_outcome_money.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		tf_outcome_money.setOpaque(false);
+		tf_outcome_money.setBounds(12, 21, 154, 25);
+		panel_11.add(tf_outcome_money);
+		tf_outcome_money.setColumns(10);
 
 		JLabel label_3 = new JLabel("\uC6D0");
 		label_3.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
@@ -314,26 +307,27 @@ public class Write extends JFrame {
 		SpringLayout sl_panel_13 = new SpringLayout();
 		panel_13.setLayout(sl_panel_13);
 
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("\uD604\uAE08");
-		rdbtnNewRadioButton_1.setBackground(new Color(255,192,0));
-		rdbtnNewRadioButton_1.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
-		sl_panel_13.putConstraint(SpringLayout.NORTH, rdbtnNewRadioButton_1,
+		JRadioButton radioButton_Cash = new JRadioButton("\uD604\uAE08");
+		radioButton_Cash.setBackground(new Color(255,192,0));
+		radioButton_Cash.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		sl_panel_13.putConstraint(SpringLayout.NORTH, radioButton_Cash,
 				10, SpringLayout.NORTH, panel_13);
-		sl_panel_13.putConstraint(SpringLayout.WEST, rdbtnNewRadioButton_1, 27,
+		sl_panel_13.putConstraint(SpringLayout.WEST, radioButton_Cash, 27,
 				SpringLayout.WEST, panel_13);
-		panel_13.add(rdbtnNewRadioButton_1);
+		panel_13.add(radioButton_Cash);
 
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("\uCE74\uB4DC");
-		rdbtnNewRadioButton.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
-		rdbtnNewRadioButton.setBackground(new Color(255,192,0));
-		sl_panel_13.putConstraint(SpringLayout.NORTH, rdbtnNewRadioButton, 0,
-				SpringLayout.NORTH, rdbtnNewRadioButton_1);
-		sl_panel_13.putConstraint(SpringLayout.EAST, rdbtnNewRadioButton, -41,
+		JRadioButton radioButton_Card = new JRadioButton("\uCE74\uB4DC");
+		radioButton_Card.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		radioButton_Card.setBackground(new Color(255,192,0));
+		sl_panel_13.putConstraint(SpringLayout.NORTH, radioButton_Card, 0,
+				SpringLayout.NORTH, radioButton_Cash);
+		sl_panel_13.putConstraint(SpringLayout.EAST, radioButton_Card, -41,
 				SpringLayout.EAST, panel_13);
-		panel_13.add(rdbtnNewRadioButton);
+		panel_13.add(radioButton_Card);
 		panel_6.setLayout(new CardLayout(0, 0));
 
 		JLabel lblNewLabel_4 = new JLabel("\uACB0\uC81C\uB0B4\uC6A9");
+		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_4.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
 		lblNewLabel_4.setToolTipText("");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -342,22 +336,25 @@ public class Write extends JFrame {
 		SpringLayout sl_panel_7 = new SpringLayout();
 		panel_7.setLayout(sl_panel_7);
 
-		textField_4 = new JTextField();
-		sl_panel_7.putConstraint(SpringLayout.NORTH, textField_4, 10,
+		tf_outcome_memo = new JTextField();
+		tf_outcome_memo.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		tf_outcome_memo.setOpaque(false);
+		sl_panel_7.putConstraint(SpringLayout.NORTH, tf_outcome_memo, 10,
 				SpringLayout.NORTH, panel_7);
-		sl_panel_7.putConstraint(SpringLayout.WEST, textField_4, 10,
+		sl_panel_7.putConstraint(SpringLayout.WEST, tf_outcome_memo, 10,
 				SpringLayout.WEST, panel_7);
-		sl_panel_7.putConstraint(SpringLayout.SOUTH, textField_4, 92,
+		sl_panel_7.putConstraint(SpringLayout.SOUTH, tf_outcome_memo, 92,
 				SpringLayout.NORTH, panel_7);
-		sl_panel_7.putConstraint(SpringLayout.EAST, textField_4, 217,
+		sl_panel_7.putConstraint(SpringLayout.EAST, tf_outcome_memo, 217,
 				SpringLayout.WEST, panel_7);
-		panel_7.add(textField_4);
-		textField_4.setColumns(10);
+		panel_7.add(tf_outcome_memo);
+		tf_outcome_memo.setColumns(10);
 		panel_10.setBackground(new Color(255, 192, 0));
 		panel_11.setBackground(new Color(255, 192, 0));
 		panel_13.setBackground(new Color(255, 192, 0));
 		
 		JPanel panel_14 = new JPanel();
+		panel_14.setBounds(0, 0, 10, 10);
 		panel_16.add(panel_14);
 		
 		JPanel panel_button_ok = new JPanel(){
@@ -377,9 +374,23 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_16.putConstraint(SpringLayout.NORTH, panel_button_ok, 6, SpringLayout.SOUTH, panel_6);
-		sl_panel_16.putConstraint(SpringLayout.WEST, panel_button_ok, 145, SpringLayout.WEST, panel_16);
-		sl_panel_16.putConstraint(SpringLayout.SOUTH, panel_button_ok, -10, SpringLayout.SOUTH, panel_16);
+		panel_button_ok.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+//				String id = 
+				int year = Integer.parseInt(tf_outcome_year.getText());
+				int month = Integer.parseInt(tf_outcome_month.getText());
+				int day = Integer.parseInt(tf_outcome_day.getText());
+				int money = Integer.parseInt(tf_outcome_money.getText());
+				String category = comboBox_outcome.getName();
+				String memo = tf_outcome_memo.getText();
+				
+//				ivo = new IncomeVO(id, money,year,month,day,category,memo);
+				
+				
+			}
+		});
+		panel_button_ok.setBounds(145, 386, 85, 37);
 		panel_16.add(panel_button_ok);
 		
 		JPanel panel_button_cancel = new JPanel(){
@@ -399,41 +410,28 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_16.putConstraint(SpringLayout.EAST, panel_button_ok, -6, SpringLayout.WEST, panel_button_cancel);
-		sl_panel_16.putConstraint(SpringLayout.NORTH, panel_button_cancel, 6, SpringLayout.SOUTH, panel_7);
-		sl_panel_16.putConstraint(SpringLayout.WEST, panel_button_cancel, 236, SpringLayout.WEST, panel_16);
-		sl_panel_16.putConstraint(SpringLayout.EAST, panel_button_cancel, -128, SpringLayout.EAST, panel_16);
-		sl_panel_16.putConstraint(SpringLayout.SOUTH, panel_button_cancel, -10, SpringLayout.SOUTH, panel_16);
+		panel_button_cancel.setBounds(237, 386, 85, 37);
 		panel_16.add(panel_button_cancel);
-		//////////////////////////////////////////////////////////////////////////
 		JPanel panel_163 = new JPanel();
 		tabbedPane.addTab("수입", null, panel_163);
-		SpringLayout sl_panel_163 = new SpringLayout();
-		panel_163.setLayout(sl_panel_163);
 		panel_163.setBackground(new Color(255, 192, 0));
+		panel_163.setLayout(null);
 		
 		
 		
 		JPanel panel_44 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_44, -290, SpringLayout.EAST, panel_163);
+		panel_44.setBounds(10, 10, 149, 188);
 		panel_44.setBackground(new Color(255, 192, 0));
 		panel_163.add(panel_44);
 
 		JPanel panel_55 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_55, 6, SpringLayout.EAST, panel_44);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_55, -10, SpringLayout.EAST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_44, 0, SpringLayout.SOUTH, panel_55);
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_44, 0, SpringLayout.NORTH, panel_55);
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_55, 10, SpringLayout.NORTH, panel_163);
+		panel_55.setBounds(165, 10, 274, 188);
 		panel_55.setBackground(new Color(255,192,0));
 		panel_55.setBackground(new Color(255, 192, 0));
 		panel_163.add(panel_55);
 
 		JPanel panel_66 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_44, 0, SpringLayout.WEST, panel_66);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_66, 10, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_66, -122, SpringLayout.SOUTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_66, 229, SpringLayout.NORTH, panel_163);
+		panel_66.setBounds(10, 217, 149, 82);
 		panel_66.setBackground(new Color(255, 192, 0));
 		panel_44.setLayout(new GridLayout(3, 0, 0, 0));
 
@@ -455,12 +453,7 @@ public class Write extends JFrame {
 		panel_163.add(panel_66);
 
 		JPanel panel_77 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_66, -6, SpringLayout.WEST, panel_77);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_55, -13, SpringLayout.NORTH, panel_77);
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_77, 229, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_77, 0, SpringLayout.SOUTH, panel_66);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_77, -10, SpringLayout.EAST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_77, 165, SpringLayout.WEST, panel_163);
+		panel_77.setBounds(165, 204, 274, 105);
 		panel_77.setBackground(new Color(255, 192, 0));
 		panel_55.setLayout(new GridLayout(3, 0, 0, 0));
 
@@ -470,6 +463,8 @@ public class Write extends JFrame {
 		panel_99.setLayout(null);
 
 		textField_5 = new JTextField();
+		textField_5.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		textField_5.setOpaque(false);
 		textField_5.setBounds(12, 24, 60, 21);
 		panel_99.add(textField_5);
 		textField_5.setColumns(10);
@@ -480,6 +475,8 @@ public class Write extends JFrame {
 		panel_99.add(label111);
 
 		textField_1_1 = new JTextField();
+		textField_1_1.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		textField_1_1.setOpaque(false);
 		textField_1_1.setBounds(101, 24, 18, 21);
 		panel_99.add(textField_1_1);
 		textField_1_1.setColumns(10);
@@ -490,6 +487,8 @@ public class Write extends JFrame {
 		panel_99.add(label_134);
 
 		textField_2_1 = new JTextField();
+		textField_2_1.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		textField_2_1.setOpaque(false);
 		textField_2_1.setBounds(148, 24, 18, 21);
 		textField_2_1.setColumns(10);
 		panel_99.add(textField_2_1);
@@ -525,6 +524,8 @@ public class Write extends JFrame {
 		panel_181.setLayout(null);
 
 		textField_3 = new JTextField();
+		textField_3.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		textField_3.setOpaque(false);
 		textField_3.setBounds(12, 21, 154, 25);
 		panel_181.add(textField_3);
 		textField_3.setColumns(10);
@@ -536,25 +537,21 @@ public class Write extends JFrame {
 		panel_66.setLayout(new CardLayout(0, 0));
 
 		JLabel lblNewLabel_41 = new JLabel("\uACB0\uC81C\uB0B4\uC6A9");
+		lblNewLabel_41.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_41.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
 		lblNewLabel_41.setToolTipText("");
 		lblNewLabel_41.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_66.add(lblNewLabel_41, "name_41211262029104");
 		panel_163.add(panel_77);
-		SpringLayout sl_panel_77 = new SpringLayout();
-		panel_77.setLayout(sl_panel_77);
+		panel_77.setLayout(null);
 
-		textField_4 = new JTextField();
-		sl_panel_77.putConstraint(SpringLayout.NORTH, textField_4, 10,
-				SpringLayout.NORTH, panel_77);
-		sl_panel_77.putConstraint(SpringLayout.WEST, textField_4, 10,
-				SpringLayout.WEST, panel_77);
-		sl_panel_77.putConstraint(SpringLayout.SOUTH, textField_4, 92,
-				SpringLayout.NORTH, panel_77);
-		sl_panel_77.putConstraint(SpringLayout.EAST, textField_4, 217,
-				SpringLayout.WEST, panel_77);
-		panel_77.add(textField_4);
-		textField_4.setColumns(10);
+		textField_4_1 = new JTextField();
+		textField_4_1.setBounds(10, 10, 207, 85);
+		
+		textField_4_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		textField_4_1.setOpaque(false);
+		panel_77.add(textField_4_1);
+		textField_4_1.setColumns(10);
 
 		JPanel panel_150 = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -572,10 +569,7 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_150, 396, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_150, 228, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_150, -10, SpringLayout.SOUTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_150, -305, SpringLayout.EAST, panel_163);
+		panel_150.setBounds(228, 396, -84, 27);
 		panel_163.add(panel_150);
 		
 		JPanel panel_3 = new JPanel() {
@@ -595,10 +589,7 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_3, -10, SpringLayout.NORTH, panel_150);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_3, 145, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_3, 0, SpringLayout.SOUTH, panel_150);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_3, -219, SpringLayout.EAST, panel_163);
+		panel_3.setBounds(145, 386, 85, 37);
 		panel_163.add(panel_3);
 		
 		JPanel panel_15 = new JPanel() {
@@ -618,10 +609,7 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_15, 0, SpringLayout.NORTH, panel_3);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_15, 7, SpringLayout.EAST, panel_3);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_15, 0, SpringLayout.SOUTH, panel_150);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_15, -127, SpringLayout.EAST, panel_163);
+		panel_15.setBounds(237, 386, 85, 37);
 		panel_163.add(panel_15);
 		
 		JPanel panel_2 = new JPanel();
