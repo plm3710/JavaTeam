@@ -125,6 +125,8 @@ public class Write extends JFrame {
 		panel.setLayout(sl_panel);
 
 		JPanel panel_1 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 480,
+				SpringLayout.WEST, panel);
 
 		panel_1.setBackground(new Color(191, 192, 192));
 		
@@ -134,8 +136,6 @@ public class Write extends JFrame {
 				SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -10,
 				SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 464,
-				SpringLayout.WEST, panel);
 		panel.add(panel_1);
 		panel_1.setLayout(new CardLayout(0, 0));
 
@@ -145,30 +145,30 @@ public class Write extends JFrame {
 		UIManager.put("TabbedPane.focus", Color.GRAY);
 		UIManager.put("TabbedPane.selectHighlight", Color.GRAY);
 		UIManager.put("TabbedPane.foreground", Color.GRAY);
-		tabbedPane.setFont( new Font( "서울남산체 L", Font.BOLD, 24 ) );
+		tabbedPane.setFont( new Font( "서울남산 장체B", Font.BOLD, 24 ) );
 		
 		tabbedPane.setBackground(new Color(191,192,192));
 		UIManager.put("TabbedPane.selected", new Color(255,192,0));  //탭 색깔 (눌렀을때)
 		
 		
-//		tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
-//					// 안됨
-//
-//					@Override
-//					protected int calculateTabHeight(int tabPlacement,
-//							int tabIndex, int fontHeight) {
-//						// TODO Auto-generated method stub
-//						return 40;
-//					}
-//
-//					@Override
-//					protected int calculateTabWidth(int tabPlacement,
-//							int tabIndex, FontMetrics metrics) {
-//						// TODO Auto-generated method stub
-//						return 223;
-//					}
-//
-//				});
+		tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
+					// 안됨
+
+					@Override
+					protected int calculateTabHeight(int tabPlacement,
+							int tabIndex, int fontHeight) {
+						// TODO Auto-generated method stub
+						return 40;
+					}
+
+					@Override
+					protected int calculateTabWidth(int tabPlacement,
+							int tabIndex, FontMetrics metrics) {
+						// TODO Auto-generated method stub
+						return 231;
+					}
+
+				});
 		panel_1.add(tabbedPane, "name_39837979284068");
 
 		JPanel panel_16 = new JPanel();
@@ -192,23 +192,23 @@ public class Write extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("\uC9C0\uBD88\uC77C\uC2DC");
 
-		lblNewLabel_1.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel_1.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_4.add(lblNewLabel_1);
 
 		JLabel lblNewLabel = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
-		lblNewLabel.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_4.add(lblNewLabel);
 
 		JLabel lblNewLabel_2 = new JLabel("\uACB0\uC81C\uAE08\uC561");
-		lblNewLabel_2.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_4.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("\uACB0\uC81C\uC218\uB2E8");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_3.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel_3.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_4.add(lblNewLabel_3);
 		panel_16.add(panel_6);
 
@@ -235,7 +235,7 @@ public class Write extends JFrame {
 
 		JLabel label = new JLabel("\uB144");
 		label.setBounds(78, 26, 17, 20);
-		label.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_9.add(label);
 
 		tf_outcome_month = new JTextField();
@@ -247,7 +247,7 @@ public class Write extends JFrame {
 
 		JLabel label_1 = new JLabel("\uC6D4");
 		label_1.setBounds(125, 26, 17, 20);
-		label_1.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label_1.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_9.add(label_1);
 
 		tf_outcome_day = new JTextField();
@@ -259,7 +259,7 @@ public class Write extends JFrame {
 
 		JLabel label_2 = new JLabel("\uC77C");
 		label_2.setBounds(172, 26, 17, 20);
-		label_2.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_9.add(label_2);
 
 		JPanel panel_10 = new JPanel();
@@ -272,7 +272,7 @@ public class Write extends JFrame {
 		panel_12.setLayout(new CardLayout(0, 0));
 
 		JComboBox comboBox_outcome = new JComboBox();
-		comboBox_outcome.setFont(new Font("서울남산체 EB", Font.PLAIN, 15));
+		comboBox_outcome.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
 		comboBox_outcome.addItem("식비");
 		comboBox_outcome.addItem("주거/통신");
 		comboBox_outcome.addItem("생활용품");
@@ -293,7 +293,7 @@ public class Write extends JFrame {
 		tf_outcome_money.setColumns(10);
 
 		JLabel label_3 = new JLabel("\uC6D0");
-		label_3.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label_3.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		label_3.setBounds(178, 10, 67, 48);
 		panel_11.add(label_3);
 
@@ -310,7 +310,7 @@ public class Write extends JFrame {
 
 		JRadioButton radioButton_Cash = new JRadioButton("\uD604\uAE08");
 		radioButton_Cash.setBackground(new Color(255,192,0));
-		radioButton_Cash.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		radioButton_Cash.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		sl_panel_13.putConstraint(SpringLayout.NORTH, radioButton_Cash,
 				10, SpringLayout.NORTH, panel_13);
 		sl_panel_13.putConstraint(SpringLayout.WEST, radioButton_Cash, 27,
@@ -318,7 +318,7 @@ public class Write extends JFrame {
 		panel_13.add(radioButton_Cash);
 
 		JRadioButton radioButton_Card = new JRadioButton("\uCE74\uB4DC");
-		radioButton_Card.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		radioButton_Card.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		radioButton_Card.setBackground(new Color(255,192,0));
 		sl_panel_13.putConstraint(SpringLayout.NORTH, radioButton_Card, 0,
 				SpringLayout.NORTH, radioButton_Cash);
@@ -329,7 +329,7 @@ public class Write extends JFrame {
 
 		JLabel lblNewLabel_4 = new JLabel("\uACB0\uC81C\uB0B4\uC6A9");
 		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_4.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel_4.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_4.setToolTipText("");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_6.add(lblNewLabel_4, "name_41211262029104");
@@ -364,7 +364,7 @@ public class Write extends JFrame {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
 					File fileInSamePackage = new File(path
-							+ "buttonOk.png");
+							+ "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -391,8 +391,14 @@ public class Write extends JFrame {
 				
 			}
 		});
-		panel_button_ok.setBounds(145, 386, 85, 37);
+		panel_button_ok.setBounds(160, 377, 70, 37);
 		panel_16.add(panel_button_ok);
+		panel_button_ok.setLayout(new CardLayout(0, 0));
+		
+		JLabel label_4 = new JLabel("\uC800\uC7A5");
+		label_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_button_ok.add(label_4, "name_21353759973774");
 		
 		JPanel panel_button_cancel = new JPanel(){
 			public void paintComponent(Graphics g) {
@@ -400,7 +406,7 @@ public class Write extends JFrame {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
 					File fileInSamePackage = new File(path
-							+ "buttonCancel.png");
+							+ "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -411,8 +417,14 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_button_cancel.setBounds(237, 386, 85, 37);
+		panel_button_cancel.setBounds(242, 377, 70, 37);
 		panel_16.add(panel_button_cancel);
+		panel_button_cancel.setLayout(new CardLayout(0, 0));
+		
+		JLabel lblNewLabel_5 = new JLabel("\uCDE8\uC18C");
+		lblNewLabel_5.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_button_cancel.add(lblNewLabel_5, "name_21373295288555");
 		JPanel panel_163 = new JPanel();
 		tabbedPane.addTab("수입", null, panel_163);
 		panel_163.setBackground(new Color(255, 192, 0));
@@ -438,17 +450,17 @@ public class Write extends JFrame {
 
 		JLabel lblNewLabel_111 = new JLabel("\uC218\uC785\uC77C\uC2DC");
 
-		lblNewLabel_111.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel_111.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_111.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_44.add(lblNewLabel_111);
 
 		JLabel lblNewLabell = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
-		lblNewLabell.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabell.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabell.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_44.add(lblNewLabell);
 
 		JLabel lblNewLabel_222 = new JLabel("\uACB0\uC81C\uAE08\uC561");
-		lblNewLabel_222.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel_222.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_222.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_44.add(lblNewLabel_222);
 		panel_163.add(panel_66);
@@ -472,7 +484,7 @@ public class Write extends JFrame {
 
 		JLabel label111 = new JLabel("\uB144");
 		label111.setBounds(78, 27, 17, 20);
-		label111.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label111.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label111);
 
 		textField_1_1 = new JTextField();
@@ -484,7 +496,7 @@ public class Write extends JFrame {
 
 		JLabel label_134 = new JLabel("\uC6D4");
 		label_134.setBounds(125, 27, 17, 20);
-		label_134.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label_134.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label_134);
 
 		textField_2_1 = new JTextField();
@@ -496,7 +508,7 @@ public class Write extends JFrame {
 
 		JLabel label_221 = new JLabel("\uC77C");
 		label_221.setBounds(172, 27, 17, 20);
-		label_221.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label_221.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_99.add(label_221);
 
 		JPanel panel_101 = new JPanel();
@@ -510,7 +522,7 @@ public class Write extends JFrame {
 		panel_120.setLayout(new CardLayout(0, 0));
 
 		JComboBox comboBox3 = new JComboBox();
-		comboBox3.setFont(new Font("서울남산체 EB", Font.PLAIN, 15));
+		comboBox3.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
 		comboBox3.addItem("식비");
 		comboBox3.addItem("주거/통신");
 		comboBox3.addItem("생활용품");
@@ -532,14 +544,14 @@ public class Write extends JFrame {
 		textField_3.setColumns(10);
 
 		JLabel label_315 = new JLabel("\uC6D0");
-		label_315.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		label_315.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		label_315.setBounds(178, 10, 67, 48);
 		panel_181.add(label_315);
 		panel_66.setLayout(new CardLayout(0, 0));
 
 		JLabel lblNewLabel_41 = new JLabel("\uACB0\uC81C\uB0B4\uC6A9");
 		lblNewLabel_41.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_41.setFont(new Font("서울남산체 EB", Font.PLAIN, 20));
+		lblNewLabel_41.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_41.setToolTipText("");
 		lblNewLabel_41.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_66.add(lblNewLabel_41, "name_41211262029104");
@@ -579,7 +591,7 @@ public class Write extends JFrame {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
 					File fileInSamePackage = new File(path
-							+ "buttonOk.png");
+							+ "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -590,8 +602,14 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_3.setBounds(145, 386, 85, 37);
+		panel_3.setBounds(160, 377, 70, 37);
 		panel_163.add(panel_3);
+		panel_3.setLayout(new CardLayout(0, 0));
+		
+		JLabel label_5 = new JLabel("\uC800\uC7A5");
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
+		panel_3.add(label_5, "name_21516161530420");
 		
 		JPanel panel_15 = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -599,7 +617,7 @@ public class Write extends JFrame {
 					String path = a.class.getResource("").getPath();// a클래스 위치
 																	// 가지고오기
 					File fileInSamePackage = new File(path
-							+ "buttonCancel.png");
+							+ "buttonVoid.png");
 					icon = ImageIO.read(fileInSamePackage);
 					Dimension d = getSize();// 전체화면
 					g.drawImage(icon, 0, 0, d.width, d.height, null);
@@ -610,14 +628,20 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		panel_15.setBounds(237, 386, 85, 37);
+		panel_15.setBounds(242, 377, 70, 37);
 		panel_163.add(panel_15);
+		panel_15.setLayout(new CardLayout(0, 0));
+		
+		JLabel label_6 = new JLabel("\uCDE8\uC18C");
+		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
+		panel_15.add(label_6, "name_21523545996197");
 		
 		JPanel panel_2 = new JPanel();
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 51, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_2, -268, SpringLayout.EAST, panel);
+		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 222, SpringLayout.WEST, panel);
 		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -34, SpringLayout.NORTH, panel_1);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_2, 0, SpringLayout.EAST, panel_1);
+		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -26, SpringLayout.EAST, panel);
 		panel_2.setBackground(new Color(0,0,0,0));
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(3, 0, 0, 0));
