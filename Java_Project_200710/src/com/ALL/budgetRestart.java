@@ -220,7 +220,7 @@ public budgetRestart() {
 
 			try {
 				String path = a.class.getResource("").getPath();
-				File fileInSamePackage = new File(path + "buttonCancel.png");
+				File fileInSamePackage = new File(path + "plusButton.png");
 				BufferedImage icon = ImageIO.read(fileInSamePackage);
 				Dimension d = getSize();// 전체화면
 				g.drawImage(icon, 0, 0, d.width, d.height, null);
