@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.img.a;
+import com.member.MainLogin;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -30,6 +31,9 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuSelectPicto2 extends JFrame {
 
@@ -55,7 +59,7 @@ public class MenuSelectPicto2 extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuSelectPicto2(String id) {
-		setUndecorated(true);//타이틀바 없애기
+		setUndecorated(true);// 타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 700);
 		contentPane = new JPanel();
@@ -136,10 +140,9 @@ public class MenuSelectPicto2 extends JFrame {
 		panel_9.setBackground(new Color(0, 0, 0));
 		typing.add(panel_9, "name_13458552785714");
 		panel_9.setLayout(new CardLayout(0, 0));
-		
-		
+
 		JPanel panel_10 = new JPanel(); // panel_10
-	    panel_10.setBackground(new Color(0, 0, 0, 0.6f));
+		panel_10.setBackground(new Color(0, 0, 0, 0.6f));
 		typing.add(panel_10, "name_13472309223731");
 		panel_10.setLayout(new CardLayout(0, 0));
 
@@ -156,28 +159,25 @@ public class MenuSelectPicto2 extends JFrame {
 				((CardLayout) typing.getLayout()).previous(typing);
 
 			}
-			
-			 @Override
-		       public void mouseExited(MouseEvent e) { // 커서 나갔을 때
-		          lbl_typing.setText("");
-		          ((CardLayout) typing.getLayout()).next(typing);
 
-		       }
-			
-			
+			@Override
+			public void mouseExited(MouseEvent e) { // 커서 나갔을 때
+				lbl_typing.setText("");
+				((CardLayout) typing.getLayout()).next(typing);
+
+			}
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 				Write w = new Write(id);
 				w.main(id);
-				
+
 			}
 		});
 
 		panel_3.add(typing);
 		typing.setLayout(new CardLayout(0, 0));
-
-		
 
 		JPanel calendar2 = new JPanel(); // calendar 생성
 		calendar2.setLayout(new CardLayout(0, 0));
@@ -203,10 +203,9 @@ public class MenuSelectPicto2 extends JFrame {
 		panel_11.setBackground(new Color(0, 0, 0));
 		calendar2.add(panel_11, "name_13458552785714");
 		panel_11.setLayout(new CardLayout(0, 0));
-		
-		
+
 		JPanel panel_12 = new JPanel(); // panel_12
-	    panel_12.setBackground(new Color(0, 0, 0, 0.6f));
+		panel_12.setBackground(new Color(0, 0, 0, 0.6f));
 		calendar2.add(panel_12, "name_13472309223731");
 		panel_12.setLayout(new CardLayout(0, 0));
 
@@ -223,23 +222,19 @@ public class MenuSelectPicto2 extends JFrame {
 				((CardLayout) calendar2.getLayout()).previous(calendar2);
 
 			}
-			
-			 @Override
-		       public void mouseExited(MouseEvent e) { // 커서 나갔을 때
-		          lbl_calendar2.setText("");
-		          ((CardLayout) calendar2.getLayout()).next(calendar2);
 
-		       }
-			
-			
+			@Override
+			public void mouseExited(MouseEvent e) { // 커서 나갔을 때
+				lbl_calendar2.setText("");
+				((CardLayout) calendar2.getLayout()).next(calendar2);
+
+			}
+
 		});
 
 		panel_3.add(calendar2);
 		calendar2.setLayout(new CardLayout(0, 0));
-		
-		
-		
-		
+
 		JPanel plan = new JPanel(); // plan 생성
 		plan.setLayout(new CardLayout(0, 0));
 
@@ -264,10 +259,9 @@ public class MenuSelectPicto2 extends JFrame {
 		panel_13.setBackground(new Color(0, 0, 0));
 		plan.add(panel_13, "name_13458552785714");
 		panel_13.setLayout(new CardLayout(0, 0));
-		
-		
+
 		JPanel panel_14 = new JPanel(); // panel_14
-	    panel_14.setBackground(new Color(0, 0, 0, 0.6f));
+		panel_14.setBackground(new Color(0, 0, 0, 0.6f));
 		plan.add(panel_14, "name_13472309223731");
 		panel_14.setLayout(new CardLayout(0, 0));
 
@@ -284,21 +278,19 @@ public class MenuSelectPicto2 extends JFrame {
 				((CardLayout) plan.getLayout()).previous(plan);
 
 			}
-			
-			 @Override
-		       public void mouseExited(MouseEvent e) { // 커서 나갔을 때
-		          lbl_plan.setText("");
-		          ((CardLayout) plan.getLayout()).next(plan);
 
-		       }
-			
-			
+			@Override
+			public void mouseExited(MouseEvent e) { // 커서 나갔을 때
+				lbl_plan.setText("");
+				((CardLayout) plan.getLayout()).next(plan);
+
+			}
+
 		});
 
 		panel_3.add(plan);
 		plan.setLayout(new CardLayout(0, 0));
-	
-		
+
 		JPanel analysis = new JPanel(); // analysis 생성
 		analysis.setLayout(new CardLayout(0, 0));
 
@@ -321,12 +313,11 @@ public class MenuSelectPicto2 extends JFrame {
 		};
 
 		panel_15.setBackground(new Color(0, 0, 0));
-	    analysis.add(panel_15, "name_13458552785714");
+		analysis.add(panel_15, "name_13458552785714");
 		panel_15.setLayout(new CardLayout(0, 0));
-		
-		
+
 		JPanel panel_16 = new JPanel(); // panel_16
-	    panel_16.setBackground(new Color(0, 0, 0, 0.6f));
+		panel_16.setBackground(new Color(0, 0, 0, 0.6f));
 		analysis.add(panel_16, "name_13472309223731");
 		panel_16.setLayout(new CardLayout(0, 0));
 
@@ -343,24 +334,70 @@ public class MenuSelectPicto2 extends JFrame {
 				((CardLayout) analysis.getLayout()).previous(analysis);
 
 			}
-			
-			 @Override
-		       public void mouseExited(MouseEvent e) { // 커서 나갔을 때
-		          lbl_analysis.setText("");
-		          ((CardLayout) analysis.getLayout()).next(analysis);
 
-		       }
-			
-			
+			@Override
+			public void mouseExited(MouseEvent e) { // 커서 나갔을 때
+				lbl_analysis.setText("");
+				((CardLayout) analysis.getLayout()).next(analysis);
+
+			}
+
 		});
 
 		panel_3.add(analysis);
 		analysis.setLayout(new CardLayout(0, 0));
-		
-		
 
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_4, 0, SpringLayout.EAST, panel_2);
-		panel_2.setLayout(new CardLayout(0, 0));
+		SpringLayout sl_panel_2 = new SpringLayout();
+		panel_2.setLayout(sl_panel_2);
+
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(0, 0, 0, 0));
+
+		sl_panel_2.putConstraint(SpringLayout.NORTH, panel_5, 0, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.WEST, panel_5, 0, SpringLayout.WEST, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.SOUTH, panel_5, 219, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, panel_5, 1024, SpringLayout.WEST, panel_2);
+		panel_2.add(panel_5);
+		SpringLayout sl_panel_5 = new SpringLayout();
+		panel_5.setLayout(sl_panel_5);
+
+		JButton btn_logout = new JButton("Log Out") {
+			public void paintComponent(Graphics g) {
+
+				try {
+					String path = a.class.getResource("").getPath();
+					File fileInSamePackage = new File(path + "btn_logout.png");
+					BufferedImage icon = ImageIO.read(fileInSamePackage);
+
+					Dimension d = getSize();
+					g.drawImage(icon, 0, 0, d.width, d.height, null);
+					setOpaque(false);
+					super.paintComponent(g);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		btn_logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MainLogin ms = new MainLogin();
+				ms.main(null);
+				
+				
+			}
+		});
+		sl_panel_5.putConstraint(SpringLayout.NORTH, btn_logout, 10, SpringLayout.NORTH, panel_5);
+		sl_panel_5.putConstraint(SpringLayout.WEST, btn_logout, -201, SpringLayout.EAST, panel_5);
+		sl_panel_5.putConstraint(SpringLayout.SOUTH, btn_logout, 53, SpringLayout.NORTH, panel_5);
+		sl_panel_5.putConstraint(SpringLayout.EAST, btn_logout, 0, SpringLayout.EAST, panel_5);
+		btn_logout.setFont(new Font("Masque", Font.PLAIN, 20));
+		btn_logout.setBorderPainted(false);
+		btn_logout.setContentAreaFilled(false);
+		btn_logout.setOpaque(false);
+		btn_logout.setFocusPainted(false);
+		panel_5.add(btn_logout);
 		panel_1.add(panel_4);
 		panel_4.setLayout(new CardLayout(0, 0));
 	}
