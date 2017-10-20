@@ -45,7 +45,7 @@ public class MenuSelectPicto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuSelect frame = new MenuSelect(id);
+					MenuSelectPicto frame = new MenuSelectPicto(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
