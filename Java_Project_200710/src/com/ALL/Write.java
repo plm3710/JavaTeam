@@ -72,16 +72,16 @@ public class Write extends JFrame {
 	private JTextField tf_outcome_money;
 	private JTextField tf_outcome_memo;
 	private JTextField textField_4_1;
-	IncomeVO ivo;
+	private IncomeVO ivo=null;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Write frame = new Write();
+					Write frame = new Write(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -93,7 +93,8 @@ public class Write extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Write() {
+	public Write(String id) {
+		setUndecorated(true);//타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 700);
 		contentPane = new JPanel();
@@ -629,5 +630,20 @@ public class Write extends JFrame {
 		
 		JLabel lbl_talking3 = new JLabel("\uB300\uD654\uC785\uB825 3");
 		panel_2.add(lbl_talking3);
+		
+		
+		
+		
+		ivo = new IncomeVO();
+		
+		//dao.incomeInsert(id, );
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

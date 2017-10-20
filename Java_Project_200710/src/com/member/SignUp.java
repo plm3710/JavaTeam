@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 import com.DAO.MemberDAO;
 import com.VO.MemberVO;
@@ -69,6 +70,7 @@ public class SignUp extends JFrame {
 	 * Create the frame.
 	 */
 	public SignUp() {
+		setUndecorated(true);//타이틀바 없애기
 		dao = new MemberDAO();
 		mvo = new MemberVO();
 		list = new ArrayList<MemberVO>();
@@ -143,7 +145,7 @@ public class SignUp extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("ID");
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Masque", Font.PLAIN, 25));
+		lblNewLabel_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		sl_panel_5.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 10, SpringLayout.NORTH, panel_5);
 		sl_panel_5.putConstraint(SpringLayout.WEST, lblNewLabel_1, 10, SpringLayout.WEST, panel_5);
 		sl_panel_5.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, 61, SpringLayout.NORTH, panel_5);
@@ -151,6 +153,8 @@ public class SignUp extends JFrame {
 		panel_5.add(lblNewLabel_1);
 		
 		txtId = new JTextField();
+		txtId.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		txtId.setOpaque(false);
 		txtId.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -196,7 +200,7 @@ public class SignUp extends JFrame {
 		panel_5.add(lblNewLabel_2);
 		
 		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(new Color(255,0,0,0));
+		panel_6.setBackground(new Color(255,192,0));
 		panel_3.add(panel_6);
 		SpringLayout sl_panel_6 = new SpringLayout();
 		panel_6.setLayout(sl_panel_6);
@@ -204,7 +208,7 @@ public class SignUp extends JFrame {
 		JLabel lblPw = new JLabel("PW");
 		lblPw.setForeground(Color.BLACK);
 		lblPw.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPw.setFont(new Font("Masque", Font.PLAIN, 25));
+		lblPw.setFont(new Font("서울남산 장체BL", Font.PLAIN, 25));
 		sl_panel_6.putConstraint(SpringLayout.NORTH, lblPw, 10, SpringLayout.NORTH, panel_6);
 		sl_panel_6.putConstraint(SpringLayout.WEST, lblPw, 10, SpringLayout.WEST, panel_6);
 		sl_panel_6.putConstraint(SpringLayout.SOUTH, lblPw, -10, SpringLayout.SOUTH, panel_6);
@@ -212,6 +216,8 @@ public class SignUp extends JFrame {
 		panel_6.add(lblPw);
 		
 		passwordField = new JPasswordField();
+		passwordField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		passwordField.setOpaque(false);
 		sl_panel_6.putConstraint(SpringLayout.NORTH, passwordField, 10, SpringLayout.NORTH, panel_6);
 		sl_panel_6.putConstraint(SpringLayout.WEST, passwordField, 6, SpringLayout.EAST, lblPw);
 		sl_panel_6.putConstraint(SpringLayout.SOUTH, passwordField, 61, SpringLayout.NORTH, panel_6);
@@ -219,12 +225,14 @@ public class SignUp extends JFrame {
 		panel_6.add(passwordField);
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(new Color(255,0,0,0));
+		panel_7.setBackground(new Color(255,192,0));
 		panel_3.add(panel_7);
 		SpringLayout sl_panel_7 = new SpringLayout();
 		panel_7.setLayout(sl_panel_7);
 		
 		passwordField_1 = new JPasswordField();
+		passwordField_1.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		passwordField_1.setOpaque(false);
 		sl_panel_7.putConstraint(SpringLayout.NORTH, passwordField_1, 10, SpringLayout.NORTH, panel_7);
 		sl_panel_7.putConstraint(SpringLayout.WEST, passwordField_1, 101, SpringLayout.WEST, panel_7);
 		sl_panel_7.putConstraint(SpringLayout.SOUTH, passwordField_1, 61, SpringLayout.NORTH, panel_7);
@@ -242,7 +250,7 @@ public class SignUp extends JFrame {
 		panel_7.add(lblPw2);
 		
 		JPanel panel_8 = new JPanel();
-		panel_8.setBackground(new Color(255,0,0,0));
+		panel_8.setBackground(new Color(255,192,0));
 		panel_3.add(panel_8);
 		SpringLayout sl_panel_8 = new SpringLayout();
 		panel_8.setLayout(sl_panel_8);
@@ -258,6 +266,8 @@ public class SignUp extends JFrame {
 		panel_8.add(label_1);
 		
 		txtNickname = new JTextField();
+		txtNickname.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		txtNickname.setOpaque(false);
 		txtNickname.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		sl_panel_8.putConstraint(SpringLayout.NORTH, txtNickname, 0, SpringLayout.NORTH, label_1);
 		sl_panel_8.putConstraint(SpringLayout.WEST, txtNickname, 6, SpringLayout.EAST, label_1);
