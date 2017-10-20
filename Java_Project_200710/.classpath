@@ -5,6 +5,6 @@
 	<classpathentry kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="src/com/img/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="src/com/img/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pc-04/Desktop/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
+	<classpathentry kind="lib" path="src/com/img/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
