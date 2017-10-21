@@ -5,18 +5,30 @@ public class BudgetVO {
 	private int money;
 	private String id;
 	private int month;
+	private int year;
+	private String memo;
 
-	private BudgetVO() {
 
-	}
+	
 
-	public BudgetVO(String category, int money, String id, int month) {
+	public BudgetVO(String id, int money, int month, String category, int year, String memo) {
 		super();
 		this.category = category;
 		this.money = money;
 		this.id = id;
 		this.month = month;
+		this.memo = memo;
+		this.year = year;
 	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
 
 	public String getCategory() {
 		return category;

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.VO.BudgetVO;
 import com.VO.IncomeVO;
@@ -14,7 +15,6 @@ public class budgetDAO {
 	Connection con = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
-
 
 	private void getConn() {
 		try {
@@ -34,38 +34,42 @@ public class budgetDAO {
 		}
 	}
 
-	public int buddelete(String id, String money, String month, String category,String memo) {
+	public int buddelete(String category, int money, String id, int month, int year, String memo) {
 		getConn();
-		int cnt=-1;
+		int cnt = -1;
 		String sql = "";
 		try {
-			if(memo==null) {
-				sql = "delete from budget where id=? and money=? and year=? and month=? and day=? and category=? and memo is null";
+			if (memo == null) {
+				sql = "delete from budget where id=? and money=? and year=? and month=? and category=? and memo is null";
 				psmt = con.prepareStatement(sql);
-				psmt.setString(1,id);
-				psmt.setInt(2, Integer.parseInt(money));
-				psmt.setInt(3, Integer.parseInt(month));
-				psmt.setString(4, category);
+				psmt.setString(1, id);
+				psmt.setInt(2, money);
+				psmt.setInt(3, year);
+				psmt.setInt(4, month);
+				psmt.setString(5, category);
 				cnt = psmt.executeUpdate();
-			}else {
-				sql = "delete from outcome where id=? and money=? and year=? and month=? and day=? and category=? and memo=?";
+
+			} else {
+				sql = "delete from outcome where id=? and money=? and year=? and month=? and category=? and memo=?";
 				psmt = con.prepareStatement(sql);
-				psmt.setString(1,id);
-				psmt.setInt(2, Integer.parseInt(money));
-				psmt.setInt(3, Integer.parseInt(month));
-				psmt.setString(4, category);
-				psmt.setString(5, memo);
+				psmt.setString(1, id);
+				psmt.setInt(2, money);
+				psmt.setInt(3, year);
+				psmt.setInt(4, month);
+				psmt.setString(5, category);
+				psmt.setString(6, memo);
 				cnt = psmt.executeUpdate();
 			}
 
-
 		} catch (SQLException e) {
-			System.out.println("MoneyDAO 오류");
+			System.out.println("budgetDAO - delete 오류");
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if (psmt != null) psmt.close();
-				if (con != null) con.close();
+				if (psmt != null)
+					psmt.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -75,56 +79,31 @@ public class budgetDAO {
 
 	}
 
-	public int budgetNextSelect(String id, String money, String month, String category) {
+	public ArrayList<BudgetVO> budgetNextSelect(String id, String money, String month, String category) {
 		getConn();
-		int moneyAll = 0;
+
+		ArrayList<BudgetVO> list = new ArrayList<>();
+
 		try {
-			String sql = "select * from budget where id=? and money=? and month=? and categorys";
+			String sql = "select * from Budget";
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1,id);
-			psmt.setInt(2, Integer.parseInt(money));
-			psmt.setInt(3, Integer.parseInt(month));
-			psmt.setString(4, category);
 			rs = psmt.executeQuery();
 
-			//			while(rs.next()) {
-			//				//예산의 모든 내역 출력
-			//				int money = rs.getInt(2);
-			//				System.out.println("budget : "+money);
-			//				moneyAll += money;
-			//			}
+			while (rs.next()) {
 
-		} catch (SQLException e) {
-			System.out.println("MoneyDAO 오류");
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs!=null) rs.close();
-				if (psmt != null) psmt.close();
-				if (con != null) con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+				String id1 = rs.getString(1);
+				int money1 = rs.getInt(2);
+				int month1 = rs.getInt(3);
+				String category1 = rs.getString(4);
+				int year = rs.getInt(5);
+				String memo = rs.getString(6);
+				BudgetVO budget = new BudgetVO(id1, money1, month1, category1, year, memo);
+				list.add(budget);
+
 			}
-		}
-
-		return moneyAll;
-	}
-
-	public int budgetInsert(BudgetVO bvo) {
-		getConn();
-		int moneyAll = 0;
-		try {
-			String sql = "INSERT INTO budget VALUES (?,?,?,?)";
-			psmt = con.prepareStatement(sql);
-			psmt.setString(1, bvo.getId());
-			psmt.setInt(2, bvo.getMoney());
-			psmt.setInt(3, bvo.getMonth());
-			psmt.setString(4, bvo.getCategory());
-
-			rs = psmt.executeQuery();
 
 		} catch (SQLException e) {
-			System.out.println("MoneyDAO 오류");
+			System.out.println("BudgetDAO - select 오류");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -139,9 +118,41 @@ public class budgetDAO {
 			}
 		}
 
-		return moneyAll;
-
+		return list;
 	}
 
+	public int budgetInsert(BudgetVO bvo) {
+		getConn();
+		int count = 0;
+		try {
+			String sql = "INSERT INTO budget VALUES (?,?,?,?,?,?)";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, bvo.getId());
+			psmt.setInt(2, bvo.getMoney());
+			psmt.setInt(3, bvo.getMonth());
+			psmt.setString(4, bvo.getCategory());
+			psmt.setInt(5, bvo.getYear());
+			psmt.setString(6, bvo.getMemo());
+
+			count = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("budgetDAO-insert 오류");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (psmt != null)
+					psmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return count;
+	}
 
 }

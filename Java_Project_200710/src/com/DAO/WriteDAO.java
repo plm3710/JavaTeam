@@ -65,6 +65,8 @@ public class WriteDAO {
 		}
 
 		return moneyAll;
+		
+		
 	}public int outcomeInsert(OutcomeVO ovo) {
 		getConn();
 		int moneyAll = 0;
