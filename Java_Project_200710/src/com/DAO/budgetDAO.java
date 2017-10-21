@@ -34,12 +34,12 @@ public class budgetDAO {
       }
    }
 
-   public int buddelete(String category, String id, int month, int year) {
+   public int buddelete(String id, String category, int year, int month) {
       getConn();
       int cnt = -1;
       String sql = "";
       try {
-         System.out.println(category+"/"+id+"/"+month+"/"+year);
+            //System.out.println(category+"/"+id+"/"+month+"/"+year);
             sql = "delete from budget where id=? and year=? and month=? and category=?";
             psmt = con.prepareStatement(sql);
             psmt.setString(1, id);

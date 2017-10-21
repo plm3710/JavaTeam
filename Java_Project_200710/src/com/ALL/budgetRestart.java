@@ -54,11 +54,11 @@ public class budgetRestart extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String id) {
+	public static void main(String id,int yearTemp,int monTemp) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					budgetRestart frame = new budgetRestart(id);
+					budgetRestart frame = new budgetRestart(id,yearTemp,monTemp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,7 +70,7 @@ public class budgetRestart extends JFrame {
 /**
  * Create the frame.
  */
-public budgetRestart(String id) {
+public budgetRestart(String id,int yearTemp,int monTemp) {
 	dao = new MoneyDAO();
 	blist = new ArrayList<BudgetVO>();
 	
@@ -125,9 +125,17 @@ public budgetRestart(String id) {
 	Time.setHorizontalAlignment(SwingConstants.CENTER);
 	panel_2.add(Time);
 	//////////////////////////////////////////////////////////////////////
-
+	if(yearTemp==0) {
 	todayYear = c.get(Calendar.YEAR);
-	todayMon = c.get(Calendar.MONTH) + 1;
+	}else {
+		todayYear=yearTemp;
+	}
+	if(monTemp==0) {
+		todayMon = c.get(Calendar.MONTH) + 1;
+	}else {
+		todayMon = monTemp;
+	}
+	
 	todayDay = c.get(Calendar.DAY_OF_MONTH); // 일 
 	Time.setText(todayYear + "년 " + todayMon + "월");
 	//System.out.println(todayDay);
@@ -147,6 +155,10 @@ public budgetRestart(String id) {
 				todayYear++;
 			}
 			Time.setText(todayYear + "년 " + (todayMon) + "월");
+			
+			budgetRestart br = new budgetRestart(id, todayYear, todayMon);
+			br.main(id, todayYear, todayMon);
+			dispose();
 		}
 	});
 	sl_panel_2.putConstraint(SpringLayout.EAST, Time, -6, SpringLayout.WEST, btnNewButton_1);
@@ -167,6 +179,9 @@ public budgetRestart(String id) {
 				todayYear--;
 			}
 			Time.setText(todayYear + "년 " + (todayMon) + "월");
+			budgetRestart br = new budgetRestart(id, todayYear, todayMon);
+			br.main(id, todayYear, todayMon);
+			dispose();
 		}
 	});
 	sl_panel_2.putConstraint(SpringLayout.WEST, Time, 6, SpringLayout.EAST, button);
@@ -259,6 +274,20 @@ public budgetRestart(String id) {
 	//데이터베이스에서 예산 항목 가지고오기(아이디, 년, 월)
 	blist = dao.budgetNextSelect2(id,todayYear,todayMon);// 예산의 카테고리 정보를 가지고온다.
 	
+	if(blist.size()==0) {
+		
+		JLabel lblNewLabel_3 = new JLabel("내용이 없습니다. 추가해주세요");
+		lblNewLabel_3.setFont(new Font("서울남산 장체BL", Font.PLAIN, 17));
+		lblNewLabel_3.setVerticalAlignment(SwingConstants.TOP);
+		area.add(lblNewLabel_3);
+		
+		scrollPane.setBounds(5, 62, 445, 342);
+		panel_1.add(scrollPane);
+		
+		Dimension size1 = new Dimension();
+		size1.setSize(200, 100);
+		area.setPreferredSize(size1);
+	}
 	
 	//값을 출력
 	int temp=0;
@@ -332,9 +361,11 @@ public budgetRestart(String id) {
 			int cnt = bdao.buddelete(id,ca,todayYear,todayMon);
 			if(cnt>0) {
 				JOptionPane.showMessageDialog(null, "예산이 삭제되었습니다.");
+				budgetRestart br = new budgetRestart(id,todayYear,todayDay);
+				br.main(id,todayYear,todayDay);
 				dispose();
-				budgetRestart br = new budgetRestart(id);
-				br.main(id);
+			}else {
+				JOptionPane.showMessageDialog(null, "삭제 실패...");
 			}
 		
 		}

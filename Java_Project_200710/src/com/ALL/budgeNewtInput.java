@@ -38,6 +38,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JRadioButton;
 
 public class budgeNewtInput extends JFrame {
 
@@ -79,7 +80,7 @@ public class budgeNewtInput extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 
-		this.setLocation(240, 265); // 띄울 위치 정하기
+		//this.setLocation(100, 100); // 띄울 위치 정하기
 		JPanel panel = new JPanel();
 		panel.setOpaque(false);
 		contentPane.add(panel, "name_26506827263520");
@@ -400,6 +401,7 @@ public class budgeNewtInput extends JFrame {
 		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
 
 		JLabel label_1 = new JLabel("");
+		label_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		panel_1.add(label_1);
 
 		JButton btn_cancel = new JButton("\uCDE8\uC18C") { // 취소 버튼
@@ -424,8 +426,8 @@ public class budgeNewtInput extends JFrame {
 															// 돌아감
 			public void actionPerformed(ActionEvent e) {
 
-				budgetRestart ms = new budgetRestart(id);
-				ms.main(id);
+				budgetRestart ms = new budgetRestart(id,0,0);
+				ms.main(id,0,0);
 				dispose();
 			}
 		});
@@ -487,17 +489,17 @@ public class budgeNewtInput extends JFrame {
 
 				String memo = textField_name.getText();
 
-				System.out.println(id + "/" + money + "/" + month + "/" + category + "/" + year + "/" + memo);
+				//System.out.println(id + "/" + money + "/" + month + "/" + category + "/" + year + "/" + memo);
 
 				BudgetVO bvo = new BudgetVO(id, money, month, category, year, memo);
 				budgetDAO bdao = new budgetDAO();
 				int count = bdao.budgetInsert(bvo);
 				
 				if (count>0){
-					dispose();
 					JOptionPane.showMessageDialog(null, "저장 되었습니다.");
-					budgetRestart br = new budgetRestart(id);
-					br.main(id);
+					budgetRestart br = new budgetRestart(id,0,0);
+					br.main(id,0,0);
+					dispose();
 				}else{
 					JOptionPane.showMessageDialog(null, "등록실패");
 				}
@@ -519,6 +521,7 @@ public class budgeNewtInput extends JFrame {
 		btn_save.setFont(new Font("서울남산 장체B", Font.PLAIN, 12));
 
 		JLabel label = new JLabel("");
+		label.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		panel_1.add(label);
 	}
 	

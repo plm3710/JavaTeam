@@ -294,8 +294,8 @@ public class MenuSelectPicto2 extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				budgetRestart br = new budgetRestart(id);
-				br.main(id);
+				budgetRestart br = new budgetRestart(id,0,0);
+				br.main(id,0,0);
 				
 				
 			}
