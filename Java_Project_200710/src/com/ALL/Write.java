@@ -10,7 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.DAO.MoneyDAO;
 import com.DAO.WriteDAO;
+import com.DAO.budgetDAO;
 import com.VO.IncomeVO;
 import com.VO.OutcomeVO;
 import com.img.a;
@@ -86,17 +88,18 @@ public class Write extends JFrame {
 	private int hour = 0;
 	private int min = 0;
 	private int sec = 0;
-	private String talk = null;
+	private String talk = "입력창이에요 바부얌";
 
 	/**
 	 * Launch the application.
-	 * @param temp 
+	 * 
+	 * @param temp
 	 */
 	public static void main(String id, String temp) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Write frame = new Write(id,temp);
+					Write frame = new Write(id, temp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -104,27 +107,38 @@ public class Write extends JFrame {
 			}
 		});
 	}
+
 	public void CalendarOutPut() {
-        Calendar cal = Calendar.getInstance();
-        year = cal.get(Calendar.YEAR); //년도
-        mon = cal.get(Calendar.MONTH)+1; // 월 
-        day = cal.get(Calendar.DAY_OF_MONTH); // 일 
-        hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
-        min = cal.get(Calendar.MINUTE); // 분
-        sec = cal.get(Calendar.SECOND); // 초
-   }
+		Calendar cal = Calendar.getInstance();
+		year = cal.get(Calendar.YEAR); // 년도
+		mon = cal.get(Calendar.MONTH) + 1; // 월
+		day = cal.get(Calendar.DAY_OF_MONTH); // 일
+		hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
+		min = cal.get(Calendar.MINUTE); // 분
+		sec = cal.get(Calendar.SECOND); // 초
+	}
+
 	/**
 	 * Create the frame.
 	 */
-	public Write(String id,String temp) {
+
+	public Write(String id, String temp) {
 		talk = temp;
-		
-		Random rd = new Random();  
-		 ArrayList<String> dialog_income = new ArrayList<String>();
-		 dialog_income.add("바보");
-		    dialog_income.add("똥개");
-		    dialog_income.add("메롱");
-		    
+		MoneyDAO mdao = new MoneyDAO();
+		budgetDAO bdao = new budgetDAO();
+		Random rd = new Random();
+		ArrayList<String> dialog_exceed = new ArrayList<String>();
+
+		ArrayList<String> dialog_income = new ArrayList<String>();
+		dialog_income.add("입금감사");
+		dialog_income.add("땡큐감사");
+		dialog_income.add("베리감사");
+
+		ArrayList<String> dialog_outcome = new ArrayList<String>();
+		dialog_outcome.add("돈썼네?");
+		dialog_outcome.add("그만좀 쓰지?");
+		dialog_outcome.add("그만좀 하세요!");
+
 		CalendarOutPut();
 		setUndecorated(true);// 타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,6 +147,8 @@ public class Write extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
+
+		JLabel lbl_talking2 = new JLabel(talk);
 
 		JPanel panel = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -182,24 +198,24 @@ public class Write extends JFrame {
 		UIManager.put("TabbedPane.selected", new Color(255, 192, 0)); // 탭 색깔
 																		// (눌렀을때)
 
-//		 tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
-//		 // 안됨
-//		
-//		 @Override
-//		 protected int calculateTabHeight(int tabPlacement,
-//		 int tabIndex, int fontHeight) {
-//		 // TODO Auto-generated method stub
-//		 return 40;
-//		 }
-//		
-//		 @Override
-//		 protected int calculateTabWidth(int tabPlacement,
-//		 int tabIndex, FontMetrics metrics) {
-//		 // TODO Auto-generated method stub
-//		 return 231;
-//		 }
-//		
-//		 });
+		// tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
+		// // 안됨
+		//
+		// @Override
+		// protected int calculateTabHeight(int tabPlacement,
+		// int tabIndex, int fontHeight) {
+		// // TODO Auto-generated method stub
+		// return 40;
+		// }
+		//
+		// @Override
+		// protected int calculateTabWidth(int tabPlacement,
+		// int tabIndex, FontMetrics metrics) {
+		// // TODO Auto-generated method stub
+		// return 231;
+		// }
+		//
+		// });
 		panel_1.add(tabbedPane, "name_39837979284068");
 
 		JPanel panel_16 = new JPanel();
@@ -308,7 +324,7 @@ public class Write extends JFrame {
 
 		JComboBox comboBox_outcome = new JComboBox();
 		comboBox_outcome.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
-		comboBox_outcome.addItem("식비!");
+		comboBox_outcome.addItem("식비");
 		comboBox_outcome.addItem("주거/통신");
 		comboBox_outcome.addItem("생활용품");
 		comboBox_outcome.addItem("의복/미용");
@@ -422,7 +438,7 @@ public class Write extends JFrame {
 		label_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				String category = null;
 				int categoryIndex = comboBox_outcome.getSelectedIndex();
 				switch (categoryIndex) {
@@ -456,14 +472,37 @@ public class Write extends JFrame {
 				ovo = new OutcomeVO(id, money, year, month, day, category, memo);
 				WriteDAO wdao = new WriteDAO();
 				wdao.outcomeInsert(ovo);
-				
+
+				// 예산 초과시 다른 대화문 출력
+				int monthlyOutcome = mdao.outcCategorySel(id, year, month,
+						category);
+				int monthlyBudget = bdao.monthelybudgetSel(id, year, month,
+						category);
+
+				if (monthlyOutcome > monthlyBudget) {
+					if (category.equals("식비")) {
+						talk = "식비 넘마니 썼음";
+					} else if (category.equals("주거/통신")) {
+						talk = "주거/통신 마니썼음";
+					} else if (category.equals("생활용품")) {
+						talk = "생활용품 마니썼음";
+					} else if (category.equals("의복/미용")) {
+						talk = "의복/미용 마니썻음";
+					} else if (category.equals("교통/차량")) {
+						talk = "교통/차량 마니썼음";
+					} else if (category.equals("기타")) {
+						talk = "기타 마니썼음";
+					}
+					Write w = new Write(id, talk);
+					w.main(id, talk);
+				} else {
+					talk = dialog_outcome.get(rd.nextInt(dialog_outcome.size()));
+					Write w = new Write(id, talk);
+					w.main(id, talk);
+				}
 				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				dispose();
-				
-				talk = dialog_income.get(rd.nextInt(dialog_income.size()));
-				Write w = new Write(id,talk);
-				w.main(id,talk);
-				
+
 			}
 		});
 		label_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 14));
@@ -507,27 +546,39 @@ public class Write extends JFrame {
 		panel_163.setLayout(sl_panel_163);
 
 		JPanel panel_44 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_44, 10, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_44, 10, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_44, 198, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_44, 159, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_44, 10,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_44, 10,
+				SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_44, 198,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_44, 159,
+				SpringLayout.WEST, panel_163);
 		panel_44.setBackground(new Color(255, 192, 0));
 		panel_163.add(panel_44);
 
 		JPanel panel_55 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_55, 10, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_55, 165, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_55, 198, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_55, 439, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_55, 10,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_55, 165,
+				SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_55, 198,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_55, 439,
+				SpringLayout.WEST, panel_163);
 		panel_55.setBackground(new Color(255, 192, 0));
 		panel_55.setBackground(new Color(255, 192, 0));
 		panel_163.add(panel_55);
 
 		JPanel panel_66 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_66, 217, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_66, 10, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_66, 299, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_66, 159, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_66, 217,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_66, 10,
+				SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_66, 299,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_66, 159,
+				SpringLayout.WEST, panel_163);
 		panel_66.setBackground(new Color(255, 192, 0));
 		panel_44.setLayout(new GridLayout(3, 0, 0, 0));
 
@@ -549,10 +600,14 @@ public class Write extends JFrame {
 		panel_163.add(panel_66);
 
 		JPanel panel_77 = new JPanel();
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_77, 204, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_77, 165, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_77, 309, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_77, 439, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_77, 204,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_77, 165,
+				SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_77, 309,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_77, 439,
+				SpringLayout.WEST, panel_163);
 		panel_77.setBackground(new Color(255, 192, 0));
 		panel_55.setLayout(new GridLayout(3, 0, 0, 0));
 
@@ -618,52 +673,54 @@ public class Write extends JFrame {
 		JComboBox comboBox_income = new JComboBox();
 		comboBox_income.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
 		panel_button_ok.addMouseListener(new MouseAdapter() { // 지출 저장
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String category = null;
-				int categoryIndex = comboBox_outcome.getSelectedIndex();
-	
-				switch (categoryIndex) {
-				case 0:
-					category = "식비";
-					break;
-				case 1:
-					category = "주거/통신";
-					break;
-				case 2:
-					category = "생활용품";
-					break;
-				case 3:
-					category = "의복/미용";
-					break;
-				case 4:
-					category = "교통/차량";
-					break;
-				case 5:
-					category = "기타";
-					break;
-				default:
-					break;
-				}
-				int year = Integer.parseInt(tf_outcome_year.getText());
-				int month = Integer.parseInt(tf_outcome_month.getText());
-				int day = Integer.parseInt(tf_outcome_day.getText());
-				int money = Integer.parseInt(tf_outcome_money.getText());
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						String category = null;
+						int categoryIndex = comboBox_outcome.getSelectedIndex();
 
-				String memo = tf_outcome_memo.getText();
-				ovo = new OutcomeVO(id, money, year, month, day, category, memo);
-				WriteDAO wdao = new WriteDAO();
-				
-				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
-				wdao.outcomeInsert(ovo);
-				dispose();
-				
-				talk = dialog_income.get(rd.nextInt(dialog_income.size()));
-				Write w = new Write(id,talk);
-				w.main(id,talk);
+						switch (categoryIndex) {
+						case 0:
+							category = "식비";
+							break;
+						case 1:
+							category = "주거/통신";
+							break;
+						case 2:
+							category = "생활용품";
+							break;
+						case 3:
+							category = "의복/미용";
+							break;
+						case 4:
+							category = "교통/차량";
+							break;
+						case 5:
+							category = "기타";
+							break;
+						default:
+							break;
+						}
+						int year = Integer.parseInt(tf_outcome_year.getText());
+						int month = Integer.parseInt(tf_outcome_month.getText());
+						int day = Integer.parseInt(tf_outcome_day.getText());
+						int money = Integer.parseInt(tf_outcome_money.getText());
 
-			}
-		});
+						String memo = tf_outcome_memo.getText();
+						ovo = new OutcomeVO(id, money, year, month, day,
+								category, memo);
+						WriteDAO wdao = new WriteDAO();
+
+						JOptionPane.showMessageDialog(null, "저장 되었습니다.");
+						wdao.outcomeInsert(ovo);
+						dispose();
+
+						talk = dialog_income.get(rd.nextInt(dialog_income
+								.size()));
+						Write w = new Write(id, talk);
+						w.main(id, talk);
+
+					}
+				});
 		comboBox_income.addItem("월급");
 		comboBox_income.addItem("보너스");
 		comboBox_income.addItem("수당");
@@ -728,10 +785,14 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_150, 396, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_150, 228, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_150, 423, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_150, 144, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_150, 396,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_150, 228,
+				SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_150, 423,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_150, 144,
+				SpringLayout.WEST, panel_163);
 		panel_163.add(panel_150);
 
 		JPanel panel_3 = new JPanel() {
@@ -750,10 +811,14 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_3, 377, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_3, 242, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_3, 414, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_3, 312, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_3, 377,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_3, 242,
+				SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_3, 414,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_3, 312,
+				SpringLayout.WEST, panel_163);
 		panel_163.add(panel_3);
 		panel_3.setLayout(new CardLayout(0, 0));
 
@@ -779,10 +844,14 @@ public class Write extends JFrame {
 				}
 			}
 		};
-		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_15, 377, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.WEST, panel_15, 160, SpringLayout.WEST, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_15, 414, SpringLayout.NORTH, panel_163);
-		sl_panel_163.putConstraint(SpringLayout.EAST, panel_15, 230, SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.NORTH, panel_15, 377,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.WEST, panel_15, 160,
+				SpringLayout.WEST, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.SOUTH, panel_15, 414,
+				SpringLayout.NORTH, panel_163);
+		sl_panel_163.putConstraint(SpringLayout.EAST, panel_15, 230,
+				SpringLayout.WEST, panel_163);
 		panel_163.add(panel_15);
 		panel_15.setLayout(new CardLayout(0, 0));
 
@@ -810,22 +879,20 @@ public class Write extends JFrame {
 		panel.add(panel_2);
 		panel_2.setLayout(new GridLayout(3, 0, 0, 0));
 
-		JLabel lbl_talking1 = new JLabel("\uB300\uD654\uC785\uB825 1");
+		JLabel lbl_talking1 = new JLabel("");
 		panel_2.add(lbl_talking1);
 
-		JLabel lbl_talking2 = new JLabel("\uB300\uD654\uC785\uB825 2");
 		panel_2.add(lbl_talking2);
 
-		JLabel lbl_talking3 = new JLabel("\uB300\uD654\uC785\uB825 3");
+		JLabel lbl_talking3 = new JLabel("");
 		panel_2.add(lbl_talking3);
 
 		ivo = new IncomeVO();
 
-		
-
-		label_5.addMouseListener(new MouseAdapter() {//수입 저장
+		label_5.addMouseListener(new MouseAdapter() {// 수입 저장
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				String category = null;
 				int categoryIndex = comboBox_income.getSelectedIndex();
 
@@ -863,24 +930,21 @@ public class Write extends JFrame {
 				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				wdao.incomeInsert(ivo);
 				dispose();
-				
-				
+
 				talk = dialog_income.get(rd.nextInt(dialog_income.size()));
-				Write w = new Write(id,talk);
-				w.main(id,talk);
+				Write w = new Write(id, talk);
+				w.main(id, talk);
 			}
 		});
-/// 입력창에 오늘날짜 넣기
-		tf_outcome_year.setText(Integer.toString(year)); 
-		tf_outcome_month.setText(Integer.toString(mon)); 
-		tf_outcome_day.setText(Integer.toString(day)); 
-		tf_income_year.setText(Integer.toString(year)); 
-		tf_income_month.setText(Integer.toString(mon)); 
-		tf_income_day.setText(Integer.toString(day)); 
-		
+		// / 입력창에 오늘날짜 넣기
+		tf_outcome_year.setText(Integer.toString(year));
+		tf_outcome_month.setText(Integer.toString(mon));
+		tf_outcome_day.setText(Integer.toString(day));
+		tf_income_year.setText(Integer.toString(year));
+		tf_income_month.setText(Integer.toString(mon));
+		tf_income_day.setText(Integer.toString(day));
+
 		lbl_talking2.setText(talk);
-		
-	    
-	    
+
 	}
 }
