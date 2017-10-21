@@ -496,6 +496,8 @@ public class budgeNewtInput extends JFrame {
 				if (count>0){
 					dispose();
 					JOptionPane.showMessageDialog(null, "저장 되었습니다.");
+					budgetRestart br = new budgetRestart(id);
+					br.main(id);
 				}else{
 					JOptionPane.showMessageDialog(null, "등록실패");
 				}

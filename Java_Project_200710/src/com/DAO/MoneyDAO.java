@@ -361,6 +361,72 @@ public class MoneyDAO {
 		return ilist;
 
 	}
+
+	public ArrayList<BudgetVO> budgetNextSelect2(String id, int todayYear, int todayMon) {
+		getConn();
+		
+		ArrayList<BudgetVO> blist = new ArrayList<BudgetVO>();
+		try {
+			String sql = "select * from budget where id=? and year=? and month=?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1,id);
+			psmt.setInt(2, todayYear);
+			psmt.setInt(3, todayMon);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				BudgetVO bvo = new BudgetVO(rs.getString(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getInt(5),rs.getString(6));
+				blist.add(bvo);
+			}
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return blist;
+	}
+
+	public int outcomeSelect3(String id, int todayYear, int todayMon, String ca) {
+		getConn();
+		int moneyAll = 0;
+		try {
+			String sql = "select * from outcome where id=? and year=? and  month=? and category=?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1,id);
+			psmt.setInt(2, todayYear);
+			psmt.setInt(3, todayMon);
+			psmt.setString(4, ca);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				//수입의 모든 금액 출력
+				int money = rs.getInt(2);
+				System.out.println("outmoney : "+money);
+				moneyAll += money;
+			}
+		
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return moneyAll;
+	}
 	
 	
 	

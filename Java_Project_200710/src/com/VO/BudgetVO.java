@@ -9,7 +9,6 @@ public class BudgetVO {
 	private String memo;
 
 
-	
 
 	public BudgetVO(String id, int money, int month, String category, int year, String memo) {
 		super();

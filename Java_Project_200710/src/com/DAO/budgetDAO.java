@@ -34,32 +34,19 @@ public class budgetDAO {
 		}
 	}
 
-	public int buddelete(String category, int money, String id, int month, int year, String memo) {
+	public int buddelete(String category, String id, int month, int year) {
 		getConn();
 		int cnt = -1;
 		String sql = "";
 		try {
-			if (memo == null) {
-				sql = "delete from budget where id=? and money=? and year=? and month=? and category=? and memo is null";
+			System.out.println(category+"/"+id+"/"+month+"/"+year);
+				sql = "delete from budget where id=? and year=? and month=? and category=?";
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, id);
-				psmt.setInt(2, money);
-				psmt.setInt(3, year);
-				psmt.setInt(4, month);
-				psmt.setString(5, category);
+				psmt.setInt(2, year);
+				psmt.setInt(3, month);
+				psmt.setString(4, category);
 				cnt = psmt.executeUpdate();
-
-			} else {
-				sql = "delete from budget where id=? and money=? and year=? and month=? and category=? and memo=?";
-				psmt = con.prepareStatement(sql);
-				psmt.setString(1, id);
-				psmt.setInt(2, money);
-				psmt.setInt(3, year);
-				psmt.setInt(4, month);
-				psmt.setString(5, category);
-				psmt.setString(6, memo);
-				cnt = psmt.executeUpdate();
-			}
 
 		} catch (SQLException e) {
 			System.out.println("budgetDAO - delete ¿À·ù");
