@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -45,15 +46,17 @@ public class budgeNewtInput extends JFrame {
 	private JTextField textField_name;
 	private JTextField textField_money;
 	private JTextField textField_yearInput;
-
+	private int year = 0; //년도
+	private int mon = 0; // 월 
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					budgeNewtInput frame = new budgeNewtInput();
+					budgeNewtInput frame = new budgeNewtInput(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +68,8 @@ public class budgeNewtInput extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public budgeNewtInput() {
+	public budgeNewtInput(String id) {
+		CalendarOutPut();
 		// setUndecorated(true);//타이틀바 없애기
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -162,6 +166,8 @@ public class budgeNewtInput extends JFrame {
 		panel_9.setLayout(sl_panel_9);
 
 		textField_monthInput = new JTextField();
+		textField_monthInput.setText(mon+"");
+		textField_monthInput.setHorizontalAlignment(SwingConstants.RIGHT);
 		sl_panel_9.putConstraint(SpringLayout.WEST, textField_monthInput, 153, SpringLayout.WEST, panel_9);
 		textField_monthInput.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
 		textField_monthInput.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
@@ -239,9 +245,11 @@ public class budgeNewtInput extends JFrame {
 		panel_3.setLayout(sl_panel_3);
 
 		textField_yearInput = new JTextField();
+		textField_yearInput.setText(year+"");
 		sl_panel_3.putConstraint(SpringLayout.WEST, textField_yearInput, 0, SpringLayout.WEST, panel_3);
-		sl_panel_3.putConstraint(SpringLayout.SOUTH, textField_yearInput, -27, SpringLayout.SOUTH, panel_3);
 		sl_panel_3.putConstraint(SpringLayout.EAST, textField_yearInput, 88, SpringLayout.WEST, panel_3);
+		textField_yearInput.setHorizontalAlignment(SwingConstants.RIGHT);
+		textField_yearInput.setFont(new Font("서울남산 장체B", Font.PLAIN, 14));
 		panel_3.add(textField_yearInput);
 		textField_yearInput.setOpaque(false);
 		textField_yearInput.setBounds(12, 24, 60, 21);
@@ -249,12 +257,13 @@ public class budgeNewtInput extends JFrame {
 		textField_yearInput.setColumns(10);
 
 		JLabel label_2 = new JLabel("\uB144");
-		label_2.setBackground(new Color(0, 0, 0, 0));
-		label_2.setOpaque(false);
-		sl_panel_3.putConstraint(SpringLayout.NORTH, label_2, -3, SpringLayout.NORTH, textField_yearInput);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, label_2, 32, SpringLayout.NORTH, panel_3);
 		sl_panel_3.putConstraint(SpringLayout.WEST, label_2, 10, SpringLayout.EAST, textField_yearInput);
 		sl_panel_3.putConstraint(SpringLayout.SOUTH, label_2, -30, SpringLayout.SOUTH, panel_3);
 		sl_panel_3.putConstraint(SpringLayout.EAST, label_2, -10, SpringLayout.EAST, panel_3);
+		sl_panel_3.putConstraint(SpringLayout.NORTH, textField_yearInput, 6, SpringLayout.NORTH, label_2);
+		label_2.setBackground(new Color(0, 0, 0, 0));
+		label_2.setOpaque(false);
 		label_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		panel_3.add(label_2);
 
@@ -415,8 +424,8 @@ public class budgeNewtInput extends JFrame {
 															// 돌아감
 			public void actionPerformed(ActionEvent e) {
 
-				budgetRestart ms = new budgetRestart();
-				ms.main(null);
+				budgetRestart ms = new budgetRestart(id);
+				ms.main(id);
 				dispose();
 			}
 		});
@@ -476,40 +485,25 @@ public class budgeNewtInput extends JFrame {
 				int month = Integer.parseInt(textField_monthInput.getText());
 				int money = Integer.parseInt(textField_money.getText());
 
-				String id = textField_name.getText();
 				String memo = textField_name.getText();
 
-				System.out.println(id + "" + money + "" + month + "" + id + "" + memo + "" + category);
+				System.out.println(id + "/" + money + "/" + month + "/" + category + "/" + year + "/" + memo);
 
 				BudgetVO bvo = new BudgetVO(id, money, month, category, year, memo);
 				budgetDAO bdao = new budgetDAO();
-				bdao.budgetInsert(bvo);
+				int count = bdao.budgetInsert(bvo);
 				
-				
-				
-				if (bdao.budgetInsert(bvo)>0){
+				if (count>0){
 					dispose();
 					JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				}else{
 					JOptionPane.showMessageDialog(null, "등록실패");
 				}
-				
-				
-				
-				
-				
 
 			}
 		});
 
 		panel_1.add(btn_save);
-		btn_save.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				budgetRestart ms = new budgetRestart();
-				ms.main(null);
-			}
-		});
 
 		btn_save.setBorderPainted(false);
 		btn_save.setContentAreaFilled(false);
@@ -524,5 +518,11 @@ public class budgeNewtInput extends JFrame {
 
 		JLabel label = new JLabel("");
 		panel_1.add(label);
+	}
+	
+	public void CalendarOutPut() {
+		 Calendar cal = Calendar.getInstance();
+	     mon = cal.get(Calendar.MONTH)+1; // 월 
+	     year = cal.get(Calendar.YEAR); //년도
 	}
 }

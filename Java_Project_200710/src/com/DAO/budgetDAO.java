@@ -50,7 +50,7 @@ public class budgetDAO {
 				cnt = psmt.executeUpdate();
 
 			} else {
-				sql = "delete from outcome where id=? and money=? and year=? and month=? and category=? and memo=?";
+				sql = "delete from budget where id=? and money=? and year=? and month=? and category=? and memo=?";
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, id);
 				psmt.setInt(2, money);
@@ -85,7 +85,7 @@ public class budgetDAO {
 		ArrayList<BudgetVO> list = new ArrayList<>();
 
 		try {
-			String sql = "select * from Budget";
+			String sql = "select * from budget";
 			psmt = con.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
@@ -125,7 +125,7 @@ public class budgetDAO {
 		getConn();
 		int count = 0;
 		try {
-			String sql = "INSERT INTO budget VALUES (?,?,?,?,?,?)";
+			String sql = "insert into budget values(?,?,?,?,?,?)";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, bvo.getId());
 			psmt.setInt(2, bvo.getMoney());

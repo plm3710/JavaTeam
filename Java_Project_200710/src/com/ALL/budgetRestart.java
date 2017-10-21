@@ -56,11 +56,11 @@ Calendar c = Calendar.getInstance();
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					budgetRestart frame = new budgetRestart();
+					budgetRestart frame = new budgetRestart(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,7 +72,7 @@ Calendar c = Calendar.getInstance();
 /**
  * Create the frame.
  */
-public budgetRestart() {
+public budgetRestart(String id) {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setBounds(100, 100, 500, 700);
 	contentPane = new JPanel();
@@ -136,16 +136,12 @@ public budgetRestart() {
 	btnNewButton_1.addActionListener(new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
-
-			if (mon < 12) {
-				mon += 1;
-				Time.setText(year + "년 " + (mon) + "월");
-			} else if(mon==12){
+			mon++;
+			if (mon > 12) {
+				mon=1;
 				year++;
-				mon = 0;
-				Time.setText(year + "년 " + (mon+1) + "월");
 			}
-
+			Time.setText(year + "년 " + (mon) + "월");
 		}
 	});
 	sl_panel_2.putConstraint(SpringLayout.EAST, Time, -6, SpringLayout.WEST, btnNewButton_1);
@@ -160,14 +156,12 @@ public budgetRestart() {
 	button.addActionListener(new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
-			if (mon >0) {
-				mon -= 1;
-				Time.setText(year + "년 " + (mon) + "월");
-			} else if(mon==0){
+			mon--;
+			if(mon<1) {
+				mon=12;
 				year--;
-				mon = 11;
-				Time.setText(year + "년 " + (mon+1) + "월");
 			}
+			Time.setText(year + "년 " + (mon) + "월");
 		}
 	});
 	sl_panel_2.putConstraint(SpringLayout.WEST, Time, 6, SpringLayout.EAST, button);
@@ -235,8 +229,9 @@ public budgetRestart() {
 	lblNewLabel_2.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			budgeNewtInput bn = new budgeNewtInput();
-			bn.main(null);
+			budgeNewtInput bn = new budgeNewtInput(id);
+			bn.main(id);
+			dispose();
 		}
 	});
 
@@ -253,157 +248,76 @@ public budgetRestart() {
 	
 	JPanel panel_3 = new JPanel();
 	sl_area.putConstraint(SpringLayout.NORTH, panel_3, 10, SpringLayout.NORTH, area);
-	sl_area.putConstraint(SpringLayout.SOUTH, panel_3, -10, SpringLayout.SOUTH, area);
+	sl_area.putConstraint(SpringLayout.WEST, panel_3, 10, SpringLayout.WEST, area);
+	sl_area.putConstraint(SpringLayout.SOUTH, panel_3, 179, SpringLayout.NORTH, area);
+	sl_area.putConstraint(SpringLayout.EAST, panel_3, 433, SpringLayout.WEST, area);
 	area.add(panel_3);
+	SpringLayout sl_panel_3 = new SpringLayout();
+	panel_3.setLayout(sl_panel_3);
 	
 	JPanel panel_4 = new JPanel();
-	sl_area.putConstraint(SpringLayout.SOUTH, panel_4, 283, SpringLayout.NORTH, area);
-	sl_area.putConstraint(SpringLayout.NORTH, panel_4, 10, SpringLayout.NORTH, area);
-	sl_area.putConstraint(SpringLayout.EAST, panel_4, -10, SpringLayout.EAST, area);
-	area.add(panel_4);
-	panel_4.setLayout(new GridLayout(5, 0, 0, 0));
-	
-	JPanel panel_10 = new JPanel();
-	panel_4.add(panel_10);
-	
-	JPanel panel_11 = new JPanel();
-	panel_4.add(panel_11);
-	
-	JPanel panel_12 = new JPanel();
-	panel_4.add(panel_12);
-	
-	JPanel panel_13 = new JPanel();
-	panel_4.add(panel_13);
-	
-	JPanel panel_14 = new JPanel();
-	panel_4.add(panel_14);
+	sl_panel_3.putConstraint(SpringLayout.NORTH, panel_4, 10, SpringLayout.NORTH, panel_3);
+	sl_panel_3.putConstraint(SpringLayout.WEST, panel_4, 10, SpringLayout.WEST, panel_3);
+	sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_4, 159, SpringLayout.NORTH, panel_3);
+	sl_panel_3.putConstraint(SpringLayout.EAST, panel_4, 292, SpringLayout.WEST, panel_3);
+	panel_3.add(panel_4);
 	
 	JPanel panel_5 = new JPanel();
-	sl_area.putConstraint(SpringLayout.WEST, panel_3, 6, SpringLayout.EAST, panel_5);
-	sl_area.putConstraint(SpringLayout.SOUTH, panel_5, 283, SpringLayout.NORTH, area);
-	sl_area.putConstraint(SpringLayout.NORTH, panel_5, 10, SpringLayout.NORTH, area);
-	sl_area.putConstraint(SpringLayout.WEST, panel_5, 10, SpringLayout.WEST, area);
-	sl_area.putConstraint(SpringLayout.EAST, panel_5, 88, SpringLayout.WEST, area);
-	area.add(panel_5);
-	panel_5.setLayout(new GridLayout(5, 0, 0, 0));
-	
-	JPanel panel_7 = new JPanel();
-	
-	panel_5.add(panel_7);
-	
-	JPanel panel_19 = new JPanel();
-	panel_5.add(panel_19);
-	
-	JPanel panel_20 = new JPanel();
-	panel_5.add(panel_20);
-	
-	JPanel panel_21 = new JPanel();
-	panel_5.add(panel_21);
-	
-	JPanel panel_22 = new JPanel();
-	panel_5.add(panel_22);
-	panel_3.setLayout(new GridLayout(5, 0, 0, 0));
-	
-	JPanel panel_9 = new JPanel();
-	panel_3.add(panel_9);
-	
-	JPanel panel_15 = new JPanel();
-	panel_3.add(panel_15);
-	
-	JPanel panel_16 = new JPanel();
-	panel_3.add(panel_16);
-	
-	JPanel panel_17 = new JPanel();
-	panel_3.add(panel_17);
-	
-	JPanel panel_18 = new JPanel();
-	panel_3.add(panel_18);
-	
-	JPanel panel_6 = new JPanel();
-	sl_area.putConstraint(SpringLayout.EAST, panel_3, -6, SpringLayout.WEST, panel_6);
-	sl_area.putConstraint(SpringLayout.WEST, panel_4, 6, SpringLayout.EAST, panel_6);
-	sl_area.putConstraint(SpringLayout.NORTH, panel_6, 10, SpringLayout.NORTH, area);
-	sl_area.putConstraint(SpringLayout.SOUTH, panel_6, -10, SpringLayout.SOUTH, area);
-	sl_area.putConstraint(SpringLayout.WEST, panel_6, 282, SpringLayout.WEST, area);
-	sl_area.putConstraint(SpringLayout.EAST, panel_6, -72, SpringLayout.EAST, area);
-	area.add(panel_6);
-	panel_6.setLayout(new GridLayout(5, 0, 0, 0));
-	
-	JPanel panel_8 = new JPanel();
-	panel_6.add(panel_8);
-	
-	JPanel panel_23 = new JPanel();
-	panel_6.add(panel_23);
-	
-	JPanel panel_24 = new JPanel();
-	panel_6.add(panel_24);
-	
-	JPanel panel_25 = new JPanel();
-	panel_6.add(panel_25);
-	
-	JPanel panel_26 = new JPanel();
-	panel_6.add(panel_26);
-	
-	scrollPane.setBounds(5, 109, 445, 295);
-	panel_1.add(scrollPane);
-	
-	JPanel panel_27 = new JPanel();
-	panel_27.setBounds(10, 62, 432, 37);
-	panel_1.add(panel_27);
-	SpringLayout sl_panel_27 = new SpringLayout();
-	panel_27.setLayout(sl_panel_27);
-	
-	JPanel panel_31 = new JPanel();
-	sl_panel_27.putConstraint(SpringLayout.NORTH, panel_31, 0, SpringLayout.NORTH, panel_27);
-	sl_panel_27.putConstraint(SpringLayout.WEST, panel_31, 10, SpringLayout.WEST, panel_27);
-	sl_panel_27.putConstraint(SpringLayout.SOUTH, panel_31, 37, SpringLayout.NORTH, panel_27);
-	sl_panel_27.putConstraint(SpringLayout.EAST, panel_31, 85, SpringLayout.WEST, panel_27);
-	panel_27.add(panel_31);
-	
-	JPanel panel_30 = new JPanel();
-	sl_panel_27.putConstraint(SpringLayout.NORTH, panel_30, 0, SpringLayout.NORTH, panel_31);
-	sl_panel_27.putConstraint(SpringLayout.WEST, panel_30, 6, SpringLayout.EAST, panel_31);
-	sl_panel_27.putConstraint(SpringLayout.SOUTH, panel_30, 37, SpringLayout.NORTH, panel_27);
-	sl_panel_27.putConstraint(SpringLayout.EAST, panel_30, 273, SpringLayout.WEST, panel_27);
-	panel_27.add(panel_30);
-	
-	JPanel panel_32 = new JPanel();
-	sl_panel_27.putConstraint(SpringLayout.NORTH, panel_32, 0, SpringLayout.NORTH, panel_31);
-	sl_panel_27.putConstraint(SpringLayout.WEST, panel_32, 6, SpringLayout.EAST, panel_30);
-	sl_panel_27.putConstraint(SpringLayout.SOUTH, panel_32, 0, SpringLayout.SOUTH, panel_31);
-	sl_panel_27.putConstraint(SpringLayout.EAST, panel_32, 96, SpringLayout.EAST, panel_30);
-	panel_30.setLayout(new GridLayout(1, 0, 0, 0));
-	
-	JLabel lblNewLabel_4 = new JLabel("\uAE08\uC561");
-	lblNewLabel_4.setFont(new Font("서울남산 장체B", Font.PLAIN, 12));
-	lblNewLabel_4.setHorizontalAlignment(SwingConstants.TRAILING);
-	panel_30.add(lblNewLabel_4);
-	panel_27.add(panel_32);
-	
-	JPanel panel_33 = new JPanel();
-	sl_panel_27.putConstraint(SpringLayout.NORTH, panel_33, 0, SpringLayout.NORTH, panel_31);
-	sl_panel_27.putConstraint(SpringLayout.WEST, panel_33, 10, SpringLayout.EAST, panel_32);
-	sl_panel_27.putConstraint(SpringLayout.SOUTH, panel_33, 0, SpringLayout.SOUTH, panel_31);
-	panel_31.setLayout(new GridLayout(1, 0, 0, 0));
+	sl_panel_3.putConstraint(SpringLayout.NORTH, panel_5, 10, SpringLayout.NORTH, panel_3);
+	sl_panel_3.putConstraint(SpringLayout.WEST, panel_5, 6, SpringLayout.EAST, panel_4);
+	sl_panel_3.putConstraint(SpringLayout.SOUTH, panel_5, 159, SpringLayout.NORTH, panel_3);
+	sl_panel_3.putConstraint(SpringLayout.EAST, panel_5, 121, SpringLayout.EAST, panel_4);
+	panel_4.setLayout(new GridLayout(5, 0, 0, 0));
 	
 	JLabel lblNewLabel_3 = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
-	lblNewLabel_3.setFont(new Font("서울남산 장체B", Font.PLAIN, 12));
-	lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-	panel_31.add(lblNewLabel_3);
-	sl_panel_27.putConstraint(SpringLayout.EAST, panel_33, 53, SpringLayout.EAST, panel_32);
-	panel_32.setLayout(new GridLayout(1, 0, 0, 0));
+	lblNewLabel_3.setFont(new Font("서울남산 장체BL", Font.PLAIN, 15));
+	panel_4.add(lblNewLabel_3);
 	
-	JLabel lblNewLabel_5 = new JLabel("\uBA54\uBAA8");
-	lblNewLabel_5.setFont(new Font("서울남산 장체B", Font.PLAIN, 12));
-	lblNewLabel_5.setHorizontalAlignment(SwingConstants.TRAILING);
-	panel_32.add(lblNewLabel_5);
-	panel_27.add(panel_33);
-	panel_33.setLayout(new GridLayout(1, 0, 0, 0));
+	JLabel lblNewLabel_4 = new JLabel("New label");
+	lblNewLabel_4.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_4.add(lblNewLabel_4);
 	
-	JLabel lblNewLabel_6 = new JLabel("\uC0AD\uC81C");
-	lblNewLabel_6.setFont(new Font("서울남산 장체B", Font.PLAIN, 12));
-	lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-	panel_33.add(lblNewLabel_6);
+	JLabel lblNewLabel_5 = new JLabel("New label");
+	lblNewLabel_5.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_4.add(lblNewLabel_5);
+	
+	JLabel lblNewLabel_6 = new JLabel("New label");
+	lblNewLabel_6.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_4.add(lblNewLabel_6);
+	
+	JLabel lblNewLabel = new JLabel("New label");
+	lblNewLabel.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_4.add(lblNewLabel);
+	panel_3.add(panel_5);
+	panel_5.setLayout(new GridLayout(5, 0, 0, 0));
+	
+	JLabel lblNewLabel_8 = new JLabel("\\");
+	lblNewLabel_8.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblNewLabel_8.setFont(new Font("서울남산 장체BL", Font.PLAIN, 15));
+	panel_5.add(lblNewLabel_8);
+	
+	JLabel lblNewLabel_9 = new JLabel("\\");
+	lblNewLabel_9.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblNewLabel_9.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_5.add(lblNewLabel_9);
+	
+	JLabel lblNewLabel_7 = new JLabel("\\");
+	lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblNewLabel_7.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_5.add(lblNewLabel_7);
+	
+	JLabel lblNewLabel_10 = new JLabel("\\");
+	lblNewLabel_10.setHorizontalAlignment(SwingConstants.RIGHT);
+	lblNewLabel_10.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_5.add(lblNewLabel_10);
+	
+	JLabel label = new JLabel("\\");
+	label.setHorizontalAlignment(SwingConstants.RIGHT);
+	label.setFont(new Font("서울남산 장체B", Font.PLAIN, 15));
+	panel_5.add(label);
+	
+	scrollPane.setBounds(5, 62, 445, 342);
+	panel_1.add(scrollPane);
 
 
 //	for (int i = 0; i < blist.size(); i++) {// 지출 행 넣기

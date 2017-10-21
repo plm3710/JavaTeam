@@ -19,7 +19,9 @@ import java.awt.CardLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import javax.swing.SpringLayout;
 import javax.swing.JTabbedPane;
@@ -84,16 +86,17 @@ public class Write extends JFrame {
 	private int hour = 0;
 	private int min = 0;
 	private int sec = 0;
-	
+	private String talk = null;
 
 	/**
 	 * Launch the application.
+	 * @param temp 
 	 */
-	public static void main(String id) {
+	public static void main(String id, String temp) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Write frame = new Write(id);
+					Write frame = new Write(id,temp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -113,7 +116,15 @@ public class Write extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Write(String id) {
+	public Write(String id,String temp) {
+		talk = temp;
+		
+		Random rd = new Random();  
+		 ArrayList<String> dialog_income = new ArrayList<String>();
+		 dialog_income.add("바보");
+		    dialog_income.add("똥개");
+		    dialog_income.add("메롱");
+		    
 		CalendarOutPut();
 		setUndecorated(true);// 타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -448,8 +459,10 @@ public class Write extends JFrame {
 				
 				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				dispose();
-				Write w = new Write(id);
-				w.main(id);
+				
+				talk = dialog_income.get(rd.nextInt(dialog_income.size()));
+				Write w = new Write(id,talk);
+				w.main(id,talk);
 				
 			}
 		});
@@ -644,6 +657,10 @@ public class Write extends JFrame {
 				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				wdao.outcomeInsert(ovo);
 				dispose();
+				
+				talk = dialog_income.get(rd.nextInt(dialog_income.size()));
+				Write w = new Write(id,talk);
+				w.main(id,talk);
 
 			}
 		});
@@ -846,8 +863,11 @@ public class Write extends JFrame {
 				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				wdao.incomeInsert(ivo);
 				dispose();
-				Write w = new Write(id);
-				w.main(id);
+				
+				
+				talk = dialog_income.get(rd.nextInt(dialog_income.size()));
+				Write w = new Write(id,talk);
+				w.main(id,talk);
 			}
 		});
 /// 입력창에 오늘날짜 넣기
@@ -857,5 +877,10 @@ public class Write extends JFrame {
 		tf_income_year.setText(Integer.toString(year)); 
 		tf_income_month.setText(Integer.toString(mon)); 
 		tf_income_day.setText(Integer.toString(day)); 
+		
+		lbl_talking2.setText(talk);
+		
+	    
+	    
 	}
 }

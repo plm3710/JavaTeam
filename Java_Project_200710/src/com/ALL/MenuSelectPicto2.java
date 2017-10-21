@@ -170,8 +170,8 @@ public class MenuSelectPicto2 extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				Write w = new Write(id);
-				w.main(id);
+				Write w = new Write(id,null);
+				w.main(id,null);
 
 			}
 		});
@@ -294,8 +294,8 @@ public class MenuSelectPicto2 extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				budgetRestart br = new budgetRestart();
-				br.main(null);
+				budgetRestart br = new budgetRestart(id);
+				br.main(id);
 				
 				
 			}
