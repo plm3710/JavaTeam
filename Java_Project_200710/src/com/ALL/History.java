@@ -220,12 +220,14 @@ public class History extends JFrame {
 			       SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 			       System.out.println(format.format(d));
 			       int mon = d.getMonth();
+			       int year = d.getYear();
 			       mon--;
 			       if(mon<0) {
+			    	   year--;
 			    	   mon=11;
-			    	   
 			       }
 			       d.setMonth(mon);
+			       d.setYear(year);
 			       calendar.setDate(d);
 			       
 					///////////////////////////////////////
@@ -257,11 +259,14 @@ public class History extends JFrame {
 			       SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 			       System.out.println(format.format(d));
 			       int mon = d.getMonth();
+			       int year = d.getYear();
 			       mon++;
 			       if(mon==12) {
 			    	   mon=0;
+			    	   year++;
 			       }
 			       d.setMonth(mon);
+			       d.setYear(year);
 			       calendar.setDate(d);
 				
 					///////////////////////////////////////
