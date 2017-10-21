@@ -411,7 +411,7 @@ public class Write extends JFrame {
 		label_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//sssssssssssssssssssssssssssssssss
+				
 				String category = null;
 				int categoryIndex = comboBox_outcome.getSelectedIndex();
 				switch (categoryIndex) {
@@ -445,8 +445,11 @@ public class Write extends JFrame {
 				ovo = new OutcomeVO(id, money, year, month, day, category, memo);
 				WriteDAO wdao = new WriteDAO();
 				wdao.outcomeInsert(ovo);
-				dispose();
+				
 				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
+				dispose();
+				Write w = new Write(id);
+				w.main(id);
 				
 			}
 		});
@@ -843,6 +846,8 @@ public class Write extends JFrame {
 				JOptionPane.showMessageDialog(null, "저장 되었습니다.");
 				wdao.incomeInsert(ivo);
 				dispose();
+				Write w = new Write(id);
+				w.main(id);
 			}
 		});
 /// 입력창에 오늘날짜 넣기

@@ -357,8 +357,8 @@ public class MenuSelectPicto2 extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Chart chart = new Chart(id);
-				chart.main(id);
+				Chart chart = new Chart(id,0,0);
+				chart.main(id,0,0);
 			}
 		});
 

@@ -284,7 +284,7 @@ public class MoneyDAO {
 				moneySum += rs.getInt(2);
 				
 			}
-			System.out.println("지출 차트 -- 카테고리 : "+category+" 지출 총합 : "+moneySum);
+			//System.out.println("지출 차트 -- 카테고리 : "+category+" 지출 총합 : "+moneySum);
 		} catch (SQLException e) {
 			System.out.println("MoneyDAO 오류");
 			e.printStackTrace();
@@ -300,7 +300,67 @@ public class MoneyDAO {
 		return moneySum;
 	}
 
+	public ArrayList<OutcomeVO> outMoneySelectChart(String id, int year) {
+		getConn();
+		OutcomeVO ovo = new OutcomeVO();
+		ArrayList<OutcomeVO> olist = new ArrayList<OutcomeVO>();
+		try {
+			String sql = "select * from outcome where id=? and year=?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1,id);
+			psmt.setInt(2, year);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ovo = new OutcomeVO(id, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+				olist.add(ovo);
+			}
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return olist;
+		
+	}
 
+	public ArrayList<IncomeVO> inMoneySelectChart(String id, int year) {
+		getConn();
+		IncomeVO ivo = new IncomeVO();
+		ArrayList<IncomeVO> ilist = new ArrayList<IncomeVO>();
+		try {
+			String sql = "select * from income where id=? and year=?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1,id);
+			psmt.setInt(2, year);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ivo = new IncomeVO(id, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+				ilist.add(ivo);
+			}
+		} catch (SQLException e) {
+			System.out.println("MoneyDAO 오류");
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if (psmt != null) psmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ilist;
+
+	}
 	
 	
 	

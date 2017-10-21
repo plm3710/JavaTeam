@@ -223,6 +223,7 @@ public class History extends JFrame {
 			       mon--;
 			       if(mon<0) {
 			    	   mon=11;
+			    	   
 			       }
 			       d.setMonth(mon);
 			       calendar.setDate(d);

@@ -3,6 +3,7 @@ package com.ALL;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -20,6 +21,10 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+import com.DAO.MoneyDAO;
+import com.VO.IncomeVO;
+import com.VO.OutcomeVO;
+
 /**
  * A simple demonstration application showing how to create a bar chart.
  *
@@ -27,14 +32,21 @@ import org.jfree.ui.RefineryUtilities;
 public class chartExample_bar{
 
     public ChartPanel chartPanel;
+    private ArrayList<IncomeVO> ilist = null;
+    private ArrayList<OutcomeVO> olist = null;
+    private int[] ilistMoney = null;
+    private int[] olistMoney = null;
+    private MoneyDAO mdao = null;
 
 	/**
      * Creates a new demo instance.
+	 * @param year 
+	 * @param id 
      *
      * @param title  the frame title.
      */
-    public chartExample_bar() {
-        final CategoryDataset dataset = createDataset();
+    public chartExample_bar(String id, int year) {
+        final CategoryDataset dataset = createDataset(id,year);
         final JFreeChart chart = createChart(dataset);
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(500, 270));
@@ -43,15 +55,45 @@ public class chartExample_bar{
 
     /**
      * Returns a sample dataset.
+     * @param year 
+     * @param id 
      * 
      * @return The dataset.
      */
-    private CategoryDataset createDataset() {
+    private CategoryDataset createDataset(String id, int year) {
+        ilist = new ArrayList<IncomeVO>();
+        olist = new ArrayList<OutcomeVO>();
+        ilistMoney = new int[12];
+        olistMoney = new int[12];
+        mdao = new MoneyDAO();
         
+        
+    	//수입 지출 아이디,년,월 을 이용하여 money합계를 구한다.
+        ilist = mdao.inMoneySelectChart(id, year);
+    	for (int i = 1; i <= 12; i++) {
+    		int moneySum=0;
+			for (int j = 0; j < ilist.size(); j++) {
+				if(ilist.get(j).getMonth()==i) {//지출에서 월이 1~12와 같으면 돈의 합계를 구함
+					moneySum+=ilist.get(j).getMoney();
+				}
+			}
+			ilistMoney[i-1]=moneySum;
+    	}
+    	olist = mdao.outMoneySelectChart(id, year);
+    	for (int i = 1; i <= 12; i++) {
+    		int moneySum=0;
+			for (int j = 0; j < olist.size(); j++) {
+				if(olist.get(j).getMonth()==i) {//지출에서 월이 1~12와 같으면 돈의 합계를 구함
+					moneySum+=olist.get(j).getMoney();
+				}
+			}
+			olistMoney[i-1]=moneySum;
+    	}
+    	
         // row keys
-        final String series1 = "Expenditure"; 
-        final String series2 = "Second";
-        final String series3 = "Third";
+        final String income = "Income"; //수입 파란색
+        //final String series2 = "Second";
+        final String expenditure = "Expenditure"; //지출 빨간색
 
         // 카테고리 입력
         
@@ -71,23 +113,31 @@ public class chartExample_bar{
         // 값 입력
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        dataset.addValue(4.0, series1, category1);
-        dataset.addValue(4.0, series1, category2);
-        dataset.addValue(3.0, series1, category3);
-        dataset.addValue(5.0, series1, category4);
-        dataset.addValue(5.0, series1, category5);
-
-        dataset.addValue(5.0, series2, category1);
-        dataset.addValue(7.0, series2, category2);
-        dataset.addValue(6.0, series2, category3);
-        dataset.addValue(8.0, series2, category4);
-        dataset.addValue(4.0, series2, category5);
-
-        dataset.addValue(4.0, series3, category1);
-        dataset.addValue(3.0, series3, category2);
-        dataset.addValue(2.0, series3, category3);
-        dataset.addValue(3.0, series3, category4);
-        dataset.addValue(6.0, series3, category5);
+        dataset.addValue(ilistMoney[0], income, category1);
+        dataset.addValue(ilistMoney[1], income, category2);
+        dataset.addValue(ilistMoney[2], income, category3);
+        dataset.addValue(ilistMoney[3], income, category4);
+        dataset.addValue(ilistMoney[4], income, category5);
+        dataset.addValue(ilistMoney[5], income, category6);
+        dataset.addValue(ilistMoney[6], income, category7);
+        dataset.addValue(ilistMoney[7], income, category8);
+        dataset.addValue(ilistMoney[8], income, category9);
+        dataset.addValue(ilistMoney[9], income, category10);
+        dataset.addValue(ilistMoney[10], income, category11);
+        dataset.addValue(ilistMoney[11], income, category12);
+        
+        dataset.addValue(olistMoney[0], expenditure, category1);
+        dataset.addValue(olistMoney[1], expenditure, category2);
+        dataset.addValue(olistMoney[2], expenditure, category3);
+        dataset.addValue(olistMoney[3], expenditure, category4);
+        dataset.addValue(olistMoney[4], expenditure, category5);
+        dataset.addValue(olistMoney[5], expenditure, category6);
+        dataset.addValue(olistMoney[6], expenditure, category7);
+        dataset.addValue(olistMoney[7], expenditure, category8);
+        dataset.addValue(olistMoney[8], expenditure, category9);
+        dataset.addValue(olistMoney[9], expenditure, category10);
+        dataset.addValue(olistMoney[10], expenditure, category11);
+        dataset.addValue(olistMoney[11], expenditure, category12);
         
         return dataset;
         
@@ -104,9 +154,9 @@ public class chartExample_bar{
         
         // create the chart...
         final JFreeChart chart = ChartFactory.createBarChart(
-            "apfhd",         // 차트이름
-            "Category",               // 
-            "Value",                  // range axis label
+            "Expenditure",         // 차트이름
+            "Month",               // 
+            "Money",                  // range axis label
             dataset,                  // data
             PlotOrientation.VERTICAL, // orientation
             true,                     // include legend
@@ -139,7 +189,7 @@ public class chartExample_bar{
             0.0f, 0.0f, Color.lightGray
         );
         final GradientPaint gp1 = new GradientPaint(
-            0.0f, 0.0f, Color.green, 
+            0.0f, 0.0f, Color.red, 
             0.0f, 0.0f, Color.lightGray
         );
         final GradientPaint gp2 = new GradientPaint(

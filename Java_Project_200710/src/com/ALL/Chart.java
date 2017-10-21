@@ -55,11 +55,11 @@ public class Chart extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String id) {
+	public static void main(String id,int monTemp, int yearTemp) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Chart frame = new Chart(id);
+					Chart frame = new Chart(id,monTemp,yearTemp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,11 +71,11 @@ public class Chart extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Chart(String id) {
+	public Chart(String id,int monTemp, int yearTemp) {
 		mdao = new MoneyDAO();
 		olist = new ArrayList<OutcomeVO>();
-		
-		CalendarOutPut();//캘린더 메소드 실행
+		System.out.println(monTemp+"/"+yearTemp);
+		CalendarOutPut(monTemp,yearTemp);//캘린더 메소드 실행
 		
 		setUndecorated(true);//타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,7 +139,25 @@ public class Chart extends JFrame {
 		sl_panel_4.putConstraint(SpringLayout.SOUTH, panel_8, 0, SpringLayout.SOUTH, panel_6);
 		panel_6.setLayout(new CardLayout(0, 0));
 		
+		JLabel lblNewLabel_1 = new JLabel("\uB144");
+		lblNewLabel_1.setText(year+"년");
+		lblNewLabel_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_8.add(lblNewLabel_1, "name_14824930828554");
+		
 		JLabel lblNewLabel_2 = new JLabel("\u25C0");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//◀
+				year--;
+				lblNewLabel_1.setText(year+"년");
+				System.out.println("년<<");
+				Chart chart = new Chart(id,mon,year);
+				chart.main(id,mon,year);
+				dispose();
+			}
+		});
 		lblNewLabel_2.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_6.add(lblNewLabel_2, "name_14836750609233");
@@ -147,17 +165,23 @@ public class Chart extends JFrame {
 		panel_7.setLayout(new CardLayout(0, 0));
 		
 		JLabel lblNewLabel_3 = new JLabel("\u25B6");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//▶
+				year++;
+				lblNewLabel_1.setText(year+"년");
+				System.out.println("년>>");
+				Chart chart = new Chart(id,mon,year);
+				chart.main(id,mon,year);
+				dispose();
+			}
+		});
 		lblNewLabel_3.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_7.add(lblNewLabel_3, "name_14838850314481");
 		panel_4.add(panel_8);
 		panel_8.setLayout(new CardLayout(0, 0));
-		
-		JLabel lblNewLabel_1 = new JLabel("\uB144");
-		lblNewLabel_1.setText(year+"년");
-		lblNewLabel_1.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_8.add(lblNewLabel_1, "name_14824930828554");
 		
 		JPanel panel_12 = new JPanel();
 		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_12, 57, SpringLayout.SOUTH, panel_4);
@@ -166,7 +190,7 @@ public class Chart extends JFrame {
 		sl_panel_1.putConstraint(SpringLayout.EAST, panel_12, 510, SpringLayout.WEST, panel_1);
 		panel_1.add(panel_12);
 		panel_12.setLayout(new CardLayout(0, 0));
-		chartExample_bar cbar = new chartExample_bar();
+		chartExample_bar cbar = new chartExample_bar(id,year);
 		panel_12.add(cbar.chartPanel, "chart");
 		
 		
@@ -223,21 +247,6 @@ public class Chart extends JFrame {
 		sl_panel_5.putConstraint(SpringLayout.WEST, panel_11, 6, SpringLayout.EAST, panel_9);
 		panel_9.setLayout(new CardLayout(0, 0));
 		
-		JLabel lblNewLabel_4 = new JLabel("\u25C0");
-		lblNewLabel_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_9.add(lblNewLabel_4, "name_14841380498663");
-		sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_11, 53, SpringLayout.NORTH, panel_5);
-		sl_panel_5.putConstraint(SpringLayout.EAST, panel_11, -6, SpringLayout.WEST, panel_10);
-		panel_10.setLayout(new CardLayout(0, 0));
-		
-		JLabel lblNewLabel_6 = new JLabel("\u25B6");
-		lblNewLabel_6.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_10.add(lblNewLabel_6, "name_14848650437121");
-		panel_5.add(panel_11);
-		panel_11.setLayout(new CardLayout(0, 0));
-		
 		JLabel lblNewLabel_5 = new JLabel("\uC6D4");
 		lblNewLabel_5.setText(mon+"월");
 		lblNewLabel_5.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
@@ -252,23 +261,75 @@ public class Chart extends JFrame {
 		panel_2.add(panel_13);
 		
 		
+		JLabel lblNewLabel_4 = new JLabel("\u25C0");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//◀
+				if(mon>=2) {
+					mon--;
+					lblNewLabel_5.setText(mon+"월");
+					System.out.println("월<<");
+					Chart chart = new Chart(id,mon,year);
+					chart.main(id,mon,year);
+					dispose();
+				}
+				
+			}
+		});
+		lblNewLabel_4.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_9.add(lblNewLabel_4, "name_14841380498663");
+		sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_11, 53, SpringLayout.NORTH, panel_5);
+		sl_panel_5.putConstraint(SpringLayout.EAST, panel_11, -6, SpringLayout.WEST, panel_10);
+		panel_10.setLayout(new CardLayout(0, 0));
+		
+		JLabel lblNewLabel_6 = new JLabel("\u25B6");
+		lblNewLabel_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				//▶
+				if(mon<=11) {
+					mon++;
+					lblNewLabel_5.setText(mon+"월");
+					System.out.println("월>>");
+					Chart chart = new Chart(id,mon,year);
+					chart.main(id,mon,year);
+					dispose();
+				}
+				
+			}
+		});
+		lblNewLabel_6.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_10.add(lblNewLabel_6, "name_14848650437121");
+		panel_5.add(panel_11);
+		panel_11.setLayout(new CardLayout(0, 0));
+		
+		
+		
+		
+		
 		//카테고리별 차트 추가 예정
 		//디비에 아이디, 카테고리, 년, 월로 접근 
 		//지출 --> 식비, 주거/통신, 생활용품, 의복/미용, 교통/차량, 기타
 		String[] outCategory = {"식비","주거/통신","생활용품","의복/미용","교통/차량","기타"};
 		String[] outCategory2 = {"food","communication","Household Goods","cloth/beauty","traffic fee","etc"};
-		int[] outMoney = new int[outCategory.length];
+		ArrayList<String> calist = new ArrayList<String>();
+		ArrayList<Integer> outMoneylist = new ArrayList<Integer>();
 		
 		for (int i = 0; i < outCategory.length; i++) {//카테고리별 지출 합계 저장
-			outMoney[i] = mdao.outMoneySelect(id, year, mon, outCategory[i] );
+			//System.out.println(mon+"월");
+			int temp = mdao.outMoneySelect(id, year, mon, outCategory[i] );//DB
+			if(temp>0) {
+				calist.add(outCategory2[i]);
+				outMoneylist.add(temp);
+			}
 		}
 
-		for (int i = 0; i < outMoney.length; i++) {
-			System.out.println(outMoney[i]+"지출...");
-		}
 		
-		JFreeChart jFreeChart = getPieChart(outCategory2, outMoney);//차트추가
-		//JFreeChart jFreeChart = getPieChart();
+		JFreeChart jFreeChart = getPieChart(calist, outMoneylist);//차트추가
+		//JFreeChart jFreeChart = getPieChart();//기본 참고용
 		ChartPanel chartPanel = new ChartPanel(jFreeChart);
 		panel_13.add(chartPanel);
 		
@@ -276,23 +337,32 @@ public class Chart extends JFrame {
 		
 	}
 	
-	public void CalendarOutPut() {
-        Calendar cal = Calendar.getInstance();
-        year = cal.get(Calendar.YEAR); //년도
-        mon = cal.get(Calendar.MONTH)+1; // 월 
-        day = cal.get(Calendar.DAY_OF_MONTH); // 일 
-        hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
-        min = cal.get(Calendar.MINUTE); // 분
-        sec = cal.get(Calendar.SECOND); // 초
+	public void CalendarOutPut(int monTemp,int yearTemp) {
+		 Calendar cal = Calendar.getInstance();
+	       
+	        day = cal.get(Calendar.DAY_OF_MONTH); // 일 
+	        hour = cal.get(Calendar.HOUR_OF_DAY); // 시간
+	        min = cal.get(Calendar.MINUTE); // 분
+	        sec = cal.get(Calendar.SECOND); // 초
+		if(monTemp==0) {
+			mon = cal.get(Calendar.MONTH)+1; // 월 
+		}else {
+			mon = monTemp;
+		}
+		if(yearTemp==0) {
+			year = cal.get(Calendar.YEAR); //년도
+		}else {
+			year = yearTemp;
+		}
 	}
 	
-	public JFreeChart getPieChart(String[] outCategory, int[] outMoney) {
+	public JFreeChart getPieChart(ArrayList<String> calist, ArrayList<Integer> outMoneylist) {
 	    DefaultPieDataset dataset = new DefaultPieDataset();
 	
-        for(int i =0; i<outCategory.length; i++){
-            int n = outMoney[i];
-            System.out.println("차트..."+n);
-            dataset.setValue(outCategory[i], n);
+        for(int i =0; i<calist.size(); i++){
+            int n = outMoneylist.get(i);
+            //System.out.println("차트..."+n);
+            dataset.setValue(calist.get(i), n);
         }
 		JFreeChart chart = ChartFactory.createPieChart3D("Expenditure", dataset, true,true, false);
 		chart.setBackgroundPaint(Color.white);
