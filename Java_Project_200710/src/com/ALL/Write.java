@@ -462,8 +462,8 @@ public class Write extends JFrame {
 						category);
 				int monthlyBudget = bdao.monthelybudgetSel(id, year, month,
 						category);
-
-				if (monthlyOutcome > monthlyBudget) {
+				
+				if (monthlyOutcome > monthlyBudget && monthlyBudget!=0) {
 					if (category.equals("식비")) {
 						talk = "식비 예산을 초과하셨어요.. \n\n과식한 건 아니시죠?";
 					} else if (category.equals("주거/통신")) {
@@ -480,18 +480,19 @@ public class Write extends JFrame {
 					Write w = new Write(id, talk);
 					w.main(id, talk);
 				} else {
+					
 					if (category.equals("식비")) {
-						talk = "식비썼네염";
+						talk = "\n이번달 식비로 \n총"+monthlyOutcome+"원을 지출하셧어요!!";
 					} else if (category.equals("주거/통신")) {
-						talk = "주거/통신 썻네염";
+						talk = "\n이번달 주거/통신으로 \n총"+monthlyOutcome+"원을 지출하셧어요!!";;
 					} else if (category.equals("생활용품")) {
-						talk = "생활용품 썼네염";
+						talk = "\n이번달 생활용품으로 \n총"+monthlyOutcome+"원을 지출하셧어요!!";;
 					} else if (category.equals("의복/미용")) {
-						talk = "의복/미용 썼네염";
+						talk = "\n이번달 의복/미용으로 \n총"+monthlyOutcome+"원을 지출하셧어요!!";;
 					} else if (category.equals("교통/차량")) {
-						talk = "교통/차량 썼네염";
+						talk = "\n이번달 교통/차량으로 \n총"+monthlyOutcome+"원을 지출하셧어요!!";;
 					} else if (category.equals("기타")) {
-						talk = "기타 썼네염";
+						talk = "\n이번달 기타 \n총"+monthlyOutcome+"원을 지출하셧어요!!";;
 					}
 					Write w = new Write(id, talk);
 					w.main(id, talk);
