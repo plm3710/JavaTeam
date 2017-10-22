@@ -88,7 +88,7 @@ public class Write extends JFrame {
 	private int hour = 0;
 	private int min = 0;
 	private int sec = 0;
-	private String talk = "입력창이에요 바부얌";
+	private String talk = "";
 
 	/**
 	 * Launch the application.
@@ -133,12 +133,8 @@ public class Write extends JFrame {
 		dialog_income.add("입금감사");
 		dialog_income.add("땡큐감사");
 		dialog_income.add("베리감사");
-
-		ArrayList<String> dialog_outcome = new ArrayList<String>();
-		dialog_outcome.add("돈썼네?");
-		dialog_outcome.add("그만좀 쓰지?");
-		dialog_outcome.add("그만좀 하세요!");
-
+		
+		
 		CalendarOutPut();
 		setUndecorated(true);// 타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,8 +143,6 @@ public class Write extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-
-		JLabel lbl_talking2 = new JLabel(talk);
 
 		JPanel panel = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -168,21 +162,12 @@ public class Write extends JFrame {
 			}
 		};
 		contentPane.add(panel, "name_39561877537572");
-		SpringLayout sl_panel = new SpringLayout();
-		panel.setLayout(sl_panel);
+		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 480,
-				SpringLayout.WEST, panel);
+		panel_1.setBounds(10, 208, 470, 472);
 
 		panel_1.setBackground(new Color(191, 192, 192));
-
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, -482,
-				SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 10,
-				SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, -10,
-				SpringLayout.SOUTH, panel);
 		panel.add(panel_1);
 		panel_1.setLayout(new CardLayout(0, 0));
 
@@ -198,24 +183,24 @@ public class Write extends JFrame {
 		UIManager.put("TabbedPane.selected", new Color(255, 192, 0)); // 탭 색깔
 																		// (눌렀을때)
 
-		// tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
-		// // 안됨
-		//
-		// @Override
-		// protected int calculateTabHeight(int tabPlacement,
-		// int tabIndex, int fontHeight) {
-		// // TODO Auto-generated method stub
-		// return 40;
-		// }
-		//
-		// @Override
-		// protected int calculateTabWidth(int tabPlacement,
-		// int tabIndex, FontMetrics metrics) {
-		// // TODO Auto-generated method stub
-		// return 231;
-		// }
-		//
-		// });
+		 tabbedPane.setUI(new BasicTabbedPaneUI() { // 탭 사이즈 변경 / 주석 풀면 디자인 화면
+		 // 안됨
+		
+		 @Override
+		 protected int calculateTabHeight(int tabPlacement,
+		 int tabIndex, int fontHeight) {
+		 // TODO Auto-generated method stub
+		 return 40;
+		 }
+		
+		 @Override
+		 protected int calculateTabWidth(int tabPlacement,
+		 int tabIndex, FontMetrics metrics) {
+		 // TODO Auto-generated method stub
+		 return 231;
+		 }
+		
+		 });
 		panel_1.add(tabbedPane, "name_39837979284068");
 
 		JPanel panel_16 = new JPanel();
@@ -481,22 +466,34 @@ public class Write extends JFrame {
 
 				if (monthlyOutcome > monthlyBudget) {
 					if (category.equals("식비")) {
-						talk = "식비 넘마니 썼음";
+						talk = "식비 예산을 초과하셨어요.. \n\n과식한 건 아니시죠?";
 					} else if (category.equals("주거/통신")) {
-						talk = "주거/통신 마니썼음";
+						talk = "주거/통신 예산을 초과하셨어요!\n\n지난달과 달라진 건 없는지 한번 확인해 보는 게 어떨까요?";
 					} else if (category.equals("생활용품")) {
-						talk = "생활용품 마니썼음";
+						talk = "생활용품 예산을 초과하셨어요!\n\n지름신이 온 건 아니겠죠? \n\n아니면 휴지를 너무 많이 쓰신건가..";
 					} else if (category.equals("의복/미용")) {
-						talk = "의복/미용 마니썻음";
+						talk = "의복/미용 예산을 초과하셨어요!\n\n 주인님은 충분히 멋지세요..ㅜㅜ";
 					} else if (category.equals("교통/차량")) {
-						talk = "교통/차량 마니썼음";
+						talk = "교통/차량 예산을 초과하셨어요!\n\n 걷기가 건강에 그렇게 좋다던데...";
 					} else if (category.equals("기타")) {
-						talk = "기타 마니썼음";
+						talk = "기타 예산을 초과하셨어요!\n\n 월말까진 조금씩 절약해보세요:)";
 					}
 					Write w = new Write(id, talk);
 					w.main(id, talk);
 				} else {
-					talk = dialog_outcome.get(rd.nextInt(dialog_outcome.size()));
+					if (category.equals("식비")) {
+						talk = "식비썼네염";
+					} else if (category.equals("주거/통신")) {
+						talk = "주거/통신 썻네염";
+					} else if (category.equals("생활용품")) {
+						talk = "생활용품 썼네염";
+					} else if (category.equals("의복/미용")) {
+						talk = "의복/미용 썼네염";
+					} else if (category.equals("교통/차량")) {
+						talk = "교통/차량 썼네염";
+					} else if (category.equals("기타")) {
+						talk = "기타 썼네염";
+					}
 					Write w = new Write(id, talk);
 					w.main(id, talk);
 				}
@@ -867,25 +864,17 @@ public class Write extends JFrame {
 		panel_15.add(label_6, "name_21523545996197");
 
 		JPanel panel_2 = new JPanel();
-		sl_panel.putConstraint(SpringLayout.NORTH, panel_2, 51,
-				SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, panel_2, 222,
-				SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_2, -34,
-				SpringLayout.NORTH, panel_1);
-		sl_panel.putConstraint(SpringLayout.EAST, panel_2, -26,
-				SpringLayout.EAST, panel);
+		panel_2.setBounds(222, 59, 242, 123);
 		panel_2.setBackground(new Color(0, 0, 0, 0));
 		panel.add(panel_2);
-		panel_2.setLayout(new GridLayout(3, 0, 0, 0));
-
-		JLabel lbl_talking1 = new JLabel("");
-		panel_2.add(lbl_talking1);
-
-		panel_2.add(lbl_talking2);
-
-		JLabel lbl_talking3 = new JLabel("");
-		panel_2.add(lbl_talking3);
+		panel_2.setLayout(new CardLayout(0, 0));
+		
+		JTextArea textArea_dialog = new JTextArea();
+		textArea_dialog.setFont(new Font("서울남산 장체BL", Font.PLAIN, 17));
+		textArea_dialog.setText(talk);
+		textArea_dialog.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		textArea_dialog.setOpaque(false);
+		panel_2.add(textArea_dialog, "name_3322426601659");
 
 		ivo = new IncomeVO();
 
@@ -931,7 +920,10 @@ public class Write extends JFrame {
 				wdao.incomeInsert(ivo);
 				dispose();
 
-				talk = dialog_income.get(rd.nextInt(dialog_income.size()));
+
+				talk = "\n주인님!   " + category + "\n " + money + "원이 들어왔어요 ^^";
+//						dialog_income.get(rd.nextInt(dialog_income.size()));
+				
 				Write w = new Write(id, talk);
 				w.main(id, talk);
 			}
@@ -943,8 +935,6 @@ public class Write extends JFrame {
 		tf_income_year.setText(Integer.toString(year));
 		tf_income_month.setText(Integer.toString(mon));
 		tf_income_day.setText(Integer.toString(day));
-
-		lbl_talking2.setText(talk);
 
 	}
 }
