@@ -426,11 +426,17 @@ public budgetRestart(String id,int yearTemp,int monTemp,String talk) {
 	JLabel lblNewLabel_10 = new JLabel("\\"+num4+"");//이번 달 남은 예산
 	lblNewLabel_10.setHorizontalAlignment(SwingConstants.RIGHT);
 	lblNewLabel_10.setFont(new Font("서울남산 장체B", Font.PLAIN, 17));
+	if(num4<0) {
+		lblNewLabel_10.setForeground(Color.red);
+	}
 	panel_5.add(lblNewLabel_10);
 	
 	JLabel label = new JLabel("\\"+num5+"");//평균 하루 사용 가능금액
 	label.setHorizontalAlignment(SwingConstants.RIGHT);
 	label.setFont(new Font("서울남산 장체B", Font.PLAIN, 17));
+	if(num5<0) {
+		label.setForeground(Color.red);
+	}
 	panel_5.add(label);
 	
 	scrollPane.setBounds(5, 62, 445, 342);
