@@ -366,7 +366,6 @@ public class Write extends JFrame {
 		panel_6.setLayout(new CardLayout(0, 0));
 
 		JLabel lblNewLabel_4 = new JLabel("\uACB0\uC81C\uB0B4\uC6A9");
-		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_4.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_4.setToolTipText("");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -747,7 +746,6 @@ public class Write extends JFrame {
 		panel_66.setLayout(new CardLayout(0, 0));
 
 		JLabel lblNewLabel_41 = new JLabel("\uC218\uC785\uB0B4\uC6A9");
-		lblNewLabel_41.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_41.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 		lblNewLabel_41.setToolTipText("");
 		lblNewLabel_41.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -921,7 +919,7 @@ public class Write extends JFrame {
 				dispose();
 
 
-				talk = "\n주인님!   " + category + "\n " + money + "원이 들어왔어요 ^^";
+				talk = "\n주인님!\n" + category + " " + money + "원이 들어왔어요 ^^";
 //						dialog_income.get(rd.nextInt(dialog_income.size()));
 				
 				Write w = new Write(id, talk);

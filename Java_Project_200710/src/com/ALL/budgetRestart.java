@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 import com.DAO.MoneyDAO;
 import com.DAO.budgetDAO;
@@ -41,6 +42,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class budgetRestart extends JFrame {
 	MoneyDAO dao = null;
@@ -54,11 +56,11 @@ public class budgetRestart extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String id,int yearTemp,int monTemp) {
+	public static void main(String id,int yearTemp,int monTemp,String talk) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					budgetRestart frame = new budgetRestart(id,yearTemp,monTemp);
+					budgetRestart frame = new budgetRestart(id,yearTemp,monTemp,talk);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,7 +72,7 @@ public class budgetRestart extends JFrame {
 /**
  * Create the frame.
  */
-public budgetRestart(String id,int yearTemp,int monTemp) {
+public budgetRestart(String id,int yearTemp,int monTemp,String talk) {
 	dao = new MoneyDAO();
 	blist = new ArrayList<BudgetVO>();
 	
@@ -155,8 +157,8 @@ public budgetRestart(String id,int yearTemp,int monTemp) {
 			}
 			Time.setText(todayYear + "년 " + (todayMon) + "월");
 			
-			budgetRestart br = new budgetRestart(id, todayYear, todayMon);
-			br.main(id, todayYear, todayMon);
+			budgetRestart br = new budgetRestart(id, todayYear, todayMon,talk);
+			br.main(id, todayYear, todayMon,talk);
 			dispose();
 		}
 	});
@@ -178,8 +180,8 @@ public budgetRestart(String id,int yearTemp,int monTemp) {
 				todayYear--;
 			}
 			Time.setText(todayYear + "년 " + (todayMon) + "월");
-			budgetRestart br = new budgetRestart(id, todayYear, todayMon);
-			br.main(id, todayYear, todayMon);
+			budgetRestart br = new budgetRestart(id, todayYear, todayMon,talk);
+			br.main(id, todayYear, todayMon,talk);
 			dispose();
 		}
 	});
@@ -249,6 +251,22 @@ public budgetRestart(String id,int yearTemp,int monTemp) {
 	lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 	lblNewLabel_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
 	plus.add(lblNewLabel_2);
+	
+	JPanel panel_6 = new JPanel();
+	panel_6.setBackground(new Color(0,0,0,0));
+	sl_panel.putConstraint(SpringLayout.NORTH, panel_6, 47, SpringLayout.NORTH, panel);
+	sl_panel.putConstraint(SpringLayout.WEST, panel_6, -287, SpringLayout.EAST, panel_1);
+	sl_panel.putConstraint(SpringLayout.SOUTH, panel_6, -42, SpringLayout.NORTH, panel_1);
+	sl_panel.putConstraint(SpringLayout.EAST, panel_6, -73, SpringLayout.EAST, panel);
+	panel.add(panel_6);
+	panel_6.setLayout(new CardLayout(0, 0));
+	
+	JTextArea textArea = new JTextArea();
+	textArea.setFont(new Font("서울남산 장체B", Font.PLAIN, 17));
+	textArea.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+	textArea.setOpaque(false);
+	textArea.setText(talk);
+	panel_6.add(textArea, "name_5763803647688");
 	lblNewLabel_2.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -354,14 +372,14 @@ public budgetRestart(String id,int yearTemp,int monTemp) {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			//레이블 삭제
-			System.out.println("이벤트");
+			//System.out.println("이벤트");
 			budgetDAO bdao = new budgetDAO();
 			
 			int cnt = bdao.buddelete(id,ca,todayYear,todayMon);
 			if(cnt>0) {
 				JOptionPane.showMessageDialog(null, "예산이 삭제되었습니다.");
-				budgetRestart br = new budgetRestart(id,todayYear,todayDay);
-				br.main(id,todayYear,todayDay);
+				budgetRestart br = new budgetRestart(id,todayYear,todayMon,talk);
+				br.main(id,todayYear,todayMon,talk);
 				dispose();
 			}else {
 				JOptionPane.showMessageDialog(null, "삭제 실패...");
@@ -427,5 +445,4 @@ public budgetRestart(String id,int yearTemp,int monTemp) {
 	
 
 	}
-
 }

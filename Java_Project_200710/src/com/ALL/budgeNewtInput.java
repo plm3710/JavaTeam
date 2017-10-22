@@ -426,9 +426,9 @@ public class budgeNewtInput extends JFrame {
 		btn_cancel.addActionListener(new ActionListener() { // 취소버튼 클릭시 걍 예산창으로
 															// 돌아감
 			public void actionPerformed(ActionEvent e) {
-
-				budgetRestart ms = new budgetRestart(id,0,0);
-				ms.main(id,0,0);
+				String talk = "\n\n다시오셨네요 주인님~~";
+				budgetRestart ms = new budgetRestart(id,0,0,talk);
+				ms.main(id,0,0,talk);
 				dispose();
 			}
 		});
@@ -499,8 +499,24 @@ public class budgeNewtInput extends JFrame {
 				
 				if (count>0){
 					JOptionPane.showMessageDialog(null, "저장 되었습니다.");
-					budgetRestart br = new budgetRestart(id,0,0);
-					br.main(id,0,0);
+					
+					String talk = "\n"+category+"이 "+money+"로 설정되었습니다.\n";
+					if(category.equals("식비")) {
+						talk = "\n"+category+"가 "+money+"로 설정되었습니다.\n맛난 거 혼자만 사먹으면 안돼요!! 나눠먹어요!!~~";
+					}else if(category.equals("주거/통신")) {
+						talk += "수도꼭지, 가스밸브 꼭 잠가주세요!!\n쓰지 않는 가전제품 코드도 꼭꼭 \n뽑아주시고요♡";
+					}else if(category.equals("생활용품")) {
+						talk += "아끼는건 좋은 습관 이에요!!\n너무 아끼면 짠돌이 같지만...";
+					}else if(category.equals("의복/미용")) {
+						talk += "킁킁, 어디서 지름신 냄새가 난다.\n지름신 냄새!!";
+					}else if(category.equals("교통/차량")) {
+						talk += "일상이 지루하시면 \n한번쯤은 교외로 놀러가세요";
+					}else {
+						talk = "\n"+category+"가 "+money+"로 설정되었습니다.\n제 잔소리가 지겨우시다면 \n죄송해요ㅠㅠ";
+					}
+					
+					budgetRestart br = new budgetRestart(id,0,0,talk);
+					br.main(id,0,0,talk);
 					dispose();
 				}else{
 					JOptionPane.showMessageDialog(null, "등록실패");
