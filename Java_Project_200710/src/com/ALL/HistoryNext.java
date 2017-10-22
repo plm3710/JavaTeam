@@ -63,14 +63,12 @@ public class HistoryNext extends JFrame {
 		setUndecorated(true);//타이틀바 없애기
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 400);
+		setBounds(570, 327, 800, 400);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-		
-		this.setLocation(240,265);//처음 띄울때 위치
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);

@@ -61,7 +61,7 @@ public class MenuSelectPicto2 extends JFrame {
 	public MenuSelectPicto2(String id) {
 		setUndecorated(true);// 타이틀바 없애기
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1050, 700);
+		setBounds(431, 176, 1050, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

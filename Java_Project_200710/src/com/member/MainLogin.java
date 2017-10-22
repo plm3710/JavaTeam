@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 import java.awt.CardLayout;
 
@@ -69,7 +70,7 @@ public class MainLogin extends JFrame {
 		list = new ArrayList<MemberVO>();
 		mdao = new MemberDAO();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1050, 700);
+		setBounds(431, 176, 1050, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -106,18 +107,18 @@ public class MainLogin extends JFrame {
 		panel_1.setLayout(sl_panel_1);
 		
 		JPanel panel_3 = new JPanel();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_3, 92, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_3, 404, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_3, 172, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_3, 652, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_3, 637, SpringLayout.WEST, panel_1);
 		panel_1.add(panel_3);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(0,0,0,0));
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_2, 0, SpringLayout.NORTH, panel_3);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_2, -124, SpringLayout.WEST, panel_3);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_2, 92, SpringLayout.NORTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_2, 269, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_2, -80, SpringLayout.SOUTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_2, -10, SpringLayout.WEST, panel_3);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_2, -641, SpringLayout.EAST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_3, 0, SpringLayout.NORTH, panel_2);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_3, 6, SpringLayout.EAST, panel_2);
+		panel_2.setBackground(new Color(0,0,0,0));
 		panel_3.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		JPanel panel_6 = new JPanel();
@@ -125,6 +126,10 @@ public class MainLogin extends JFrame {
 		panel_6.setLayout(new CardLayout(0, 0));
 		
 		textField = new JTextField();
+		//투명하게
+		textField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		textField.setOpaque(false);
+		///
 		textField.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
 		panel_6.add(textField, "name_32076350647672");
 		textField.setColumns(10);
@@ -134,6 +139,11 @@ public class MainLogin extends JFrame {
 		panel_7.setLayout(new CardLayout(0, 0));
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("서울남산 장체B", Font.PLAIN, 20));
+		//투명하게
+		passwordField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		passwordField.setOpaque(false);
+		///
 		panel_7.add(passwordField, "name_35360905343487");
 		panel_1.add(panel_2);
 		panel_2.setLayout(new GridLayout(2, 0, 0, 0));
@@ -149,11 +159,11 @@ public class MainLogin extends JFrame {
 		panel_2.add(lblNewLabel);
 		
 		JPanel panel_8 = new JPanel();
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_8, 7, SpringLayout.SOUTH, panel_3);
+		sl_panel_1.putConstraint(SpringLayout.WEST, panel_8, 433, SpringLayout.WEST, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_8, -43, SpringLayout.SOUTH, panel_1);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_8, -431, SpringLayout.EAST, panel_1);
 		panel_8.setBackground(new Color(0,0,0,0));
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_8, 6, SpringLayout.SOUTH, panel_3);
-		sl_panel_1.putConstraint(SpringLayout.WEST, panel_8, 448, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_8, 36, SpringLayout.SOUTH, panel_3);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_8, -416, SpringLayout.EAST, panel_1);
 		panel_1.add(panel_8);
 		panel_8.setLayout(new CardLayout(0, 0));
 		
@@ -166,16 +176,16 @@ public class MainLogin extends JFrame {
 				dispose();
 			}
 		});
-		lblNewLabel_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 30));
+		lblNewLabel_2.setFont(new Font("서울남산 장체B", Font.PLAIN, 25));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_8.add(lblNewLabel_2, "name_32143514351492");
 		
 		JPanel panel_9 = new JPanel();
-		panel_9.setBackground(new Color(192,192,192));
-		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_9, 0, SpringLayout.NORTH, panel_3);
+		sl_panel_1.putConstraint(SpringLayout.NORTH, panel_9, 92, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, panel_9, 6, SpringLayout.EAST, panel_3);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, panel_9, 0, SpringLayout.SOUTH, panel_3);
-		sl_panel_1.putConstraint(SpringLayout.EAST, panel_9, 103, SpringLayout.EAST, panel_3);
+		sl_panel_1.putConstraint(SpringLayout.EAST, panel_9, -284, SpringLayout.EAST, panel_1);
+		panel_9.setBackground(new Color(192,192,192));
 		panel_1.add(panel_9);
 		panel_9.setLayout(new CardLayout(0, 0));
 		

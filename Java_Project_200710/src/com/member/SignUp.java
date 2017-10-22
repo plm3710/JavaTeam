@@ -70,13 +70,13 @@ public class SignUp extends JFrame {
 	 * Create the frame.
 	 */
 	public SignUp() {
-		//setUndecorated(true);//타이틀바 없애기
+		setUndecorated(true);//타이틀바 없애기
 		dao = new MemberDAO();
 		mvo = new MemberVO();
 		list = new ArrayList<MemberVO>();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1050, 700);
+		setBounds(431, 176, 1050, 700);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -103,10 +103,10 @@ public class SignUp extends JFrame {
 		panel.setLayout(sl_panel);
 		
 		JPanel panel_1 = new JPanel();
+		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, 680, SpringLayout.NORTH, panel);
 		panel_1.setBackground(new Color(255,192,0));
 		sl_panel.putConstraint(SpringLayout.NORTH, panel_1, 0, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.WEST, panel_1, 249, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, panel_1, 651, SpringLayout.NORTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, panel_1, 775, SpringLayout.WEST, panel);
 		panel.add(panel_1);
 		SpringLayout sl_panel_1 = new SpringLayout();

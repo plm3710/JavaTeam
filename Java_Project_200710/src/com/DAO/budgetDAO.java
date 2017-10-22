@@ -113,6 +113,7 @@ public class budgetDAO {
       int count = 0;
       try {
          String sql = "insert into budget values(?,?,?,?,?,?)";
+         System.out.println("budgetIndsert : year : "+bvo.getYear()+" month : "+bvo.getMonth());
          psmt = con.prepareStatement(sql);
          psmt.setString(1, bvo.getId());
          psmt.setInt(2, bvo.getMoney());
@@ -122,7 +123,7 @@ public class budgetDAO {
          psmt.setString(6, bvo.getMemo());
 
          count = psmt.executeUpdate();
-
+         
       } catch (SQLException e) {
          System.out.println("budgetDAO-insert ¿À·ù");
          e.printStackTrace();

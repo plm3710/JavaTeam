@@ -71,10 +71,11 @@ public class budgeNewtInput extends JFrame {
 	 */
 	public budgeNewtInput(String id) {
 		CalendarOutPut();
-		// setUndecorated(true);//타이틀바 없애기
+		
+		setUndecorated(true);//타이틀바 없애기
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 500, 500);
+		setBounds(690, 300, 500, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -485,6 +486,7 @@ public class budgeNewtInput extends JFrame {
 
 				int year = Integer.parseInt(textField_yearInput.getText());
 				int month = Integer.parseInt(textField_monthInput.getText());
+				System.out.println("예산 추가창 년="+year+" 월 ="+month);
 				int money = Integer.parseInt(textField_money.getText());
 
 				String memo = textField_name.getText();
