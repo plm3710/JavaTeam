@@ -38,6 +38,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class SignUp extends JFrame {
 
@@ -153,18 +155,30 @@ public class SignUp extends JFrame {
 		panel_5.add(lblNewLabel_1);
 		
 		txtId = new JTextField();
+		txtId.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if(txtId.getText().equals("")) {
+					txtId.setText("example@email.com");
+					txtId.setForeground(new Color(150,150,150));
+				}
+			}
+		});
 		txtId.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		txtId.setOpaque(false);
 		txtId.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(txtId.getText().equals("email")) {
+				if(txtId.getText().equals("example@email.com")) {
 					txtId.setText("");
+					txtId.setForeground(new Color(0,0,0));
 				}
 			}
 		});
+		
 		txtId.setFont(new Font("서울남산 장체BL", Font.PLAIN, 20));
-		txtId.setText("email");
+		txtId.setText("example@email.com");
+		txtId.setForeground(new Color(150,150,150));
 		sl_panel_5.putConstraint(SpringLayout.NORTH, txtId, 10, SpringLayout.NORTH, panel_5);
 		sl_panel_5.putConstraint(SpringLayout.WEST, txtId, 6, SpringLayout.EAST, lblNewLabel_1);
 		sl_panel_5.putConstraint(SpringLayout.SOUTH, txtId, 0, SpringLayout.SOUTH, lblNewLabel_1);
