@@ -428,6 +428,7 @@ public budgetRestart(String id,int yearTemp,int monTemp,String talk) {
 	lblNewLabel_10.setFont(new Font("서울남산 장체B", Font.PLAIN, 17));
 	if(num4<0) {
 		lblNewLabel_10.setForeground(Color.red);
+		lblNewLabel_10.setText("0");
 	}
 	panel_5.add(lblNewLabel_10);
 	
@@ -436,6 +437,7 @@ public budgetRestart(String id,int yearTemp,int monTemp,String talk) {
 	label.setFont(new Font("서울남산 장체B", Font.PLAIN, 17));
 	if(num5<0) {
 		label.setForeground(Color.red);
+		label.setText("0");
 	}
 	panel_5.add(label);
 	

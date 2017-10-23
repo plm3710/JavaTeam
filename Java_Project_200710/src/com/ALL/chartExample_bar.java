@@ -154,7 +154,7 @@ public class chartExample_bar{
         
         // create the chart...
         final JFreeChart chart = ChartFactory.createBarChart(
-            "Expenditure",         // 차트이름
+            "Income & Expenditure",         // 차트이름
             "Month",               // 
             "Money",                  // range axis label
             dataset,                  // data

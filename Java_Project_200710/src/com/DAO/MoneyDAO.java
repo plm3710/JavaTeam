@@ -49,7 +49,7 @@ public class MoneyDAO {
          while(rs.next()) {
             //수입의 모든 금액 출력
             int money = rs.getInt(2);
-            System.out.println("inmoney : "+money);
+           // System.out.println("inmoney : "+money);
             moneyAll += money;
          }
       
@@ -83,7 +83,7 @@ public class MoneyDAO {
          while(rs.next()) {
             //수입의 모든 금액 출력
             int money = rs.getInt(2);
-            System.out.println("outmoney : "+money);
+           // System.out.println("outmoney : "+money);
             moneyAll += money;
          }
       
